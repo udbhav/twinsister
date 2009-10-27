@@ -1,0 +1,81 @@
+{% load thumbnail %}
+	<div class="images">
+	  		{% for art in obj.art.all %}
+		<a href="http://twinsistermusic.com/media/{{ art.artwork }}"><img src="{% thumbnail art.artwork 500x2000 %}" /></a><br/>
+		{% if art.artist.all %}Artist:
+		{% for artist in art.artist.all %} 
+		{% if artist.url %}<a href="http://twinsistermusic.com/{{ artist.url }}">{% endif %}{{ artist.name }}{% if artist.url %}</a>{% endif %}
+		{% endfor %} - 
+		{% endif %} 
+		<a href="http://twinsistermusic.com/media/{{ art.artwork }}">(Click for full-size)</a>
+		{% endfor %}
+	  		{% for photo in obj.photo.all %}
+		<a href="http://twinsistermusic.com/media/{{ photo.photo }}"><img src="{% thumbnail photo.photo 500x2000 %}"></a><br/>
+		{% if photo.photo_credit %}Photo by: {% if photo.photo_credit.url %}<a href="http://twinsistermusic.com/{{ photo.photo_credit.url }}">{% endif %}{{ photo.photo_credit.name }}{% if photo.photo_credit.url %}</a>{% endif %} - {% endif %} 
+		<a href="http://twinsistermusic.com/media/{{ photo.photo }}">(Click for full-size)</a>
+		{% endfor %}
+
+	</div>
+	<div class="body">{% autoescape off %}{{ obj.body }}{% endautoescape %}</div><br/>
+	<div class="data">
+		{% for song in obj.song_set.select_related %}
+		<a href="http://twinsistermusic.com/media/{{ song.file }}">{% for band in song.band.all %}{{ band.name }}{% endfor %} - {{ song.title }}</a>
+		{% if song.composers or song.credit_set.select_related %}
+		<div class="info">		
+			{% if song.composers %}
+			<div class="composers">Composer(s): 
+			{% for composer in song.composers.all %}
+			{% if forloop.last %}{{ composer.name }}
+			{% else %}{{ composer.name }},  
+			{% endif %}{% endfor %}</div>
+			{% endif %}
+			{% if song.credit_set.select_related %}
+			<ul class="credits">
+			{% for credit in song.credit_set.select_related %}
+			<li>{{ credit.name }} - {{ credit.instruments }}</li>
+			{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+		{% endif %}
+		{% endfor %}
+		{% for show in obj.show_set.select_related %}
+        		{{ show.venue_name }}<br/>
+				{{ show.show_date|date:"F j, Y fA" }}<br/>
+				{{ show.venue_address }}<br/>
+				{% if show.bands.all %}
+						With: 
+						{% for band in show.bands.all %}
+						{% if forloop.last %}
+						{% if band.url %}
+							<a href="{{ band.url }}">{{ band.name }}</a>
+						{% else %}
+							{{ band.name }}
+						{% endif %}
+						{% else %}
+						{% if band.url %}
+							<a href="{{ band.url }}">{{ band.name }}</a>, 
+						{% else %}
+							{{ band.name }}, 
+						{% endif %}
+
+						{% endif %}
+						{% endfor %}
+					<br/>
+				  {% endif %}
+
+					{{ show.cost }} {{ show.misc }}<br/>
+				<a href="http://maps.google.com/maps?daddr={{ show.venue_address }}">Get Directions</a>
+
+		{% endfor %}
+		{% for release in obj.release_set.select_related %}
+		<strong>{{ release.band }} - {{ release.name }}</strong>
+		<ol>
+		{% for song in release.songs.all|dictsort:"track_number" %}
+		<li><a href="http://twinsistermusic.com/media/{{ song.file }}">{{ song.title }}</a></li>
+		{% endfor %}
+		</ol>
+		{% endfor %}
+	</div>
+</div>
+

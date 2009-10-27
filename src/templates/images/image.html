@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load previous_next %}
+
+{% block nav-images %} class="active"{% endblock %}
+{% block section_title %}{{ image.title }}{% endblock %}
+
+{% block content %}
+<div class="entry">
+  <div class="previous_next">
+    {% if image|previous_image:gallery %}
+    <a href="{{ image|previous_image:gallery }}">Previous</a>
+    {% endif %}
+    {% if image|next_image:gallery %}
+    <a href="{{ image|next_image:gallery }}">Next</a>
+    {% endif %}
+  </div>
+  <a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{% thumbnail image.photo 600x800 %}" alt="{{ image.title }}" /></a>
+  {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
+  {% if image.credit.all %}<p>Credit(s): {{ image.credit.all|join:", " }}</p>{% endif %}
+  <div class="previous_next">
+    {% if image|previous_image:gallery %}
+    <a href="{{ image|previous_image:gallery }}">Previous</a>
+    {% endif %}
+    {% if image|next_image:gallery %}
+    <a href="{{ image|next_image:gallery }}">Next</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

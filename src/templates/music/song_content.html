@@ -1,0 +1,12 @@
+<ul class="playlist">
+  <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song.band }} - {{ song }}</a></li>
+</ul>
+
+{% if song.release_set.all %}
+<h4>From:</h4>
+<ul>
+  {% for release in song.release_set.all %}
+  <li><a href="{{ release.get_absolute_url }}">{{ release }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}

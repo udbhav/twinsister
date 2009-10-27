@@ -1,0 +1,39 @@
+{% load thumbnail %}
+<div class="posted_by">posted by <a href="{{ data.posted_by.get_absolute_url }}">{{ data.posted_by }}</a> - {{ data.pub_date|date:"l, F j, Y" }}</div>
+
+{% if data.header_image %}
+{% with data.header_image as image %}
+<a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{% thumbnail image.photo 626x620 %}" alt="{{ image }}" /></a>
+{% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
+{% if image.credit.all %}<p>Credit(s): {{ image.credit.all|join:", " }}</p>{% endif %}
+{% endwith %}
+{% endif %}
+
+{% if data.description %}{% autoescape off %}{{ data.description }}{% endautoescape %}{% endif %}
+
+{% if data.song %}
+{% with data.song as song %}
+{% include "music/song_content.html" %}
+{% endwith %}
+{% endif %}
+
+{% if data.release %}
+{% with data.release as release %}
+{% include "music/release_content.html" %}
+{% endwith %}
+{% endif %}
+
+{% if data.show %}
+{% with data.show as show %}
+{% include "events/show_content.html" %}
+{% endwith %}
+{% endif %}
+
+{% if data.artwork.all %}
+<div class="artwork">
+<h4>Artwork</h4>
+{% for gallery in data.artwork.all %}
+{% include "images/gallery_content.html" %}
+{% endfor %}
+</div>
+{% endif %}

@@ -1,0 +1,41 @@
+/* EDITOR RELATED STYLES - CUSTOMIZE FOR YOUR NEEDS */
+/*
+    The classes panel, the visual feedback and the preview
+    will be affected by these values.
+    
+    - Commented styles inside style definitions are used for visual 
+      feedback when using the editor.
+    - Comments before opening the style are used as caption.
+    - Comments after the class name and before the style declaration ({)
+      define the jQuery expression that decides whether this 
+      style should be applied or not.
+      
+    Note: the WYMeditor and /WYMeditor comments below are required
+    for the CSS parser to work properly.
+*/
+
+/* WYMeditor */
+
+/* Video Link */
+a.video {
+}
+
+/* /WYMeditor */
+/* END EDITOR RELATED STYLES */
+
+
+/* YOU CAN ADD NON-WYMEDITOR RELATED STYLES HERE */
+
+.description label {
+    float: none;
+    margin-bottom: 10px;
+}
+
+.wym_area_right {
+    font-size: 13px;
+}
+
+.wym_skin_default h2 {
+    color: #000;
+}
+

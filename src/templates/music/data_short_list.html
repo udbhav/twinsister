@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load comments %}
+
+{% block title %}Page {{ entries.number }}{% endblock %}
+{% block section_title %}Ideas and Etc.{% endblock %}
+
+{% block content %}
+
+{% for data in object_list %}
+<div class="entry{% if data.official %} official{% endif %}">
+	<a href="{{ data.get_absolute_url }}">{{ data.name }}</a>
+   {% if data.official %}<span class="official_release">Official Release</span>{% endif %}
+</div>
+{% endfor %}
+
+{% block pagination %}
+{% endblock pagination %}
+
+{% endblock %}

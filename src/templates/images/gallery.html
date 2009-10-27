@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load sort_images %}
+
+{% block nav-images %} class="active"{% endblock %}
+{% block section_title %}{{ gallery }}{% endblock %}
+
+{% block content %}
+{% if gallery.description %}
+<div class="entry">{{ gallery.description }}</div>
+{% endif %}
+
+{% for image in gallery|sort_images %}
+<div class="entry">
+<h3>{{ image }}</h3>
+<a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{% thumbnail image.photo 626x900 %}" alt="{{ image }}" /></a>
+{% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
+{% if image.credit.all %}<p>Credit(s): {{ image.credit.all|join:", " }}</p>{% endif %}
+</div>
+{% endfor %}
+{% endblock %}
+

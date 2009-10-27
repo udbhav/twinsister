@@ -1,0 +1,12 @@
+from datetime import datetime
+
+from django import template
+
+from apps.events.models import Show
+
+register = template.Library()
+
+@register.inclusion_tag('events/upcoming_shows.html')
+def shows():
+    shows = Show.objects.filter(show_date__gte=datetime.now()).order_by('show_date')
+    return {'shows':shows}

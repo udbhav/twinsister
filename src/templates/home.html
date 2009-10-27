@@ -1,0 +1,16 @@
+{% extends "music/data_list.html" %}
+
+{% block featured %}
+<h2>Vampires with Dreaming Kids EP</h2>
+<div id="feature" class="clearfix_left">
+  <img src="http://twinsistermusic.com/site_media/ep_cover.jpg" alt="Vampires with Dreaming Kids" />
+  <ul id="tracklist">
+    <li><a href="{{ MEDIA_URL }}music/dry_hump.mp3" class="amplink" onClick="pageTracker._trackEvent('Songs', 'Play', 'Dry Hump');">Dry Hump</a></li>
+    <li><a href="{{ MEDIA_URL }}music/ginger.mp3" class="amplink" onClick="pageTracker._trackEvent('Songs', 'Play', 'Ginger');">Ginger</a></li>
+    <li><a href="{{ MEDIA_URL }}music/nectarine.mp3" class="amplink" onClick="pageTracker._trackEvent('Songs', 'Play', 'Nectarine');">Nectarine</a></li>
+    <li><a href="{{ MEDIA_URL }}music/i_want_a_house.mp3" class="amplink" onClick="pageTracker._trackEvent('Songs', 'Play', 'I Want a House');">I Want a House</a></li>
+    <li><a id="zip" href="{{ MEDIA_URL }}music/twin_sister_vampires_with_dreaming_kids.zip" onClick="pageTracker._trackEvent('Vampires with Dreaming Kids EP', 'Download');">Download the entire EP as a zip file</a></li>
+  </ul>
+</div>
+
+{% endblock featured %}

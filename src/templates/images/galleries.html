@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load sort_images %}
+{% load thumbnail %}
+
+{% block nav-images %} class="active"{% endblock %}
+{% block section_title %}Images{% endblock %}
+
+{% block content %}
+{% for data in object_list %}
+<div class="entry">
+	<h3><a href="{{ data.get_absolute_url }}">{{ data.title }}</a></h3>
+   <ul class="thumbnails clearfix_left">
+   {% for image in data|sort_images %}
+   <li><a href="{% url image image_id=image.id, gallery_id=data.id %}"><img src="{% thumbnail image.photo 100x100 crop %}" alt="{{ image }}" /></a></li>
+   {% endfor %}
+   </ul>
+</div>
+{% endfor %}
+
+{% include "pagination.html" %}
+{% endblock %}
+

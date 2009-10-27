@@ -1,0 +1,27 @@
+<h4>{{ show.venue.name }}</h4>
+
+<p>
+  {{ show.show_date|date:" F j, Y fA" }}<br/>
+  {{ show.venue.address }} (<a href="http://maps.google.com/maps?daddr={{ show.venue.address|urlencode }}">Directions</a>)<br/>
+
+  {% if show.bands.all %}
+  With:
+  {% for band in show.bands.all %}
+  {% if forloop.last %}
+  {% if band.url %}
+  <a href="{{ band.url }}">{{ band.name }}</a>
+  {% else %}
+  {{ band.name }}
+  {% endif %}
+  {% else %}
+  {% if band.url %}
+  <a href="{{ band.url }}">{{ band.name }}</a>, 
+  {% else %}
+  {{ band.name }},
+  {% endif %}
+  {% endif %}
+  {% endfor %}
+  {% endif %}<br/>
+
+  {{ show.cost }}
+

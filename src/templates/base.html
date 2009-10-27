@@ -1,0 +1,110 @@
+{% load shows %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Twin Sister</title>
+	 <link type="text/css" rel="stylesheet" media="all" href="/media/css/reset.css" />
+	 <link type="text/css" rel="stylesheet" media="all" href="/media/css/style.css" />
+	 <link type="text/css" rel="stylesheet" media="all" href="/media/css/audio.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/entries/" />
+    {% block css %}
+    {% endblock css %}
+  </head>
+
+  <body>
+     <h1 id="logo"><a href="/">Twin Sister</a></h1>
+
+      {% block navigation %}
+      <ul class="navigation clearfix">
+        <li{% block nav-releases %}{% endblock %}><a href="{% url releases %}">Releases</a></li>
+        <li{% block nav-shows %}{% endblock %}><a href="{% url shows %}">Shows</a></li>
+        <li{% block nav-songs %}{% endblock %}><a href="{% url songs %}">Songs</a></li>
+        <li{% block nav-images %}{% endblock %}><a href="{% url galleries %}">Images</a></li>        
+        <li{% block nav-browse %}{% endblock %}><a href="/browse/">Browse</a></li>
+        <li id="search">
+          <form method="get" action="{% url haystack_search %}">
+            <fieldset>
+              <input type="text" name="q" />
+              <input type="submit" value="Search" />
+            </fieldset>
+          </form>
+        </li>
+      </ul>
+      {% endblock %}
+
+    <div id="wrapper" class="clearfix">
+      {% block sidebar %}
+      <div id="sidebar">
+        {% shows %}
+        <h2>Mailing List</h2>
+        <form id="mailing_list" method="post" action="{% url subscribe %}">
+          <fieldset>
+            <input type="text" name="email" id="mailing_list_email" />
+            <input type="submit" value="Subscribe" />
+          </fieldset>
+        </form>
+        <h2>Contact</h2>
+        <p>Please direct all inquiries to <a href="mailto:band@twinsistermusic.com">band@twinsistermusic.com</a></p>
+        <h2>RSS</h2>
+        <p>Subscribe to our <a href="/feeds/entries/" id="rss">RSS feed</a></p>
+      </div>
+      {% endblock sidebar %}
+
+      <div id="{% block content_id %}content{% endblock %}">
+        {% block featured %}
+        {% endblock featured %}
+
+        <h2 class="title">{% block section_title %}{% endblock %}</h2>
+  	     {% block content %}{% endblock %}
+      </div>
+    </div>
+
+    <div id="footer">
+      All content is licensed under Creative Commons | <a href="/faq/">Frequently Asked Questions</a> | <a href="mailto:band@twinsistermusic.com">band@twinsistermusic.com</a>
+    </div>
+
+    <div id="control-template">
+      <div class="controls">
+        <div class="statusbar">
+
+          <div class="loading"></div>
+          <div class="position"></div>
+        </div>
+      </div>
+      <div class="timing">
+        <div id="sm2_timing" class="timing-data">
+          <span class="sm2_position">%s1</span> / <span class="sm2_total">%s2</span></div>
+
+      </div>
+      <div class="peak">
+        <div class="peak-box"><span class="l"></span><span class="r"></span>
+        </div>
+      </div>
+    </div>
+
+    <div id="spectrum-container" class="spectrum-container">
+      <div class="spectrum-box">
+
+        <div class="spectrum"></div>
+      </div>
+    </div> 
+    <script type="text/javascript" src="/media/js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="/media/js/jquery.oembed.min.js"></script>
+    <script type="text/javascript" src="/media/js/soundmanager2.js"></script>
+    <script type="text/javascript" src="/media/js/audio.js"></script>
+    <script type="text/javascript" src="/media/js/global.js"></script>
+    {% block javascript %}
+    {% endblock javascript %}
+    <script type="text/javascript">
+	   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	   document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+	   try {
+	   var pageTracker = _gat._getTracker("UA-7119685-1");
+	   pageTracker._trackPageview();
+	   } catch(err) {}
+    </script>
+
+  </body>
+</html>

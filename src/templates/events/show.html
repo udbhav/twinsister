@@ -1,0 +1,8 @@
+{% extends "events/shows.html" %}
+
+{% block content %}
+<h2>{{ show }}</h2>
+<div class="entry">
+{% include "events/show_content.html" %}
+</div>
+{% endblock content %}
