@@ -4,80 +4,15 @@ from django.db import models
 from django.core import urlresolvers
 from django.contrib import databrowse
 
+from apps.data.models import Data
 from apps.people.models import Person, Band
 from apps.images.models import Gallery, Image
 
-class Data(models.Model):
-    """
-    An all-purpose container for all content on the site
-
-    # Create some Data
-    >>> from people.models import Person
-    >>> person = Person.objects.create(name="Udbhav gupta")
-    >>> Data.objects.create(name="Kickin' out the Jamz", slug="kickin-out-the-jamz", posted_by=person)
-    <Data: Kickin' out the Jamz>
-    """
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
-    posted_by = models.ForeignKey(Person)
-    pub_date = models.DateTimeField('date published', default=datetime.now())
-    description = models.TextField(blank=True)
-    header_image = models.ForeignKey(Image, blank=True, null=True)
+class MusicData(Data):
     artwork = models.ManyToManyField(Gallery, null=True, blank=True)
-    published = models.BooleanField(default=True)
     official = models.BooleanField()
 
-    def __unicode__(self):
-        return self.name
-    def get_absolute_url(self):
-        from apps.events.models import Show
-        url = None
-        try:
-            self.song
-            url = self.song.get_absolute_url()
-        except Song.DoesNotExist:
-            pass
-        try:
-            self.release
-            url = self.release.get_absolute_url()
-        except Release.DoesNotExist:
-            pass
-        try:
-            self.show
-            url = self.show.get_absolute_url()
-        except Show.DoesNotExist:
-            pass
-        if not url:
-            url = urlresolvers.reverse('entry', kwargs={'slug':self.slug})
-        return url
-
-    def get_class_type(self):
-        from apps.events.models import Show
-        class_type = None
-        try:
-            self.song
-            class_type = 'Song'
-        except Song.DoesNotExist:
-            pass
-        try:
-            self.release
-            class_type = 'Release'
-        except Release.DoesNotExist:
-            pass
-        try:
-            self.show
-            class_type = 'Show'
-        except Show.DoesNotExist:
-            pass
-        if not class_type:
-            class_type = 'Entry'
-        return class_type
-
-    class Meta:
-        verbose_name_plural = 'Entries'
-        verbose_name = 'Entry'
-        
-class Song(Data):
+class Song(MusicData):
     band = models.ForeignKey(Band)
     file = models.FileField(upload_to='uploads/music')
     track_number = models.IntegerField(null=True, blank=True)
@@ -93,7 +28,7 @@ class Song(Data):
         url = urlresolvers.reverse('song', kwargs={'slug':self.slug})
         return url
 
-class Release(Data):
+class Release(MusicData):
     band = models.ForeignKey(Band)
     TYPE_CHOICES = (
         ('EP', 'EP'),

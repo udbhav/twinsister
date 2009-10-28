@@ -1,4 +1,6 @@
 {% load thumbnail %}
+{% load oembed_tags %}
+
 <div class="posted_by">posted by <a href="{{ data.posted_by.get_absolute_url }}">{{ data.posted_by }}</a> - {{ data.pub_date|date:"l, F j, Y" }}</div>
 
 {% if data.header_image %}
@@ -9,7 +11,13 @@
 {% endwith %}
 {% endif %}
 
-{% if data.description %}{% autoescape off %}{{ data.description }}{% endautoescape %}{% endif %}
+{% if data.description %}
+{% autoescape off %}
+{% oembed %}
+{{ data.description }}
+{% endoembed %}
+{% endautoescape %}
+{% endif %}
 
 {% if data.song %}
 {% with data.song as song %}

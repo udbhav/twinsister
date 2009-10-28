@@ -25,6 +25,7 @@ feeds = {
 
 urlpatterns = patterns(
     '',
+    (r'music^', include('apps.music.urls')),
     (r'^images/', include('apps.images.urls')),
     (r'^events/', include('apps.events.urls')),
     (r'^mailing-list/', include('apps.mailing_list.urls')),
@@ -35,7 +36,7 @@ urlpatterns = patterns(
     (r'^faq/$', 'django.views.generic.simple.direct_to_template', {'template':'faq.html'}),
     (r'^admin/filebrowser/', include('filebrowser.urls')),
     (r'^admin/(.*)', admin.site.root),
-    (r'^', include('apps.music.urls')),
+    (r'^', include('apps.data.urls')),
     )
 
 if settings.DEBUG:

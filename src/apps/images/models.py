@@ -4,6 +4,7 @@ from django.db import models
 from django.core import urlresolvers
 
 from apps.people.models import Person
+from apps.data.models import Data
 
 class Image(models.Model):
 	title = models.CharField(max_length=50)
@@ -16,14 +17,9 @@ class Image(models.Model):
 	def __unicode__(self):
 		return self.title
 
-class Gallery(models.Model):
-	title = models.CharField(max_length=70)
-	description = models.TextField(null=True, blank=True)
+class Gallery(Data):
 	images = models.ManyToManyField(Image)
-	pub_date = models.DateTimeField('date published', default=datetime.now)
 
-	def __unicode__(self):
-		return self.title
         def get_absolute_url(self):
                 url = urlresolvers.reverse('gallery', kwargs={'object_id':self.id})
                 return url
