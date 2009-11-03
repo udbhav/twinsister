@@ -1,27 +1,97 @@
 from datetime import datetime
 
 from django.db import models
+from django.db.models.signals import pre_save
 from django.core import urlresolvers
+from django.conf import settings
+import flickrapi
 
 from apps.people.models import Person
 from apps.data.models import Data
 
 class Image(models.Model):
-	title = models.CharField(max_length=50)
-	photo = models.ImageField(upload_to='uploads/images')
-	caption = models.TextField(null=True, blank=True)
-	credit = models.ManyToManyField(Person, null=True, blank=True)
-	pub_date = models.DateTimeField('date published', default=datetime.now)
-        order = models.IntegerField(default=1)
+    title = models.CharField(max_length=50)
+    photo = models.ImageField(upload_to='uploads/images')
+    caption = models.TextField(null=True, blank=True)
+    credit = models.ManyToManyField(Person, null=True, blank=True)
+    pub_date = models.DateTimeField('date published', default=datetime.now)
+    order = models.IntegerField(default=1)
 
-	def __unicode__(self):
-		return self.title
+    def __unicode__(self):
+        return self.title
 
 class Gallery(Data):
-	images = models.ManyToManyField(Image)
+    images = models.ManyToManyField(Image)
 
-        def get_absolute_url(self):
-                url = urlresolvers.reverse('gallery', kwargs={'object_id':self.id})
-                return url
-	class Meta:
-		verbose_name_plural = 'Galleries'
+    def get_absolute_url(self):
+        url = urlresolvers.reverse('gallery', kwargs={'object_id':self.id})
+        return url
+    class Meta:
+        verbose_name_plural = 'Galleries'
+
+class FlickrUser(models.Model):
+    flickr_username = models.CharField(max_length=20)
+    flickr_id = models.CharField(max_length=30, editable=False)
+
+    def __unicode__(self):
+        return self.flickr_username
+
+class FlickrTag(models.Model):
+    tag = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.tag
+    def flickr_format(self):
+        return self.tag.replace(' ', '').lower()
+
+class FlickrPhoto(models.Model):
+    title = models.CharField(max_length=100, blank=True)
+    farm = models.IntegerField()
+    server = models.IntegerField()
+    photo_id = models.CharField(max_length=50)
+    secret = models.CharField(max_length=50)
+    upload_date = models.DateField()
+
+    def __unicode__(self):
+        return '%s: %s' % (self.photo_id, self.title)
+    def get_absolute_url(self):
+        return 'http://farm%i.static.flickr.com/%i/%s_%s.jpg' % (self.farm, self.server, self.photo_id, self.secret)
+
+
+flickr = flickrapi.FlickrAPI(settings.FLICKR_API_KEY)
+
+def sync_flickr_photos():
+    for user in FlickrUser.objects.all():
+        dupe = False
+        current_page = 1
+        desired_tags = set([x.flickr_format() for x in FlickrTag.objects.all()])
+        while (not dupe):
+            photos = flickr.people_getPublicPhotos(user_id=user.flickr_id, extras='date_upload,tags', page=current_page).find('photos')
+            current_page += 1
+
+            for photo in photos:
+                tags = photo.get('tags').split(' ')
+                if desired_tags.intersection(tags):
+                    try:
+                        row = FlickrPhoto.objects.get(photo_id=photo.get("id"), secret=photo.get("secret"))
+                    except FlickrPhoto.DoesNotExist:
+                        FlickrPhoto.objects.create(
+                            title = photo.get("title")[:100],
+                            farm = int(photo.get("farm")),
+                            server = int(photo.get("server")),
+                            photo_id = int(photo.get("id")),
+                            secret = photo.get("secret"),
+                            upload_date = datetime.fromtimestamp(int(photo.get("dateupload"))),
+                            )
+                    else:
+                        dupe = True
+                        break
+
+            if photos.get('page') == photos.get('pages'):
+                break
+                                                
+def grab_nsid(sender, instance, *args, **kwargs):
+    if not instance.flickr_id:
+        instance.flickr_id = flickr.people_findByUsername(username=instance.flickr_username).find('user').get('nsid')
+                
+pre_save.connect(grab_nsid, sender=FlickrUser)

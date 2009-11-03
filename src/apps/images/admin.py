@@ -9,3 +9,6 @@ class GalleryAdmin(admin.ModelAdmin):
 
 admin.site.register(Gallery)
 admin.site.register(Image)
+admin.site.register(FlickrUser)
+admin.site.register(FlickrPhoto)
+admin.site.register(FlickrTag)

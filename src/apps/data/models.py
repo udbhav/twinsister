@@ -1,4 +1,8 @@
+from datetime import datetime
+
 from django.db import models
+
+from apps.people.models import Person
 
 class Data(models.Model):
     """

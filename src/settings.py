@@ -101,6 +101,9 @@ BITLY_API_KEY = ''
 # Filebrowser settings
 FILEBROWSER_URL_FILEBROWSER_MEDIA = '/media/filebrowser/'
 
+# Settings for Flickr
+FLICKR_API_KEY = ''
+
 try:
     from local_settings import *
 except ImportError:
