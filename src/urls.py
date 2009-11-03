@@ -25,7 +25,7 @@ feeds = {
 
 urlpatterns = patterns(
     '',
-    (r'music^', include('apps.music.urls')),
+    (r'^music/', include('apps.music.urls')),
     (r'^images/', include('apps.images.urls')),
     (r'^events/', include('apps.events.urls')),
     (r'^mailing-list/', include('apps.mailing_list.urls')),

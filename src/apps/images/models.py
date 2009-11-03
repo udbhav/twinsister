@@ -35,6 +35,8 @@ class FlickrUser(models.Model):
 
     def __unicode__(self):
         return self.flickr_username
+    def get_absolute_url(self):
+        return 'http://flickr.com/photos/%s/' % self.flickr_id
 
 class FlickrTag(models.Model):
     tag = models.CharField(max_length=20)
@@ -45,6 +47,7 @@ class FlickrTag(models.Model):
         return self.tag.replace(' ', '').lower()
 
 class FlickrPhoto(models.Model):
+    user = models.ForeignKey(FlickrUser)
     title = models.CharField(max_length=100, blank=True)
     farm = models.IntegerField()
     server = models.IntegerField()
@@ -54,8 +57,14 @@ class FlickrPhoto(models.Model):
 
     def __unicode__(self):
         return '%s: %s' % (self.photo_id, self.title)
-    def get_absolute_url(self):
+    def get_large_photo(self):
         return 'http://farm%i.static.flickr.com/%i/%s_%s.jpg' % (self.farm, self.server, self.photo_id, self.secret)
+    def get_small_square(self):
+        return 'http://farm%i.static.flickr.com/%i/%s_%s_s.jpg' % (self.farm, self.server, self.photo_id, self.secret)
+    def get_flickr_page(self):
+        return 'http://flickr.com/photos/%s/%s/' % (self.user.flickr_id, self.photo_id)
+    class Meta:
+        ordering = ('-upload_date',)
 
 
 flickr = flickrapi.FlickrAPI(settings.FLICKR_API_KEY)
@@ -76,6 +85,7 @@ def sync_flickr_photos():
                         row = FlickrPhoto.objects.get(photo_id=photo.get("id"), secret=photo.get("secret"))
                     except FlickrPhoto.DoesNotExist:
                         FlickrPhoto.objects.create(
+                            user = user,
                             title = photo.get("title")[:100],
                             farm = int(photo.get("farm")),
                             server = int(photo.get("server")),

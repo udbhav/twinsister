@@ -174,7 +174,7 @@ p {
 
 #content {
     background:#E9E5D9;
-    width: 698px;
+    width: 697px;
     padding-bottom: 20px;
     float: left;
 }
@@ -319,6 +319,15 @@ p {
     float: left;
     margin-right: 4px;
     margin-bottom: 4px;
+}
+
+#recent_flickr {
+    padding: 10px;
+}
+
+#recent_flickr li {
+    float: left;
+    margin-right: 4px;
 }
 
 /* Databrowse */

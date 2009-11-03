@@ -46,6 +46,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     )
 
 ROOT_URLCONF = 'urls'
@@ -75,6 +76,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'filebrowser',
     'oembed',
+    'debug_toolbar',
 
     # Apps Yo!
     'apps.data',
@@ -103,6 +105,9 @@ FILEBROWSER_URL_FILEBROWSER_MEDIA = '/media/filebrowser/'
 
 # Settings for Flickr
 FLICKR_API_KEY = ''
+
+# IP for Django Debug Toolbar
+INTERNAL_IPS = ('127.0.0.1',)
 
 try:
     from local_settings import *

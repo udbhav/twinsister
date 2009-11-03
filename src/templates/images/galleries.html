@@ -6,6 +6,9 @@
 {% block section_title %}Images{% endblock %}
 
 {% block content %}
+<div class="entry">
+  <h3><a href="{% url flickr_photos %}">See Photos from Flickr</a></h3>
+</div>
 {% for data in object_list %}
 <div class="entry">
 	<h3><a href="{{ data.get_absolute_url }}">{{ data.title }}</a></h3>
