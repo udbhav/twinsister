@@ -13,7 +13,9 @@
    <a href="{{ data.get_flickr_page }}"><img src="{{ data.get_large_photo }}" alt="{{ data.title }}" /></a>
 </div>
 {% endfor %}
+{% endblock %}
 
+{% block pagination %}
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -29,5 +31,4 @@
         {% endif %}
     </span>
 </div>
-{% endblock %}
-
+{% endblock pagination %}

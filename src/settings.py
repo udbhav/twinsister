@@ -10,7 +10,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'mysql'
+DATABASE_ENGINE = 'postgresql_psycopg2'
 DATABASE_NAME = 'twinsister_django'
 DATABASE_USER = ''
 DATABASE_PASSWORD = ''
@@ -43,9 +43,10 @@ TEMPLATE_LOADERS = (
     )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.gzip.GZipMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     )
 
@@ -108,6 +109,10 @@ FLICKR_API_KEY = ''
 
 # IP for Django Debug Toolbar
 INTERNAL_IPS = ('127.0.0.1',)
+
+# Cache Settings
+CACHE_BACKEND = ''
+CACHE_MIDDLEWARE_SECONDS = 60*10
 
 try:
     from local_settings import *
