@@ -26,6 +26,10 @@ class Gallery(Data):
     def get_absolute_url(self):
         url = urlresolvers.reverse('gallery', kwargs={'object_id':self.id})
         return url
+
+    def get_template(self):
+        return 'images/gallery.html'
+
     class Meta:
         verbose_name_plural = 'Galleries'
 

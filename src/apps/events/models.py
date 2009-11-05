@@ -9,6 +9,7 @@ from apps.music.models import Data
 class Venue(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
+
     def __unicode__(self):
         return self.name
 
@@ -20,9 +21,13 @@ class Show(Data):
 
     def __unicode__(self):
         return self.name
+
     def get_absolute_url(self):
         url = urlresolvers.reverse('show', kwargs={'slug':self.slug})
         return url
+
+    def get_template(self):
+        return 'events/show.html'
 
     class Meta:
         ordering = ('show_date',)
