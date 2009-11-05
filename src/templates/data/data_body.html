@@ -19,23 +19,7 @@
 {% endautoescape %}
 {% endif %}
 
-{% if data.song %}
-{% with data.song as song %}
-{% include "music/song_content.html" %}
-{% endwith %}
-{% endif %}
-
-{% if data.release %}
-{% with data.release as release %}
-{% include "music/release_content.html" %}
-{% endwith %}
-{% endif %}
-
-{% if data.show %}
-{% with data.show as show %}
-{% include "events/show_content.html" %}
-{% endwith %}
-{% endif %}
+{% include data.get_template %}
 
 {% if data.artwork.all %}
 <div class="artwork">

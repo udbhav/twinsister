@@ -36,6 +36,12 @@ class MusicData(Data):
 
         return classes.get(subclass)
 
+    def get_template(self):
+        subclass = self.get_class_type()
+        if subclass:
+            return getattr(self, subclass).get_template()
+        else:
+            return None
 
 class Song(MusicData):
     band = models.ForeignKey(Band)
@@ -47,11 +53,16 @@ class Song(MusicData):
 
     class Meta:
         ordering = ('name',)
+
     def __unicode__(self):
         return self.name
+
     def get_absolute_url(self):
         url = urlresolvers.reverse('song', kwargs={'slug':self.slug})
         return url
+
+    def get_template(self):
+        return 'music/song.html'
 
 class Release(MusicData):
     band = models.ForeignKey(Band)
@@ -65,9 +76,14 @@ class Release(MusicData):
 
     def __unicode__(self):
         return self.name
+
     def get_absolute_url(self):
         url = urlresolvers.reverse('release', kwargs={'slug':self.slug})
         return url
+
+    def get_template(self):
+        return 'music/release.html'
+
     def save(self):
         super(Release, self).save()
         for song in self.songs.all():
