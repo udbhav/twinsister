@@ -1,16 +1,42 @@
 {% extends "data/data_list.html" %}
+{% load images %}
+{% load thumbnail %}
+{% load music %}
 
 {% block featured %}
-<h2>Vampires with Dreaming Kids EP</h2>
+{% if featured_release %}
+<h2>{{ featured_release }}</h2>
 <div id="feature" class="clearfix_left">
-  <img src="http://twinsistermusic.com/site_media/ep_cover.jpg" alt="Vampires with Dreaming Kids" />
+  {% if featured_release|get_primary_image %}
+  <img src="{% thumbnail featured_release|get_primary_image 300x300 %}" alt="{{ featured_release }}" />
+  {% endif %}
   <ul id="tracklist">
-    <li><a href="{{ MEDIA_URL }}music/dry_hump.mp3" class="amplink" onClick="pageTracker._trackEvent('Songs', 'Play', 'Dry Hump');">Dry Hump</a></li>
-    <li><a href="{{ MEDIA_URL }}music/ginger.mp3" class="amplink" onClick="pageTracker._trackEvent('Songs', 'Play', 'Ginger');">Ginger</a></li>
-    <li><a href="{{ MEDIA_URL }}music/nectarine.mp3" class="amplink" onClick="pageTracker._trackEvent('Songs', 'Play', 'Nectarine');">Nectarine</a></li>
-    <li><a href="{{ MEDIA_URL }}music/i_want_a_house.mp3" class="amplink" onClick="pageTracker._trackEvent('Songs', 'Play', 'I Want a House');">I Want a House</a></li>
-    <li><a id="zip" href="{{ MEDIA_URL }}music/twin_sister_vampires_with_dreaming_kids.zip" onClick="pageTracker._trackEvent('Vampires with Dreaming Kids EP', 'Download');">Download the entire EP as a zip file</a></li>
+    {% for song in featured_release|get_tracklist %}
+    <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
+    {% endfor %}
   </ul>
-</div>
 
+  {% if featured_release.archive_set.all %}
+  <div class="download_links">
+    <h4>Download</h4>
+    <ul>
+      {% for archive in featured_release.archive_set.all %}
+      <li><a href="{{ MEDIA_URL }}{{ archive.archive }}">{{ archive.file_type }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if featured_release.buylink_set.all %}
+  <div class="buy_links">
+    <h4>Buy</h4>
+    <ul>
+      {% for link in featured_release.buylink_set.all %}
+      <li><a href="{{ link.link }}">{{ link.service }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
 {% endblock featured %}

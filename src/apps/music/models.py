@@ -9,7 +9,7 @@ from apps.people.models import Person, Band
 from apps.images.models import Gallery, Image
 
 class MusicData(Data):
-    artwork = models.ManyToManyField(Gallery, null=True, blank=True)
+    artwork = models.ForeignKey(Gallery, null=True, blank=True)
     official = models.BooleanField()
 
     def get_class_type(self):
@@ -89,6 +89,11 @@ class Stem(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.release.name, self.description)
+
+class BuyLink(models.Model):
+    release = models.ForeignKey(Release)
+    link = models.URLField()
+    service = models.CharField(max_length=20)
 
 class Credit(models.Model):
     song = models.ForeignKey(Song)

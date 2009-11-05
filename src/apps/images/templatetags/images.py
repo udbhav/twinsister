@@ -36,3 +36,11 @@ def next_image(image, gallery):
 def recent_flickr():
     photos = FlickrPhoto.objects.all()[:6]
     return {'photos':photos}
+
+@register.filter
+def get_primary_image(musicdata):
+    try:
+        return musicdata.artwork.images.order_by('order')[0]
+    except IndexError:
+        return None
+
