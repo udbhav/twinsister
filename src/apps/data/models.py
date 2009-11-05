@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+from django.core import urlresolvers
 
 from apps.people.models import Person
 
@@ -44,7 +45,6 @@ class Data(models.Model):
 
     def get_human_class_type(self):
         classes = {
-            'musicdata': 'musicdata',
             'gallery': 'Gallery',
             'show': 'Show',
         }

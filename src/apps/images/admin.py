@@ -1,13 +1,9 @@
 from django.contrib import admin
 
 from apps.images.models import *
+from apps.data.admin import *
 
-class GalleryAdmin(admin.ModelAdmin):
-	class Media:
-		js = ('/site_media/tiny_mce/tiny_mce.js',
-		      '/site_media/tiny_mce/textarea.js',)
-
-admin.site.register(Gallery)
+admin.site.register(Gallery, PrepopulatedAdmin)
 admin.site.register(Image)
 admin.site.register(FlickrUser)
 admin.site.register(FlickrPhoto)
