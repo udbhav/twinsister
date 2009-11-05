@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+from django.core import urlresolvers
 
 from apps.people.models import Person
 
@@ -27,51 +28,33 @@ class Data(models.Model):
 
     def __unicode__(self):
         return self.name
-    def get_absolute_url(self):
-        from apps.music.models import Song, Release
-        from apps.events.models import Show
-        url = None
-        try:
-            self.song
-            url = self.song.get_absolute_url()
-        except Song.DoesNotExist:
-            pass
-        try:
-            self.release
-            url = self.release.get_absolute_url()
-        except Release.DoesNotExist:
-            pass
-        try:
-            self.show
-            url = self.show.get_absolute_url()
-        except Show.DoesNotExist:
-            pass
-        if not url:
-            url = urlresolvers.reverse('entry', kwargs={'slug':self.slug})
-        return url
 
     def get_class_type(self):
-        from apps.music.models import Song, Release
-        from apps.events.models import Show
-        class_type = None
-        try:
-            self.song
-            class_type = 'Song'
-        except Song.DoesNotExist:
-            pass
-        try:
-            self.release
-            class_type = 'Release'
-        except Release.DoesNotExist:
-            pass
-        try:
-            self.show
-            class_type = 'Show'
-        except Show.DoesNotExist:
-            pass
-        if not class_type:
-            class_type = 'Entry'
-        return class_type
+        subclasses = ('musicdata', 'gallery', 'show')
+        for subclass in subclasses:
+            if hasattr(self, subclass):
+                return subclass
+        return None
+
+    def get_absolute_url(self):
+        subclass = self.get_class_type()
+        if subclass:
+            return getattr(self, subclass).get_absolute_url()
+        else:
+            return urlresolvers.reverse('entry', kwargs={'slug':self.slug})
+
+    def get_human_class_type(self):
+        classes = {
+            'gallery': 'Gallery',
+            'show': 'Show',
+        }
+
+        subclass = self.get_class_type()
+
+        if subclass == 'musicdata':
+            return getattr(self, subclass).get_human_class_type()
+        else:
+            return classes.get(subclass, 'Entry')
 
     class Meta:
         verbose_name_plural = 'Entries'

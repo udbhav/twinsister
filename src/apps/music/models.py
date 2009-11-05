@@ -12,6 +12,31 @@ class MusicData(Data):
     artwork = models.ManyToManyField(Gallery, null=True, blank=True)
     official = models.BooleanField()
 
+    def get_class_type(self):
+        subclasses = ('song', 'release')
+        for subclass in subclasses:
+            if hasattr(self, subclass):
+                return subclass
+        return None
+
+    def get_absolute_url(self):
+        subclass = self.get_class_type()
+        if subclass:
+            return getattr(self, subclass).get_absolute_url()
+        else:
+            return None
+
+    def get_human_class_type(self):
+        classes = {
+            'song': 'Song',
+            'release': 'Release',
+        }
+
+        subclass = self.get_class_type()
+
+        return classes.get(subclass)
+
+
 class Song(MusicData):
     band = models.ForeignKey(Band)
     file = models.FileField(upload_to='uploads/music')

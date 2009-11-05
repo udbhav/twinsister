@@ -10,7 +10,7 @@ api = twitter.Api(username=settings.TWITTER_USERNAME, password=settings.TWITTER_
 
 def post_to_twitter(data):
     url = shorten('http://%s%s' % (site.domain, data.get_absolute_url()))
-    post = '%s: %s' % (data.get_class_type(), data.name)
+    post = '%s: %s' % (data.get_human_class_type(), data.name)
     if len(post) >= 130:
         post = post[:127] + '...'
 
