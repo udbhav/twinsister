@@ -28,7 +28,7 @@ class Gallery(Data):
         return url
 
     def get_template(self):
-        return 'images/gallery.html'
+        return 'images/gallery_content.html'
 
     class Meta:
         verbose_name_plural = 'Galleries'

@@ -1,3 +1,4 @@
+{% with data.musicdata.release as release %}
 <ul class="playlist">
   {% for song in release.songs.all %}
   <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
@@ -12,3 +13,4 @@
   {% endfor %}
 </ul>
 {% endif %}
+{% endwith %}

@@ -1,3 +1,4 @@
+{% with data.show as show %}
 <h4>{{ show.venue.name }}</h4>
 
 <p>
@@ -24,4 +25,4 @@
   {% endif %}<br/>
 
   {{ show.cost }}
-
+{% endwith %}

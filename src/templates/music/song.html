@@ -1,3 +1,4 @@
+{% with data.musicdata.song as song %}
 <ul class="playlist">
   <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song.band }} - {{ song }}</a></li>
 </ul>
@@ -10,3 +11,4 @@
   {% endfor %}
 </ul>
 {% endif %}
+{% endwith %}
