@@ -1,4 +1,5 @@
 from django import template
+from django.core import urlresolvers
 
 from apps.images.models import FlickrPhoto
 
@@ -11,6 +12,13 @@ def sort_images(gallery):
 @register.filter
 def grab_six(gallery):
     return gallery.images.order_by('order')[:6]
+
+@register.filter
+def more_than_six(gallery):
+    if len(gallery.images.all()) > 6:
+        return True
+    else:
+        return False
 
 @register.filter
 def previous_image(image, gallery):
@@ -40,7 +48,7 @@ def recent_flickr():
 @register.filter
 def get_primary_image(musicdata):
     try:
-        return musicdata.artwork.images.order_by('order')[0]
+        return musicdata.artwork.images.order_by('order')[0].photo
     except IndexError:
         return None
 

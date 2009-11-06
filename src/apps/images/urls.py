@@ -25,9 +25,9 @@ urlpatterns = patterns(
     '',
     (r'^$', list_detail.object_list, dict(galleries_info, page=1), 'galleries'),
     (r'^(?P<page>[0-9]+)/$', list_detail.object_list, galleries_info,),
-    (r'^flickr/$', list_detail.object_list, dict(flickr_photos_info, page=1), 'flickr_photos'),
-    (r'^flickr/(?P<page>[0-9]+)/$', list_detail.object_list, flickr_photos_info,),
-
     (r'^gallery/(?P<object_id>\d+)/$', list_detail.object_detail, gallery_info, 'gallery'),
     (r'^(?P<gallery_id>\d+)/(?P<image_id>\d+)/$', 'apps.images.views.image', {}, 'image'),
+
+    (r'^flickr/$', list_detail.object_list, dict(flickr_photos_info, page=1), 'flickr_photos'),
+    (r'^flickr/(?P<page>[0-9]+)/$', list_detail.object_list, flickr_photos_info,),
 )

@@ -1,15 +1,26 @@
+{% load music %}
+
 {% with data.musicdata.release as release %}
 <ul class="playlist">
-  {% for song in release.songs.all %}
+  {% for song in release|get_tracklist %}
   <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
   {% endfor %}
 </ul>
 
 {% if release.archive_set.all %}
-<h4>Download this {{ release.type }}</h4>
+<h4>Download</h4>
 <ul>
   {% for archive in release.archive_set.all %}
-  <li><a href="{{ MEDIA_URL }}{{ archive.archive }}">{{ archive }}</a></li>
+  <li><a href="{{ MEDIA_URL }}{{ archive.archive }}">{{ archive.file_type }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if release.buylink_set.all %}
+<h4>Buy</h4>
+<ul>
+  {% for link in release.buylink_set.all %}
+  <li><a href="{{ link.link }}">{{ link.service }}</a></li>
   {% endfor %}
 </ul>
 {% endif %}

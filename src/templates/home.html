@@ -5,38 +5,36 @@
 
 {% block featured %}
 {% if featured_release %}
-<h2>{{ featured_release }}</h2>
+<h2><a href="{{ featured_release.get_absolute_url }}">{{ featured_release }}</a></h2>
 <div id="feature" class="clearfix_left">
   {% if featured_release|get_primary_image %}
   <img src="{% thumbnail featured_release|get_primary_image 300x300 %}" alt="{{ featured_release }}" />
   {% endif %}
-  <ul id="tracklist">
-    {% for song in featured_release|get_tracklist %}
-    <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
-    {% endfor %}
-  </ul>
-
-  {% if featured_release.archive_set.all %}
-  <div class="download_links">
-    <h4>Download</h4>
-    <ul>
-      {% for archive in featured_release.archive_set.all %}
-      <li><a href="{{ MEDIA_URL }}{{ archive.archive }}">{{ archive.file_type }}</a></li>
+  <div id="release_info">
+    <ul id="tracklist">
+      {% for song in featured_release|get_tracklist %}
+      <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
       {% endfor %}
     </ul>
-  </div>
-  {% endif %}
 
-  {% if featured_release.buylink_set.all %}
-  <div class="buy_links">
-    <h4>Buy</h4>
-    <ul>
-      {% for link in featured_release.buylink_set.all %}
-      <li><a href="{{ link.link }}">{{ link.service }}</a></li>
-      {% endfor %}
-    </ul>
+    {% if featured_release.archive_set.all %}
+      <h4>Download</h4>
+      <ul>
+        {% for archive in featured_release.archive_set.all %}
+        <li><a href="{{ MEDIA_URL }}{{ archive.archive }}">{{ archive.file_type }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if featured_release.buylink_set.all %}
+      <h4>Buy</h4>
+      <ul>
+        {% for link in featured_release.buylink_set.all %}
+        <li><a href="{{ link.link }}">{{ link.service }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </div>
-  {% endif %}
 </div>
 {% endif %}
 {% endblock featured %}

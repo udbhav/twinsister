@@ -1,13 +1,20 @@
 {% extends "base.html" %}
 {% load thumbnail %}
-{% load sort_images %}
+{% load images %}
+{% load oembed_tags %}
 
 {% block nav-images %} class="active"{% endblock %}
 {% block section_title %}{{ gallery }}{% endblock %}
 
 {% block content %}
 {% if gallery.description %}
-<div class="entry">{{ gallery.description }}</div>
+<div class="entry">
+{% oembed %}
+{% autoescape off %}
+{{ gallery.description }}
+{% endautoescape %}
+{% endoembed %}
+</div>
 {% endif %}
 
 {% for image in gallery|sort_images %}

@@ -12,7 +12,7 @@ shows_info = {
 
 show_info = {
     'queryset': Show.objects.all(),
-    'template_name': 'music/data.html',
+    'template_name': 'data/data.html',
     'template_object_name': 'data',
     'slug_field': 'slug',
 }

@@ -134,11 +134,19 @@ p {
     float: left;
 }
 
+#release_info {
+    float: left;
+    margin-left: 20px;
+}
+
+#release_info ul {
+    margin-bottom: 1em;
+}
+
 #tracklist {
-    float:left;
     font-size:2em;
     line-height: 1.2em;
-    margin-left:20px;
+    margin-bottom: 15px;
 }
 
 #tracklist #zip {
@@ -235,6 +243,10 @@ p {
 .entry h3 {
     font-size: 1.5em;
     line-height: 1.2em;
+}
+
+.entry ul {
+    margin-bottom: 1em;
 }
 
 .body {
