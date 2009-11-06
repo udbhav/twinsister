@@ -8,6 +8,10 @@ ADMINS = (
     ('Udbhav Gupta', 'gupta.udbhav@gmail.com'),
     )
 
+MANAGERS = (
+    ('Udbhav Gupta', 'gupta.udbhav@gmail.com'),
+)
+
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'postgresql_psycopg2'

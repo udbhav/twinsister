@@ -4,18 +4,20 @@ from django.contrib import admin, databrowse
 from django.views.generic import list_detail
 
 from feeds import Entries
+
+from apps.data.models import *
 from apps.music.models import *
 from apps.events.models import *
 from apps.images.models import *
 from apps.people.models import *
 
-# databrowse.site.register(Song)
-# databrowse.site.register(Release)
-# databrowse.site.register(Image)
-# databrowse.site.register(Gallery)
-# databrowse.site.register(Person)
-# databrowse.site.register(Band)
-# databrowse.site.register(Show)
+databrowse.site.register(Song)
+databrowse.site.register(Release)
+databrowse.site.register(Image)
+databrowse.site.register(Gallery)
+databrowse.site.register(Person)
+databrowse.site.register(Band)
+databrowse.site.register(Show)
 
 admin.autodiscover()
 

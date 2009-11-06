@@ -9,7 +9,7 @@
 {% for data in object_list %}
 <div class="entry">
 	<a href="{{ data.get_absolute_url }}"><h3>{{ data.name }}</h3></a>
-   {% include "music/data_body.html" %}
+   {% include "data/data_body.html" %}
    <div class="comment_count">
 	<a href="{{ data.get_absolute_url }}#disqus_thread">Comments</a>
 	</div>

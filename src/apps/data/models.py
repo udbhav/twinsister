@@ -56,6 +56,13 @@ class Data(models.Model):
         else:
             return classes.get(subclass, 'Entry')
 
+    def get_template(self):
+        subclass = self.get_class_type()
+        if subclass:
+            return getattr(self, subclass).get_template()
+        else:
+            return None
+
     class Meta:
         verbose_name_plural = 'Entries'
         verbose_name = 'Entry'

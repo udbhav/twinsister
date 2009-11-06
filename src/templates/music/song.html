@@ -1,0 +1,34 @@
+{% with data.musicdata.song as song %}
+<ul class="playlist">
+  <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song.band }} - {{ song }}</a></li>
+</ul>
+
+{% if song.release_set.all %}
+<h4>From:</h4>
+<ul>
+  {% for release in song.release_set.all %}
+  <li><a href="{{ release.get_absolute_url }}">{{ release }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if song.composers.all %}
+<h4>Composer(s)</h4>
+<ul>
+  {% for person in song.composers.all %}
+  <li>{{ person }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if song.credit_set.all %}
+<h4>Credits:</h4>
+<ul>
+  {% for credit in song.credit_set.all %}
+  <li>{{ credit.name }} - {{ credit.instruments }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% endwith %}
+

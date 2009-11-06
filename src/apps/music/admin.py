@@ -16,3 +16,5 @@ class ReleaseAdmin(PrepopulatedAdmin):
 admin.site.register(Release, PrepopulatedAdmin)
 admin.site.register(Song, SongAdmin)
 admin.site.register(Archive)
+admin.site.register(Stem)
+admin.site.register(BuyLink)
