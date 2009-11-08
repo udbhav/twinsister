@@ -375,7 +375,7 @@ p {
 #databrowse .modelgroup p { float:left; margin:-2.65em 0 0 14em; position:relative; }
 #databrowse .modelgroup p a { white-space:nowrap; }
 #databrowse .modelgroup a.more { color:#999; }
-#databrowse .modelgroup:hover { background:#EC5B43; color:#becfe5; }
+#databrowse .modelgroup:hover, #databrowse .objectlist a:hover { background:#EC5B43; color:#becfe5; }
 #databrowse .modelgroup:hover p a { color:#E9E5D9; }
 #databrowse .modelgroup:hover a { color:#fff; }
 #databrowse .modelgroup:hover a.more { color:#fff; }
