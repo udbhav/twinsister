@@ -15,5 +15,7 @@ class WYMEditorAdmin(admin.ModelAdmin):
 
 class PrepopulatedAdmin(WYMEditorAdmin):
         prepopulated_fields = {'slug': ('name',)}
+        list_display = ('name', 'pub_date', 'published')
+        search_fields = ('name',)
 
 admin.site.register(Data, PrepopulatedAdmin)
