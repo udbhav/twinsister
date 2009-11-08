@@ -111,7 +111,13 @@ class BuyLink(models.Model):
     link = models.URLField()
     service = models.CharField(max_length=20)
 
+    def __unicode__(self):
+        return '%s: %s' % (self.release, self.service)
+
 class Credit(models.Model):
     song = models.ForeignKey(Song)
     name = models.ForeignKey(Person)
     instruments = models.CharField(max_length=70)
+
+    def __unicode__(self):
+        return '%s: %s - %s' % (self.song, self.name, self.instruments)
