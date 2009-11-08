@@ -129,14 +129,14 @@ p {
     margin-top: -4px;
 }
 
-
-#feature img {
+#home_feature img {
     float: left;
 }
 
 #release_info {
     float: left;
     margin-left: 20px;
+    width: 500px;
 }
 
 #release_info ul {
@@ -163,7 +163,7 @@ p {
     background: #FFF;
 }
 
-#content, #sidebar, #databrowse {
+#content, #sidebar, #databrowse, #home_feature {
     border: 1px dotted #AFAA99;
     border-top: none;
 }
@@ -180,11 +180,17 @@ p {
     margin-top: 50px;
 }
 
-#content {
+#content, #home_feature {
     background:#E9E5D9;
     width: 697px;
     padding-bottom: 20px;
     float: left;
+}
+
+#home_feature {
+    float: none;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 #sidebar {
@@ -211,7 +217,7 @@ p {
     width: 120px;
 }
 
-.entry, .comment, .comment_form, #feature, .data_list li {
+.entry, .comment, .comment_form, #feature_content, .data_list li {
     display: block;
     margin: 20px 20px 0;
     padding:15px;
