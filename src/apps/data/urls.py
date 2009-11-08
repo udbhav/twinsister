@@ -7,12 +7,12 @@ from apps.music.models import Release
 data_list_info = {
     'queryset': Data.objects.filter(published=True).order_by('-pub_date'),
     'paginate_by' : 15,
-    'template_name' : 'music/data_list.html',
+    'template_name' : 'data/data_list.html',
 }
 
 data_info = {
     'queryset': Data.objects.all(),
-    'template_name': 'music/data.html',
+    'template_name': 'data/data.html',
     'template_object_name': 'data',
     'slug_field': 'slug',
 }

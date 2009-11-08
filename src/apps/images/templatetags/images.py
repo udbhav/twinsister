@@ -51,4 +51,6 @@ def get_primary_image(musicdata):
         return musicdata.artwork.images.order_by('order')[0].photo
     except IndexError:
         return None
+    except AttributeError:
+        return None
 

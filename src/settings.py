@@ -113,8 +113,16 @@ FILEBROWSER_URL_FILEBROWSER_MEDIA = '/media/filebrowser/'
 # Settings for Flickr
 FLICKR_API_KEY = ''
 
-# IP for Django Debug Toolbar
+# Django Debug Toolbar
 INTERNAL_IPS = ('127.0.0.1',)
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+}
+
+# Oembed
+OEMBED_MAX_WIDTH = '600'
+OEMBED_MAX_HEIGHT = '600'
 
 # Cache Settings
 CACHE_BACKEND = ''
