@@ -358,7 +358,7 @@ p {
 /* OBJECT LISTS */
 #databrowse .objectlist { clear:both; margin:0 -20px; color:#666; }
 #databrowse .objectlist li a { display:block; padding:1em 20px; }
-#databrowse .objectlist li a:hover { background:#5b80b2; color:#3B5572; color:#fff; text-decoration:none; }
+#databrowse .objectlist li a:hover { background:#EC5B43; color:#3B5572; color:#fff; text-decoration:none; }
 #databrowse .related h2 { font-size: 1em; margin-bottom: 0.6em; }
 #databrowse .related .objectlist li a { padding: 0.6em 20px; }
 #databrowse .related .objectlist li.odd { background:#eee; }
@@ -375,9 +375,11 @@ p {
 #databrowse .modelgroup p { float:left; margin:-2.65em 0 0 14em; position:relative; }
 #databrowse .modelgroup p a { white-space:nowrap; }
 #databrowse .modelgroup a.more { color:#999; }
-#databrowse .modelgroup:hover, #databrowse .objectlist a:hover { background:#EC5B43; color:#becfe5; }
+#databrowse .modelgroup:hover { background:#EC5B43; color:#becfe5; }
 #databrowse .modelgroup:hover p a { color:#E9E5D9; }
 #databrowse .modelgroup:hover a { color:#fff; }
 #databrowse .modelgroup:hover a.more { color:#fff; }
 /* BREADCRUMBS */
 #databrowse #breadcrumbs { padding:10px 0; color:#999; font-size:0.9em; }
+
+#5B80B2
