@@ -5,7 +5,7 @@ from django.contrib import databrowse
 from apps.events.models import *
 
 shows_info = {
-    'queryset': Show.objects.order_by('-pub_date'),
+    'queryset': Show.objects.order_by('-show_date'),
     'paginate_by' : 25,
     'template_name' : 'events/shows.html',
 }
