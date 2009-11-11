@@ -1,7 +1,17 @@
 {% extends "data/data_short_list.html" %}
+{% load shows %}
 
 {% block nav-shows %} class="active"{% endblock %}
 {% block section_title %}Shows{% endblock %}
+
+{% block content %}
+{% for data in object_list %}
+<div class="entry{% if data|upcoming_show %} official{% endif %}">
+	<a href="{{ data.get_absolute_url }}">{{ data.name }}</a>
+   {% if data|upcoming_show %}<span class="official_release">Upcoming Show</span>{% endif %}
+</div>
+{% endfor %}
+{% endblock %}
 
 {% block pagination %}
 <div class="pagination">
