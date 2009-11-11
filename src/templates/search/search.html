@@ -6,8 +6,10 @@
 {% if page.object_list %}
 {% for result in page.object_list %}
 <div class="entry">
-  <strong>{{ result.object.get_class_type }}:</strong> <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a>
-  {% if result.object.description %}<p>{{ result.object.description|striptags|truncatewords:30 }}</p>{% endif %}
+{% with result.object as data %}
+<h3>{{ data.get_human_class_type }}: {{ data }}</h3>
+{% include "data/data_body.html" %}
+{% endwith %}
 </div>
 {% endfor %}
 {% else %}

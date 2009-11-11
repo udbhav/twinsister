@@ -129,14 +129,14 @@ p {
     margin-top: -4px;
 }
 
-
-#feature img {
+#home_feature img {
     float: left;
 }
 
 #release_info {
     float: left;
     margin-left: 20px;
+    width: 500px;
 }
 
 #release_info ul {
@@ -163,7 +163,7 @@ p {
     background: #FFF;
 }
 
-#content, #sidebar, #databrowse {
+#content, #sidebar, #databrowse, #home_feature {
     border: 1px dotted #AFAA99;
     border-top: none;
 }
@@ -180,11 +180,17 @@ p {
     margin-top: 50px;
 }
 
-#content {
+#content, #home_feature {
     background:#E9E5D9;
     width: 697px;
     padding-bottom: 20px;
     float: left;
+}
+
+#home_feature {
+    float: none;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 #sidebar {
@@ -211,7 +217,7 @@ p {
     width: 120px;
 }
 
-.entry, .comment, .comment_form, #feature, .data_list li {
+.entry, .comment, .comment_form, #feature_content, .data_list li {
     display: block;
     margin: 20px 20px 0;
     padding:15px;
@@ -358,7 +364,7 @@ p {
 /* OBJECT LISTS */
 #databrowse .objectlist { clear:both; margin:0 -20px; color:#666; }
 #databrowse .objectlist li a { display:block; padding:1em 20px; }
-#databrowse .objectlist li a:hover { background:#5b80b2; color:#3B5572; color:#fff; text-decoration:none; }
+#databrowse .objectlist li a:hover { background:#EC5B43; color:#3B5572; color:#fff; text-decoration:none; }
 #databrowse .related h2 { font-size: 1em; margin-bottom: 0.6em; }
 #databrowse .related .objectlist li a { padding: 0.6em 20px; }
 #databrowse .related .objectlist li.odd { background:#eee; }
@@ -381,3 +387,5 @@ p {
 #databrowse .modelgroup:hover a.more { color:#fff; }
 /* BREADCRUMBS */
 #databrowse #breadcrumbs { padding:10px 0; color:#999; font-size:0.9em; }
+
+#5B80B2

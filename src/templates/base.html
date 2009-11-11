@@ -38,6 +38,9 @@
       {% endblock %}
 
     <div id="wrapper" class="clearfix">
+      {% block featured %}
+      {% endblock featured %}
+
       {% block sidebar %}
       <div id="sidebar">
         {% shows %}
@@ -60,9 +63,6 @@
       {% endblock sidebar %}
 
       <div id="{% block content_id %}content{% endblock %}">
-        {% block featured %}
-        {% endblock featured %}
-
         <h2 class="title">{% block section_title %}{% endblock %}</h2>
   	     {% block content %}{% endblock %}
       </div>
