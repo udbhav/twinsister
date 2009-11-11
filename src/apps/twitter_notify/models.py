@@ -1,10 +1,12 @@
 from django.db.models.signals import post_save
 
-from music.models import Data, Song, Release
-from events.models import Show
+from apps.data.models import Data
+from apps.music.models import Song, Release
+from apps.events.models import Show
+from apps.images.models import Gallery
 
 def tweet_on_create(sender, instance, created, **kwargs):
-    senders = (Data, Song, Release, Show)
+    senders = (Data, Song, Release, Show, Gallery)
     if sender in senders:
         if created:
             from views import post_to_twitter
