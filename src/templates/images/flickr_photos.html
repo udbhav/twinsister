@@ -6,6 +6,7 @@
 {% block section_title %}Photos from Flickr{% endblock %}
 
 {% block content %}
+<div id="autopager_content">
 {% for data in object_list %}
 <div class="entry">
 	<h3>{{ data.title }}</h3>
@@ -13,6 +14,7 @@
    <a href="{{ data.get_flickr_page }}"><img src="{{ data.get_large_photo }}" alt="{{ data.title }}" /></a>
 </div>
 {% endfor %}
+</div>
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -24,7 +26,7 @@
         </span>
 
         {% if page_obj.has_next %}
-            <a href="/images/flickr/{{ page_obj.next_page_number }}/">Next</a>
+            <a href="/images/flickr/{{ page_obj.next_page_number }}/" class="next_page">Next</a>
         {% endif %}
     </span>
 </div>

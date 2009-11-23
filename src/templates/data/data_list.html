@@ -5,7 +5,7 @@
 {% block section_title %}Ideas and Etc.{% endblock %}
 
 {% block content %}
-
+<div id="autopager_content">
 {% for data in object_list %}
 <div class="entry">
 	<a href="{{ data.get_absolute_url }}"><h3>{{ data.name }}</h3></a>
@@ -15,7 +15,7 @@
 	</div>
 </div>
 {% endfor %}
-
+</div>
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -27,7 +27,7 @@
         </span>
 
         {% if page_obj.has_next %}
-            <a href="/{{ page_obj.next_page_number }}/">Next</a>
+            <a href="/{{ page_obj.next_page_number }}/" class="next_page">Next</a>
         {% endif %}
     </span>
 </div>
