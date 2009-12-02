@@ -29,9 +29,9 @@
 
       {% if featured_release.buylink_set.all %}
       <h4>Buy</h4>
-      <ul>
+      <ul class="buy_links">
         {% for link in featured_release.buylink_set.all %}
-        <li><a href="{{ link.link }}">{{ link.service }}</a></li>
+        <li><a href="{{ link.link }}" title="{{ featured_release }}">{{ link.service }}</a></li>
         {% endfor %}
       </ul>
       {% endif %}
