@@ -9,9 +9,9 @@
 
 {% if release.archive_set.all %}
 <h4>Download</h4>
-<ul>
+<ul class="download_links">
   {% for archive in release.archive_set.all %}
-  <li><a href="{{ MEDIA_URL }}{{ archive.archive }}">{{ archive.file_type }}</a></li>
+  <li><a href="{{ MEDIA_URL }}{{ archive.archive }}" title="{{ release }}">{{ archive.file_type }}</a></li>
   {% endfor %}
 </ul>
 {% endif %}
