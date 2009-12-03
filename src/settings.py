@@ -109,7 +109,7 @@ BITLY_API_KEY = ''
 
 # Filebrowser settings
 FILEBROWSER_URL_FILEBROWSER_MEDIA = '/media/filebrowser/'
-FILEBROWSER_MAX_UPLOAD_SIZE = 20971520 # 20MB
+FILEBROWSER_MAX_UPLOAD_SIZE = 41943040 # 40MB
 FILEBROWSER_EXTENSIONS = {
     'Folder': [''],
     'Image': ['.jpg','.jpeg','.gif','.png','.tif','.tiff'],
