@@ -109,6 +109,15 @@ BITLY_API_KEY = ''
 
 # Filebrowser settings
 FILEBROWSER_URL_FILEBROWSER_MEDIA = '/media/filebrowser/'
+FILEBROWSER_MAX_UPLOAD_SIZE = 20971520 # 20MB
+FILEBROWSER_EXTENSIONS = {
+    'Folder': [''],
+    'Image': ['.jpg','.jpeg','.gif','.png','.tif','.tiff'],
+    'Video': ['.mov','.wmv','.mpeg','.mpg','.avi','.rm'],
+    'Document': ['.pdf','.doc','.rtf','.txt','.xls','.csv','.zip','.tar.gz','.tar','.rar'],
+    'Audio': ['.mp3','.mp4','.wav','.aiff','.midi','.m4p'],
+    'Code': ['.html','.py','.js','.css']
+}
 
 # Settings for Flickr
 FLICKR_API_KEY = ''
