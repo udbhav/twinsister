@@ -2,7 +2,6 @@ $(document).ready(function() {
     // Track Song plays on Google Analytics
     $(".playlist a").click(function() {
         _gaq.push(['_trackEvent', 'Songs', 'Play', $(this).html()]);
-        console.log('test');
     });
 
     // Track Release downloads on Google Analytics
