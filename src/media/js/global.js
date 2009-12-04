@@ -1,13 +1,8 @@
 $(document).ready(function() {
-    $(".pagination").hide();
-    $.autopager({
-        link: '.next_page',
-        content: '#autopager_content'
-    });
-
     // Track Song plays on Google Analytics
-    $(".tracklist a").click(function() {
+    $(".playlist a").click(function() {
         _gaq.push(['_trackEvent', 'Songs', 'Play', $(this).html()]);
+        console.log('test');
     });
 
     // Track Release downloads on Google Analytics
@@ -17,7 +12,7 @@ $(document).ready(function() {
     });
 
     // Track Release purchases on Google Analytics
-    $(".download_links a").click(function() {
+    $(".buy_links a").click(function() {
         var label = $(this).attr("title") + ' ' + $(this).html();
         _gaq.push(['_trackEvent', 'Releases', 'Buy', label]);
     });
