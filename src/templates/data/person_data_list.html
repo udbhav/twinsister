@@ -2,3 +2,33 @@
 {% load thumbnail %}
 
 {% block section_title %}Entries by {{ person }}{% endblock %}
+{% block title %}Entries by {{ person }}{% endblock %}
+
+{% block content %}
+<div id="autopager_content">
+{% for data in object_list %}
+<div class="entry">
+	<a href="{{ data.get_absolute_url }}"><h3>{{ data.name }}</h3></a>
+   {% include "data/data_body.html" %}
+   <div class="comment_count">
+	<a href="{{ data.get_absolute_url }}#disqus_thread">Comments</a>
+	</div>
+</div>
+{% endfor %}
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="{% url entries_by_person_paginated person_id=person.id, page=page_obj.previous_page_number }}/">Previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="{% url entries_by_person_paginated person_id=person.id, page=page_obj.next_page_number }}/">Next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
