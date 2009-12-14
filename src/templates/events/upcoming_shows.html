@@ -2,7 +2,7 @@
 <ul id="shows_list">
   {% for show in shows %}
   <li>
-    <h4>{{ show.venue.name }}</h4>
+    <h4><a href="{{ show.get_absolute_url }}">{{ show.venue.name }}</a></h4>
     {{ show.show_date|date:" F j, Y fA" }}<br/>
     <div class="address">{{ show.venue.address }} (<a href="http://maps.google.com/maps?daddr={{ show.venue.address|urlencode }}">Directions</a>)</div>
 
