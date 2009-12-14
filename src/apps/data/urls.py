@@ -37,6 +37,6 @@ urlpatterns = patterns(
     (r'^$', list_detail.object_list, home_info),
     (r'^entry/(?P<slug>[-\w]+)/$', list_detail.object_detail, data_info, 'entry'),
     (r'entries-by-person/(?P<person_id>\d+)/$', 'apps.data.views.entries_by_person', {}, 'entries_by_person'),
-    (r'entries-by-person/(?P<person_id>\d+)/{?P<page>[0-9]+)/$', 'apps.data.views.entries_by_person', {}, 'entries_by_person_paginated'),
+    (r'entries-by-person/(?P<person_id>\d+)/(?P<page>[0-9]+)/$', 'apps.data.views.entries_by_person', {}, 'entries_by_person_paginated'),
     (r'^(?P<page>[0-9]+)/$', list_detail.object_list, data_list_info),
 )
