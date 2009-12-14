@@ -19,7 +19,7 @@
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
-            <a href="{% url entries_by_person_paginated person_id=person.id, page=page_obj.previous_page_number }}/">Previous</a>
+            <a href="{% url entries_by_person_paginated person_id=person.id, page=page_obj.previous_page_number %}/">Previous</a>
         {% endif %}
 
         <span class="current">
@@ -27,7 +27,7 @@
         </span>
 
         {% if page_obj.has_next %}
-            <a href="{% url entries_by_person_paginated person_id=person.id, page=page_obj.next_page_number }}/">Next</a>
+            <a href="{% url entries_by_person_paginated person_id=person.id, page=page_obj.next_page_number %}/">Next</a>
         {% endif %}
     </span>
 </div>
