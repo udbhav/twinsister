@@ -19,7 +19,7 @@ function SoundManager(smURL,smID) {
   this.useConsole = true;          // use firebug/safari console.log()-type debug console if available
   this.consoleOnly = false;        // if console is being used, do not create/write to #soundmanager-debug
   this.waitForWindowLoad = false;  // force SM2 to wait for window.onload() before trying to call soundManager.onload()
-  this.nullURL = 'null.mp3';       // path to "null" (empty) MP3 file, used to unload sounds (Flash 8 only)
+  this.nullURL = '/media/js/null.mp3';       // path to "null" (empty) MP3 file, used to unload sounds (Flash 8 only)
   this.allowPolling = true;        // allow flash to poll for status update (required for whileplaying() events, peak, sound spectrum functions to work.)
   this.useFastPolling = false;     // uses 1 msec flash timer interval (vs. default of 20) for higher callback frequency, best combined with useHighPerformance
   this.useMovieStar = false;	   // enable support for Flash 9.0r115+ (codename "MovieStar") MPEG4 audio + video formats (AAC, M4V, FLV, MOV etc.)
