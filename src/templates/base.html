@@ -25,7 +25,6 @@
         <li{% block nav-shows %}{% endblock %}><a href="{% url shows %}">Shows</a></li>
         <li{% block nav-songs %}{% endblock %}><a href="{% url songs %}">Songs</a></li>
         <li{% block nav-images %}{% endblock %}><a href="{% url galleries %}">Images</a></li>        
-        <li{% block nav-browse %}{% endblock %}><a href="/browse/">Browse</a></li>
         <li id="search">
           <form method="get" action="{% url haystack_search %}">
             <fieldset>
