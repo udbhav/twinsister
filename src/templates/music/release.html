@@ -3,7 +3,7 @@
 {% with data.musicdata.release as release %}
 <ul class="playlist">
   {% for song in release|get_tracklist %}
-  <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
+  <li><a href="http://twinsistermusic.com{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
   {% endfor %}
 </ul>
 
