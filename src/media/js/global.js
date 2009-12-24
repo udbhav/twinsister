@@ -1,4 +1,19 @@
 $(document).ready(function() {
+
+	$("#searchfield").focus(function(){
+		$(this).addClass("tf_focused")
+		if($(this).val() == "Type and press enter to search."){
+			$(this).val("")
+		}
+	})
+	$("#searchfield").blur(function(){
+		$(this).removeClass("tf_focused")
+		if($(this).val() == ""){
+			$(this).val("Type and press enter to search.")
+		}
+	})
+
+
     // Track Song plays on Google Analytics
     $(".playlist a").click(function() {
         _gaq.push(['_trackEvent', 'Songs', 'Play', $(this).html()]);

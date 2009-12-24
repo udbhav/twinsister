@@ -5,17 +5,15 @@
 {% block section_title %}Ideas and Etc.{% endblock %}
 
 {% block content %}
-<div id="autopager_content">
 {% for data in object_list %}
-<div class="entry">
-	<a href="{{ data.get_absolute_url }}"><h3>{{ data.name }}</h3></a>
+<div class="entry {{ data.get_human_class_type|lower }}">
+	<h3><a href="{{ data.get_absolute_url }}">{{ data.name }}</a></h3>
    {% include "data/data_body.html" %}
    <div class="comment_count">
 	<a href="{{ data.get_absolute_url }}#disqus_thread">Comments</a>
 	</div>
 </div>
 {% endfor %}
-</div>
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}

@@ -17,6 +17,7 @@
   </head>
 
   <body>
+    <div id="right">
      <h1 id="logo"><a href="/">Twin Sister</a></h1>
 
       {% block navigation %}
@@ -28,40 +29,24 @@
         <li id="search">
           <form method="get" action="{% url haystack_search %}">
             <fieldset>
-              <input type="text" name="q" />
-              <input type="submit" value="Search" />
+              <input type="text" name="q" value="Type and press enter to search." id="searchfield"/>
             </fieldset>
           </form>
         </li>
       </ul>
       {% endblock %}
 
-    <div id="wrapper" class="clearfix">
-      {% block featured %}
-      {% endblock featured %}
-
       {% block sidebar %}
       <div id="sidebar">
         {% shows %}
-        <h2>Contact Us</h2>
-        <p>
-          Please direct all inquiries to <a href="mailto:band@twinsistermusic.com">band@twinsistermusic.com</a><br/><br/>
-          <a href="http://twitter.com/twinsistermusic/">Twitter</a> | <a href="http://www.facebook.com/pages/Twin-Sister/51291058632">Facebook</a> | <a href="http://myspace.com/twinsisterband">Myspace</a>
-        </p>
         {% recent_flickr %}
-        <h2>RSS</h2>
-        <p>Subscribe to our <a href="/feeds/entries/" id="rss">RSS feed</a></p>
-        <h2>Mailing List</h2>
-        <form id="mailing_list" method="post" action="{% url subscribe %}">
-          <fieldset>
-            <input type="text" name="email" id="mailing_list_email" />
-            <input type="submit" value="Subscribe" />
-          </fieldset>
-        </form>
-        <h2>FAQ</h2>
-        <p><a href="/faq/">Frequently Asked Questions</a></p>
       </div>
       {% endblock sidebar %}
+    </div>
+
+    <div id="wrapper" class="clearfix">
+      {% block featured %}
+      {% endblock featured %}
 
       <div id="{% block content_id %}content{% endblock %}">
         <h2 class="title">{% block section_title %}{% endblock %}</h2>
