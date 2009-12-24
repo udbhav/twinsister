@@ -18,30 +18,28 @@
 
   <body>
     <div id="right">
-     <h1 id="logo"><a href="/">Twin Sister</a></h1>
-
-      {% block navigation %}
-      <ul class="navigation clearfix">
-        <li{% block nav-releases %}{% endblock %}><a href="{% url releases %}">Releases</a></li>
-        <li{% block nav-shows %}{% endblock %}><a href="{% url shows %}">Shows</a></li>
-        <li{% block nav-songs %}{% endblock %}><a href="{% url songs %}">Songs</a></li>
-        <li{% block nav-images %}{% endblock %}><a href="{% url galleries %}">Images</a></li>        
-        <li id="search">
-          <form method="get" action="{% url haystack_search %}">
-            <fieldset>
-              <input type="text" name="q" value="Type and press enter to search." id="searchfield"/>
-            </fieldset>
-          </form>
-        </li>
-      </ul>
-      {% endblock %}
-
       {% block sidebar %}
       <div id="sidebar">
         {% shows %}
         {% recent_flickr %}
       </div>
       {% endblock sidebar %}
+
+      <h1 id="logo"><a href="/">Twin Sister</a></h1>
+      <form method="get" action="{% url haystack_search %}" id="search">
+        <fieldset>
+          <input type="text" name="q" value="Type and press enter to search." id="searchfield"/>
+        </fieldset>
+      </form>
+
+      {% block navigation %}
+      <ul class="navigation clearfix">
+        <li id="releases_nav" {% block nav-releases %}{% endblock %}><a href="{% url releases %}">Releases</a></li>
+        <li id="shows_nav" {% block nav-shows %}{% endblock %}><a href="{% url shows %}">Shows</a></li>
+        <li id="songs_nav" {% block nav-songs %}{% endblock %}><a href="{% url songs %}">Songs</a></li>
+        <li id="images_nav" {% block nav-images %}{% endblock %}><a href="{% url galleries %}">Images</a></li>        
+      </ul>
+      {% endblock %}
     </div>
 
     <div id="wrapper" class="clearfix">
@@ -51,6 +49,17 @@
       <div id="{% block content_id %}content{% endblock %}">
         <h2 class="title">{% block section_title %}{% endblock %}</h2>
   	     {% block content %}{% endblock %}
+        <div id="footer">
+          <div id="footer_links">
+            <a href="mailto:band@twinsistermusic.com">band@twinsistermusic.com</a> | 
+            <a href="/feeds/entries/">RSS</a> | 
+            <a href="/faq/">Frequently Asked Questions</a> | 
+            <a href="http://twitter.com/twinsistermusic">Twitter</a> | 
+            <a href="http://www.facebook.com/pages/Twin-Sister/51291058632">Facebook</a> | 
+            <a href="http://myspace.com/twinsisterband">Myspace</a>
+          </div>
+          Design inspired by <a href="http://jarredbishop.info/">Jarred Bishop's</a> <a href="http://www.tumblr.com/theme/483">101 theme</a>.
+        </div>
       </div>
     </div>
 

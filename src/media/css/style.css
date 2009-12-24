@@ -51,15 +51,13 @@ a:hover {
     text-decoration: underline;
 }
 
-h2 {
-    font-size: 2em;
-    line-height: 1.2em;
-    display:block;
-    background: #F9F6EE;
-    padding:10px;
-    color:#000;
-    border-top: 1px dotted #AFAA99;
-    border-bottom: 1px dotted #AFAA99;
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+h1 a:hover {
+    text-decoration: none;
 }
 
 h4 {
@@ -76,6 +74,13 @@ p {
     position: fixed;
     bottom: 0;
     right: 0;
+    width: 250px;
+    padding: 30px;
+    text-align: right;
+}
+
+#sidebar {
+    display: none;
 }
 
 #home_feature img {
@@ -102,20 +107,21 @@ p {
     font-size: 0.5em;
 }
 
-#wrapper, #footer {
+#wrapper {
     width: 1000px;
 }
 
-#databrowse, #footer { 
-    border: 1px dotted #AFAA99;
+.navigation {
+    font-size: 16px;
 }
 
-#footer {
-    width: 998px;
-    text-align: center;
-    padding: 10px 0;
-    border-bottom: none;
-    margin-top: 50px;
+.navigation li {
+    float: left;
+    margin-left: 5px;
+}
+
+.navigation a:hover {
+    text-decoration: none;
 }
 
 #content, #home_feature {
@@ -129,28 +135,8 @@ p {
     margin-bottom: 20px;
 }
 
-#sidebar {
-    float: right;
-    width: 278px;
-    margin-left: 20px;
-    background:#E9E5D9;
-    font-size: 0.95em;
-}
-
-#sidebar h2 {
-    font-size: 1.2em;
-}
-
-#sidebar p {
-    padding: 10px;
-}
-
-#mailing_list {
-    padding: 10px;
-}
-
-#mailing_list_email {
-    width: 120px;
+#search {
+    margin-top: 10px;
 }
 
 #search input {
@@ -165,7 +151,7 @@ p {
 #search .tf_focused {
     color: #000;
 }
-.entry, .comment, .comment_form, #feature_content, .data_list li {
+.entry, .comment, .comment_form, #feature_content, .data_list li, #footer {
     display: block;
     margin-top: 20px;
     padding:15px;
@@ -174,6 +160,15 @@ p {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     border-right: 1px solid rgba(0, 0, 0, 0.07);
     border-left: 55px solid #bb225a;
+}
+
+#footer {
+    border-left: 55px solid #e1e1e1;
+}
+
+#footer_links a {
+    font-size: 12px;
+    color: #73B8C4;
 }
 
 .song {
@@ -186,6 +181,10 @@ p {
 
 .show {
     border-left: 55px solid #90DEEC;
+}
+
+.gallery {
+    border-left: 55px solid #5A308D;
 }
 
 .official {
@@ -210,24 +209,29 @@ p {
 
 .entry h3 {
     font-size: 30px;
-    line-height: 45px;
+    line-height: 30px;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .entry h3 a {
     color: #BB225A;
 }
 
-.song h3 a {
+.song h3 a, #songs_nav a {
     color: #8ABD50;
 }
 
-.show h3 a {
+.show h3 a, #shows_nav a {
     color: #90DEEC;
 }
 
-.release h3 a {
+.release h3 a, #releases_nav a {
     color: #CF4039;
+}
+
+.gallery h3 a, #images_nav a {
+    color: #5A308D;
 }
 
 .entry ul {
