@@ -9,9 +9,8 @@
 
 {% block featured %}
 {% if featured_release %}
-<div id="home_feature" class="clearfix">
-  <h2><a href="{{ featured_release.get_absolute_url }}">{{ featured_release }}</a></h2>
-  <div id="feature_content" class="clearfix">
+  <div id="feature_content" class="clearfix entry release">
+  <h3><a href="{{ featured_release.get_absolute_url }}">{{ featured_release }}</a></h3>
     {% if featured_release|get_primary_image %}
     <img src="{% thumbnail featured_release|get_primary_image 300x300 %}" alt="{{ featured_release }}" />
     {% endif %}
@@ -41,6 +40,5 @@
       {% endif %}
     </div>
   </div>
-</div>
 {% endif %}
 {% endblock featured %}

@@ -1,32 +1,8 @@
-<h2>Come See Us Play</h2>
+<h2 id="upcoming_shows_header">Come See Us Play</h2>
 <ul id="shows_list">
   {% for show in shows %}
   <li>
-    <h4><a href="{{ show.get_absolute_url }}">{{ show.venue.name }}</a></h4>
-    {{ show.show_date|date:" F j, Y fA" }}<br/>
-    <div class="address">{{ show.venue.address }} (<a href="http://maps.google.com/maps?daddr={{ show.venue.address|urlencode }}">Directions</a>)</div>
-
-    {% if show.bands.all %}
-      With:
-      {% for band in show.bands.all %}
-      {% if forloop.last %}
-      {% if band.url %}
-      <a href="{{ band.url }}">{{ band.name }}</a>
-      {% else %}
-      {{ band.name }}
-      {% endif %}
-      {% else %}
-      {% if band.url %}
-      <a href="{{ band.url }}">{{ band.name }}</a>, 
-      {% else %}
-      {{ band.name }},
-      {% endif %}
-      
-      {% endif %}
-      {% endfor %}
-    {% endif %}
-    {{ show.cost }} {{ show.misc }}
-
+    <a href="{{ show.get_absolute_url }}">{{ show.venue.name }}</a> {{ show.show_date|date:" n/d fA" }}
   </li>
   {% empty %}
   <li>We don't have any shows booked at the moment...  Ask us to play!<br/></li>

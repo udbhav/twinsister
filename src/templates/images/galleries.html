@@ -3,16 +3,16 @@
 {% load thumbnail %}
 
 {% block nav-images %} class="active"{% endblock %}
-{% block section_title %}Images{% endblock %}
+{% block section_title %}<h2 class="title">Images</h2>{% endblock %}
 
 {% block content %}
-<div class="entry">
+<div class="entry gallery">
   <h3><a href="{% url flickr_photos %}">See Photos from Flickr</a></h3>
+  {% recent_flickr %}
 </div>
 
-<div id="autopager_content">
 {% for data in object_list %}
-<div class="entry">
+<div class="entry gallery">
 	<h3><a href="{{ data.get_absolute_url }}">{{ data }}</a></h3>
    <ul class="thumbnails clearfix_left">
    {% for image in data|sort_images %}
@@ -21,25 +21,22 @@
    </ul>
 </div>
 {% endfor %}
-</div>
 
 {% endblock %}
 
 {% block pagination %}
+{% if page_obj.has_other_pages %}
 <div class="pagination">
     <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="/images/{{ page_obj.previous_page_number }}/">Previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="/images/{{ page_obj.next_page_number }}/" class="next_page">Next</a>
-        {% endif %}
+      {% if page_obj.has_previous %}
+      <a href="/images/{{ page_obj.previous_page_number }}/"><span>&#171;</span> Previous</a>
+      {% endif %}
+      {% if page_obj.has_next and page_obj.has_previous %}&nbsp;/&nbsp;{% endif %}
+      {% if page_obj.has_next %}
+      <a href="/images/{{ page_obj.next_page_number }}/" class="next_page">Next <span>&#187;</a>
+      {% endif %}
     </span>
 </div>
+{% endif %}
 {% endblock pagination %}
 

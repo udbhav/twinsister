@@ -8,7 +8,7 @@ register = template.Library()
 
 @register.inclusion_tag('events/upcoming_shows.html')
 def shows():
-    shows = Show.objects.filter(show_date__gte=datetime.now()).order_by('show_date')
+    shows = Show.objects.filter(show_date__gte=datetime.now()).order_by('show_date')[:5]
     return {'shows':shows}
 
 @register.filter

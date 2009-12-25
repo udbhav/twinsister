@@ -4,7 +4,7 @@
 {% load oembed_tags %}
 
 {% block nav-images %} class="active"{% endblock %}
-{% block section_title %}{{ gallery }}{% endblock %}
+{% block section_title %}<h2 class="title">{{ gallery }}</h2>{% endblock %}
 
 {% block content %}
 {% if gallery.description %}
@@ -18,7 +18,7 @@
 {% endif %}
 
 {% for image in gallery|sort_images %}
-<div class="entry">
+<div class="entry gallery">
 <h3>{{ image }}</h3>
 <a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{% thumbnail image.photo 626x900 %}" alt="{{ image }}" /></a>
 {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}

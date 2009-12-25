@@ -2,33 +2,28 @@
 {% load shows %}
 
 {% block nav-shows %} class="active"{% endblock %}
-{% block section_title %}Shows{% endblock %}
+{% block section_title %}<h2 class="title">Shows</h2>{% endblock %}
 
 {% block content %}
-<div id="autopager_content">
 {% for data in object_list %}
-<div class="entry{% if data|upcoming_show %} official{% endif %}">
-	<a href="{{ data.get_absolute_url }}">{{ data.name }}</a>
-   {% if data|upcoming_show %}<span class="official_release">Upcoming Show</span>{% endif %}
+<div class="entry {{ data.get_human_class_type|lower }}">
+   {% include "data/data_body.html" %}
 </div>
 {% endfor %}
-</div>
 {% endblock %}
 
 {% block pagination %}
+{% if page_obj.has_other_pages %}
 <div class="pagination">
     <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="/events/{{ page_obj.previous_page_number }}/">Previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="/events/{{ page_obj.next_page_number }}/" class="next_page">Next</a>
-        {% endif %}
+      {% if page_obj.has_previous %}
+      <a href="/events/{{ page_obj.previous_page_number }}/"><span>&#171;</span> Previous</a>
+      {% endif %}
+      {% if page_obj.has_next and page_obj.has_previous %}&nbsp;/&nbsp;{% endif %}
+      {% if page_obj.has_next %}
+      <a href="/events/{{ page_obj.next_page_number }}/" class="next_page">Next <span>&#187;</a>
+      {% endif %}
     </span>
 </div>
+{% endif %}
 {% endblock pagination %}

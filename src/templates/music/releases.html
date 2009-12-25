@@ -1,23 +1,21 @@
 {% extends "data/data_short_list.html" %}
 
 {% block nav-releases %} class="active"{% endblock %}
-{% block section_title %}Releases{% endblock %}
+{% block section_title %}<h2 class="title">Releases</h2>{% endblock %}
 
 {% block pagination %}
+{% if page_obj.has_other_pages %}
 <div class="pagination">
     <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="/music/releases/{{ page_obj.previous_page_number }}/">Previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="/music/releases/{{ page_obj.next_page_number }}/" class="next_page">Next</a>
-        {% endif %}
+      {% if page_obj.has_previous %}
+      <a href="/music/releases/{{ page_obj.previous_page_number }}/"><span>&#171;</span> Previous</a>
+      {% endif %}
+      {% if page_obj.has_next and page_obj.has_previous %}&nbsp;/&nbsp;{% endif %}
+      {% if page_obj.has_next %}
+      <a href="/music/releases/{{ page_obj.next_page_number }}/" class="next_page">Next <span>&#187;</a>
+      {% endif %}
     </span>
 </div>
+{% endif %}
 {% endblock pagination %}
 

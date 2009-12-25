@@ -1,20 +1,20 @@
 {% load thumbnail %}
 {% load oembed_tags %}
-
-<div class="posted_by">posted by <a href="{{ data.posted_by.get_absolute_url }}">{{ data.posted_by }}</a> - {{ data.pub_date|date:"l, F j, Y" }}</div>
+<h3><a href="{{ data.get_absolute_url }}">{{ data.name }}</a></h3>
+<div class="posted_by">posted by <a href="{{ data.posted_by.get_absolute_url }}">{{ data.posted_by }}</a></div>
 
 {% if data.header_image %}
 <img class="primary_image" src="http://twinsistermusic.com{% thumbnail data.header_image 626x620 %}" alt="Header Image" />
 {% endif %}
 
 {% if data.description %}
-
+<div class="description">
 {% oembed %}
 {% autoescape off %}
 {{ data.description }}
 {% endautoescape %}
 {% endoembed %}
-
+</div>
 {% endif %}
 
 {% include data.get_template %}

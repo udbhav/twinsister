@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 
-{% block section_title %}Search Results{% endblock %}
+{% block section_title %}<h2 class="title">Search Results</h2>{% endblock %}
 
 {% block content %}
 {% if page.object_list %}
 {% for result in page.object_list %}
-<div class="entry">
 {% with result.object as data %}
-<h3>{{ data.get_human_class_type }}: {{ data }}</h3>
+<div class="entry {{ data.get_human_class_type|lower }}">
 {% include "data/data_body.html" %}
 {% endwith %}
 </div>
