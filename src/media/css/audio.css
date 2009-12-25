@@ -178,7 +178,7 @@ ul.playlist li .controls {
 ul.playlist li .controls .statusbar {
  position:relative;
  height:0.5em;
- background-color:#F9F6EE;
+ background-color:#fff;
  border:2px solid #fff;
  border-radius:2px;
  -moz-border-radius:2px;
