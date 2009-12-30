@@ -204,6 +204,19 @@ h2.title {
     margin-top: 0;
 }
 
+#feature_content img {
+    float: left;
+    margin-right: 20px;
+}
+
+#feature_content .playlist {
+    margin: 0;
+}
+
+#feature_content #release_info {
+    float: left;
+}
+
 .entry h3 {
     font-size: 30px;
     line-height: 30px;
