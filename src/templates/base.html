@@ -1,5 +1,7 @@
 {% load shows %}
 {% load images %}
+{% load music %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,13 +21,12 @@
   <body>
     <div id="right">
       <h1 id="logo"><a href="/">Twin Sister</a></h1>
+
+      {% featured_release_thumbnail %}
+      
       <p id="email"><a href="mailto:band@twinsistermusic.com">band@twinsistermusic.com</a></p>
 
-      <form method="get" action="{% url haystack_search %}" id="search">
-        <fieldset>
-          <input type="text" name="q" value="Type and press enter to search." id="searchfield"/>
-        </fieldset>
-      </form>
+      {% next_show %}
 
       {% block navigation %}
       <ul class="navigation clearfix">
@@ -35,6 +36,12 @@
         <li id="images_nav" {% block nav-images %}{% endblock %}><a href="{% url galleries %}">Images</a></li>        
       </ul>
       {% endblock %}
+
+      <form method="get" action="{% url haystack_search %}" id="search">
+        <fieldset>
+          <input type="text" name="q" value="Type and press enter to search." id="searchfield"/>
+        </fieldset>
+      </form>
     </div>
 
     <div id="content" class="clearfix">

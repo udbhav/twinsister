@@ -105,7 +105,7 @@ p {
 
 .navigation {
     font-size: 16px;
-    float: right;
+    margin-top: 10px;
 }
 
 .navigation li {
@@ -128,14 +128,15 @@ p {
 #search input {
     color:#AAAAAA;
     font-size:13px;
-    margin-bottom:20px;
     padding:2px;
-    width:190px;
+    width:230px;
     font-size: 12px;
+    text-align: right;
 }
 
 #search .tf_focused {
     color: #000;
+    text-align: left;
 }
 
 .entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination, #feature_content {
@@ -233,11 +234,15 @@ h2.title {
     color: #8ABD50;
 }
 
-.show h3 a, #shows_nav a, #upcoming_shows_header {
+.show h3 a, #shows_nav a {
     color: #90DEEC;
 }
 
-#upcoming_shows_header, #recent_flickr_header {
+#next_show {
+    margin-top: 4px;
+}
+
+#recent_flickr_header {
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 16px;

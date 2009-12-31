@@ -1,0 +1,6 @@
+{% if show %}
+<div id="next_show">
+  Next Show: <a href="{{ show.get_absolute_url }}">{{ show.venue.name }}</a> {{ show.show_date|date:" n/d fA" }}
+</div>
+{% endif %}
+
