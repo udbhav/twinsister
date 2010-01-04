@@ -337,7 +337,7 @@ h2.title {
 
 #featured_release_content {
     width: 700px;
-    margin: 100px auto;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -361,7 +361,7 @@ h2.title {
 }
 
 #featured_release_content h1 {
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .featured_release .download_links li, .featured_release .buy_links li {
