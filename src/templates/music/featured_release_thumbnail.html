@@ -2,8 +2,9 @@
 {% load images %}
 
 {% if featured_release %}
-<div id="featured_release_thumbnail">
-  <strong>{{ featured_release.name }}</strong>
-  <img src="{% thumbnail featured_release|get_primary_image 60x60 %}" alt="{{ featured_release }}" />
+<div id="featured_release_thumbnail" class="clearfix">
+  <a href="{{ featured_release.get_absolute_url }}">
+    <img src="{% thumbnail featured_release|get_primary_image 120x120 %}" alt="{{ featured_release }}" />
+  </a>
 </div>
 {% endif %}

@@ -20,14 +20,10 @@
 
   <body>
     <div id="right">
-      <h1 id="logo"><a href="/">Twin Sister</a></h1>
-
       {% featured_release_thumbnail %}
-      
+      <h1 id="logo"><a href="/">Twin Sister</a></h1>
       <p id="email"><a href="mailto:band@twinsistermusic.com">band@twinsistermusic.com</a></p>
-
       {% next_show %}
-
       {% block navigation %}
       <ul class="navigation clearfix">
         <li id="releases_nav" {% block nav-releases %}{% endblock %}><a href="{% url releases %}">Releases</a></li>

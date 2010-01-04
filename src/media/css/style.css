@@ -242,6 +242,15 @@ h2.title {
     margin-top: 4px;
 }
 
+#featured_release_thumbnail {
+    margin-bottom: 10px;
+    display: none;
+}
+
+#featured_release_thumbnail a {
+    display: block;
+}
+
 #recent_flickr_header {
     font-weight: bold;
     margin-bottom: 10px;
