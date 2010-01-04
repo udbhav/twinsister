@@ -89,10 +89,6 @@ p {
     color: #666;
 }
 
-#home_feature img {
-    display: block;
-}
-
 #tracklist {
     font-size:2em;
     line-height: 1.2em;
@@ -139,7 +135,7 @@ p {
     text-align: left;
 }
 
-.entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination, #feature_content {
+.entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination {
     float: left;
     clear: left;
     display: block;
@@ -197,27 +193,6 @@ h2.title {
     margin: 1em 0 0;
 }
 
-#feature {
-    margin-bottom: 20px;
-}
-
-#feature_content {
-    margin-top: 0;
-}
-
-#feature_content img {
-    float: left;
-    margin-right: 20px;
-}
-
-#feature_content .playlist {
-    margin: 0;
-}
-
-#feature_content #release_info {
-    float: left;
-}
-
 .entry h3 {
     font-size: 30px;
     line-height: 30px;
@@ -226,7 +201,7 @@ h2.title {
     max-width: 600px;
 }
 
-.entry h3 a, #feature_content h3 a, #feature_content h4 {
+.entry h3 a {
     color: #BB225A;
 }
 
@@ -240,15 +215,6 @@ h2.title {
 
 #next_show {
     margin-top: 4px;
-}
-
-#featured_release_thumbnail {
-    margin-bottom: 10px;
-    display: none;
-}
-
-#featured_release_thumbnail a {
-    display: block;
 }
 
 #recent_flickr_header {
@@ -365,4 +331,43 @@ h2.title {
 #recent_flickr li {
     float: left;
     margin-left: 4px;
+}
+
+/* Home Splash Page */
+
+#featured_release_content {
+    width: 700px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.featured_release {
+    float: left;
+    background: transparent;
+    border: none;
+    margin: 0 100px 50px 0;
+    padding: 0;
+    width: 300px;
+    clear: none;
+    text-align: left;
+}
+
+.featured_release h3, .featured_release .release_info, #more_link {
+    opacity: 0;
+}
+
+.last_release {
+    margin-right: 0;
+}
+
+#featured_release_content h1 {
+    margin-bottom: 20px;
+}
+
+.featured_release .download_links li, .featured_release .buy_links li {
+    display: inline;
+}
+
+.featured_release h3 {
+    font-size: 20px;
 }

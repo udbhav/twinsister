@@ -137,6 +137,9 @@ OEMBED_MAX_HEIGHT = '600'
 CACHE_BACKEND = ''
 CACHE_MIDDLEWARE_SECONDS = 60*10
 
+# Session Settings for splash page
+SESSION_COOKIE_AGE = 2592000
+
 try:
     from local_settings import *
 except ImportError:

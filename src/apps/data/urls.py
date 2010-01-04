@@ -17,26 +17,16 @@ data_info = {
     'slug_field': 'slug',
 }
 
-home_info = dict(
-    data_list_info,
-    page = 1,
-    template_name = 'home.html',
-    )
-
-try:
-    featured_release = Release.objects.filter(official=True).order_by('-pub_date')[0]
-except IndexError:
-    pass
-else:
-    home_info['extra_context'] = {
-        'featured_release': featured_release,
+home_info = {
+    'queryset': Release.objects.filter(official=True).order_by('-pub_date'),
+    'template_name': 'home.html',
 }
 
 urlpatterns = patterns(
     '',
-    (r'^$', list_detail.object_list, home_info),
+    (r'^$', 'home.splash_page'),
     (r'^entry/(?P<slug>[-\w]+)/$', list_detail.object_detail, data_info, 'entry'),
     (r'entries-by-person/(?P<person_id>\d+)/$', 'apps.data.views.entries_by_person', {}, 'entries_by_person'),
     (r'entries-by-person/(?P<person_id>\d+)/(?P<page>[0-9]+)/$', 'apps.data.views.entries_by_person', {}, 'entries_by_person_paginated'),
-    (r'^(?P<page>[0-9]+)/$', list_detail.object_list, data_list_info),
+    (r'^(?P<page>[0-9]+)/$', list_detail.object_list, data_list_info, 'entries_by_page'),
 )
