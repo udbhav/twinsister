@@ -130,11 +130,6 @@ p {
     text-align: right;
 }
 
-#search .tf_focused {
-    color: #000;
-    text-align: left;
-}
-
 .entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination {
     float: left;
     clear: left;
