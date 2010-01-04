@@ -336,7 +336,7 @@ h2.title {
 /* Home Splash Page */
 
 #featured_release_content {
-    width: 700px;
+    width: 850px;
     margin: 0 auto;
     text-align: center;
 }
@@ -345,9 +345,9 @@ h2.title {
     float: left;
     background: transparent;
     border: none;
-    margin: 0 100px 50px 0;
+    margin: 0 50px 50px 0;
     padding: 0;
-    width: 300px;
+    width: 400px;
     clear: none;
     text-align: left;
 }

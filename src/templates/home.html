@@ -24,7 +24,7 @@
       {% for featured_release in object_list %}
       <div class="featured_release entry{% if forloop.last %} last_release{% endif %}">
         {% if featured_release|get_primary_image %}
-        <a href="{{ featured_release.get_absolute_url }}"><img src="{% thumbnail featured_release|get_primary_image 300x300 %}" alt="{{ featured_release }}" /></a>
+        <a href="{{ featured_release.get_absolute_url }}"><img src="{% thumbnail featured_release|get_primary_image 400x400 upscale %}" alt="{{ featured_release }}" /></a>
         {% endif %}
         <h3><a href="{{ featured_release.get_absolute_url }}">{{ featured_release }}</a></h3>
         <div class="release_info">
