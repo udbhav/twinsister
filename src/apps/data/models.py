@@ -2,7 +2,9 @@ from datetime import datetime
 
 from django.db import models
 from django.core import urlresolvers
+from django.db.models.signals import post_delete
 
+from apps.data.listeners import delete_subclasses
 from apps.people.models import Person
 
 class Data(models.Model):
@@ -68,3 +70,6 @@ class Data(models.Model):
         verbose_name_plural = 'Entries'
         verbose_name = 'Entry'
         ordering = ('-pub_date',)
+
+
+post_delete.connect(delete_subclasses)
