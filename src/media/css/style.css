@@ -126,7 +126,6 @@ p {
     padding:2px;
     width:230px;
     font-size: 12px;
-    text-align: right;
 }
 
 .entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination {
