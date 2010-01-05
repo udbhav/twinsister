@@ -5,7 +5,7 @@ from apps.data.models import Data
 from apps.music.models import Release
 
 data_list_info = {
-    'queryset': Data.objects.filter(published=True).order_by('-pub_date'),
+    'queryset': Data.objects.filter(published=True).filter(show=None).order_by('-pub_date'),
     'paginate_by' : 15,
     'template_name' : 'data/data_list.html',
 }
