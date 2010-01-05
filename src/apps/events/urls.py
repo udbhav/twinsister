@@ -23,5 +23,8 @@ urlpatterns = patterns(
     '',
     (r'^$', list_detail.object_list, dict(shows_info, page=1), 'shows'),
     (r'^(?P<page>[0-9]+)/$', list_detail.object_list, shows_info),
-    (r'^show/(?P<slug>[-\w]+)/$', list_detail.object_detail, show_info, 'show'),
+    (r'^(?P<slug>[-\w]+)/$', list_detail.object_detail, show_info, 'show'),
+
+    # This is for legacy show urls, added on 1/5/10, remove in a few months
+    (r'^show/(?P<slug>[-\w]+)/$', 'django.views.generic.simple.redirect_to', {'url': '/shows/%(slug)s/'}),
 )

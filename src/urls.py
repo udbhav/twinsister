@@ -24,7 +24,7 @@ urlpatterns = patterns(
     (r'^shows/', include('apps.events.urls')),
 
     # This is for legacy links to shows and etc.  Added 1/5/10, remove after a 4-5 months
-    (r'^events/(?P<argument>.*)/$', 'django.views.generic.simple.redirect_to', {'url': '/shows/%(argument)s/'}),
+    (r'^events(?P<argument>.*)/$', 'django.views.generic.simple.redirect_to', {'url': '/shows%(argument)s/'}),
 
     (r'^mailing-list/', include('apps.mailing_list.urls')),
     (r'^comments/', include('django.contrib.comments.urls')),
