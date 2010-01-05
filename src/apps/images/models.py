@@ -9,6 +9,31 @@ import flickrapi
 from apps.people.models import Person
 from apps.data.models import Data
 
+class ImageBase(Data):
+    def get_class_type(self):
+        subclasses = ('gallery', 'flickrphoto')
+        for subclass in subclasses:
+            if hasattr(self, subclass):
+                return subclass
+        return None
+
+    def get_absolute_url(self):
+        subclass = self.get_class_type()
+        if subclass:
+            return getattr(self, subclass).get_absolute_url()
+        else:
+            return None
+
+    def get_human_class_type(self):
+        return 'Gallery'
+
+    def get_template(self):
+        subclass = self.get_class_type()
+        if subclass:
+            return getattr(self, subclass).get_template()
+        else:
+            return None
+    
 class Image(models.Model):
     title = models.CharField(max_length=50)
     photo = models.ImageField(upload_to='uploads/images')
@@ -20,7 +45,7 @@ class Image(models.Model):
     def __unicode__(self):
         return self.title
 
-class Gallery(Data):
+class Gallery(ImageBase):
     images = models.ManyToManyField(Image)
 
     def get_absolute_url(self):
@@ -36,6 +61,7 @@ class Gallery(Data):
 class FlickrUser(models.Model):
     flickr_username = models.CharField(max_length=20)
     flickr_id = models.CharField(max_length=30, editable=False)
+    person = models.ForeignKey(Person)
 
     def __unicode__(self):
         return self.flickr_username
@@ -50,25 +76,33 @@ class FlickrTag(models.Model):
     def flickr_format(self):
         return self.tag.replace(' ', '').lower()
 
-class FlickrPhoto(models.Model):
+class FlickrPhoto(ImageBase):
     user = models.ForeignKey(FlickrUser)
-    title = models.CharField(max_length=100, blank=True)
     farm = models.IntegerField()
     server = models.IntegerField()
-    photo_id = models.CharField(max_length=50)
     secret = models.CharField(max_length=50)
-    upload_date = models.DateField()
 
     def __unicode__(self):
-        return '%s: %s' % (self.photo_id, self.title)
+        return '%s: %s' % (self.slug, self.name)
+
     def get_large_photo(self):
-        return 'http://farm%i.static.flickr.com/%i/%s_%s.jpg' % (self.farm, self.server, self.photo_id, self.secret)
+        return 'http://farm%i.static.flickr.com/%i/%s_%s.jpg' % (self.farm, self.server, self.slug, self.secret)
+
     def get_small_square(self):
-        return 'http://farm%i.static.flickr.com/%i/%s_%s_s.jpg' % (self.farm, self.server, self.photo_id, self.secret)
+        return 'http://farm%i.static.flickr.com/%i/%s_%s_s.jpg' % (self.farm, self.server, self.slug, self.secret)
+
     def get_flickr_page(self):
-        return 'http://flickr.com/photos/%s/%s/' % (self.user.flickr_id, self.photo_id)
+        return 'http://flickr.com/photos/%s/%s/' % (self.user.flickr_id, self.slug)
+
+    def get_template(self):
+        return 'images/flickr_photo.html'
+
+    def get_absolute_url(self):
+        url = urlresolvers.reverse('flickr_photo', kwargs={'slug':self.slug})
+        return url
+
     class Meta:
-        ordering = ('-upload_date',)
+        ordering = ('-pub_date',)
 
 
 flickr = flickrapi.FlickrAPI(settings.FLICKR_API_KEY)
@@ -86,16 +120,17 @@ def sync_flickr_photos():
                 tags = photo.get('tags').split(' ')
                 if desired_tags.intersection(tags):
                     try:
-                        row = FlickrPhoto.objects.get(photo_id=photo.get("id"), secret=photo.get("secret"))
+                        row = FlickrPhoto.objects.get(slug=photo.get("id"), secret=photo.get("secret"))
                     except FlickrPhoto.DoesNotExist:
                         FlickrPhoto.objects.create(
                             user = user,
-                            title = photo.get("title")[:100],
+                            name = photo.get("title")[:100],
                             farm = int(photo.get("farm")),
                             server = int(photo.get("server")),
-                            photo_id = int(photo.get("id")),
+                            slug = int(photo.get("id")),
                             secret = photo.get("secret"),
-                            upload_date = datetime.fromtimestamp(int(photo.get("dateupload"))),
+                            pub_date = datetime.fromtimestamp(int(photo.get("dateupload"))),
+                            posted_by = user.person,
                             )
                     else:
                         dupe = True

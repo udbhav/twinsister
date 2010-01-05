@@ -1,29 +1,10 @@
-{% extends "base.html" %}
+{% extends "data/data_list.html" %}
 {% load images %}
 {% load thumbnail %}
 
 {% block title %}Images{% endblock %}
 {% block nav-images %} class="active"{% endblock %}
 {% block section_title %}<h2 class="title">Images</h2>{% endblock %}
-
-{% block content %}
-<div class="entry gallery">
-  <h3><a href="{% url flickr_photos %}">See Photos from Flickr</a></h3>
-  {% recent_flickr %}
-</div>
-
-{% for data in object_list %}
-<div class="entry gallery">
-	<h3><a href="{{ data.get_absolute_url }}">{{ data }}</a></h3>
-   <ul class="thumbnails clearfix_left">
-   {% for image in data|sort_images %}
-   <li><a href="{% url image image_id=image.id, gallery_id=data.id %}"><img src="{% thumbnail image.photo 100x100 crop %}" alt="{{ image }}" /></a></li>
-   {% endfor %}
-   </ul>
-</div>
-{% endfor %}
-
-{% endblock %}
 
 {% block pagination %}
 {% if page_obj.has_other_pages %}
