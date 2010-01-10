@@ -130,6 +130,7 @@ p {
 
 .entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination {
     float: left;
+    width: 600px;
     clear: left;
     display: block;
     margin-top: 20px;
@@ -140,6 +141,15 @@ p {
     border-right: 1px solid rgba(0, 0, 0, 0.07);
     background-image: url(../images/entry_bg.gif);
     background-repeat: repeat-y;
+}
+
+.posted_date, h2.title, #footer, .data_list li {
+    width: auto;
+}
+
+.entry {
+    border-top: 3px solid #333;
+    border-bottom: 3px solid #333;
 }
 
 .description {
