@@ -1,6 +1,11 @@
 {% load music %}
+{% load images %}
+{% load thumbnail %}
 
 {% with data.musicdata.release as release %}
+{% if release|get_primary_image %}
+<img src="{% thumbnail release|get_primary_image 400x400 upscale %}" alt="{{ release }}" />
+{% endif %}
 <ul class="playlist">
   {% for song in release|get_tracklist %}
   <li><a href="http://twinsistermusic.com{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>

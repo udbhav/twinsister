@@ -329,7 +329,7 @@ h2.title {
 /* Home Splash Page */
 
 #featured_release_content {
-    width: 850px;
+    width: 400px;
     margin: 0 auto;
     text-align: center;
 }
@@ -343,6 +343,11 @@ h2.title {
     width: 400px;
     clear: none;
     text-align: left;
+}
+
+.featured_release img {
+    padding-top: 20px;
+    display: block;
 }
 
 .featured_release h3, .featured_release .release_info, #more_link {

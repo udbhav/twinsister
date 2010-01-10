@@ -8,7 +8,7 @@ def splash_page(request):
         return redirect('entries_by_page', page=1)
     else:
         request.session['repeat_visitor'] = True
-        object_list = Release.objects.filter(official=True).order_by('-pub_date')
+        object_list = Release.objects.filter(official=True).order_by('-pub_date')[:1]
         return render_to_response('home.html', {
                 'object_list': object_list,
                 }, context_instance=RequestContext(request))

@@ -20,7 +20,6 @@
   <body>
 
     <div id="featured_release_content" class="clearfix">
-      <h1 id="logo"><a href="{% url entries_by_page page=1 %}">Twin Sister</a></h1>
       {% for featured_release in object_list %}
       <div class="featured_release entry{% if forloop.last %} last_release{% endif %}">
         {% if featured_release|get_primary_image %}
@@ -28,7 +27,6 @@
         {% endif %}
         <h3><a href="{{ featured_release.get_absolute_url }}">{{ featured_release }}</a></h3>
         <div class="release_info">
-	  <p>{{ featured_release.pub_date|date:"F Y"}}</p>
           <ul class="playlist">
             {% for song in featured_release|get_tracklist %}
             <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
