@@ -73,6 +73,7 @@ class Release(MusicData):
         )
     type = models.CharField(max_length=2, choices=TYPE_CHOICES)
     songs = models.ManyToManyField(Song)
+    buy_link = models.URLField(blank=True_
 
     def __unicode__(self):
         return self.name
@@ -105,14 +106,6 @@ class Stem(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.release.name, self.description)
-
-class BuyLink(models.Model):
-    release = models.ForeignKey(Release)
-    link = models.URLField()
-    service = models.CharField(max_length=20)
-
-    def __unicode__(self):
-        return '%s: %s' % (self.release, self.service)
 
 class Credit(models.Model):
     song = models.ForeignKey(Song)
