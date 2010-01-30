@@ -137,8 +137,15 @@ OEMBED_MAX_HEIGHT = '600'
 CACHE_BACKEND = ''
 CACHE_MIDDLEWARE_SECONDS = 60*10
 
+
 # Session Settings for splash page
 SESSION_COOKIE_AGE = 2592000
+
+# Storage backend for S3
+DEFAULT_FILE_STORAGE = 'backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
 
 try:
     from local_settings import *
