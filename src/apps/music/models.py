@@ -73,7 +73,7 @@ class Release(MusicData):
         )
     type = models.CharField(max_length=2, choices=TYPE_CHOICES)
     songs = models.ManyToManyField(Song)
-    buy_link = models.URLField(blank=True_
+    buy_link = models.URLField(blank=True)
 
     def __unicode__(self):
         return self.name
