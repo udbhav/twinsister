@@ -33,7 +33,7 @@ body {
 body {
     line-height: 1.2em;
     font-size: 0.85em;
-    color: #666;
+    color: #9A9685;
     background: #f9f9f9;
 }
 
@@ -44,7 +44,7 @@ strong {
 a {
     text-decoration:none;
     font-weight: bold;
-    color: #333;
+    color: #BB225A;
 }
 
 a:hover {
@@ -108,8 +108,12 @@ p {
     margin-left: 5px;
 }
 
+.navigation a {
+    color: #606AA6
+}
 .navigation a:hover {
     text-decoration: none;
+    color: #7F8DDD;
 }
 
 #content {
@@ -147,11 +151,6 @@ p {
     width: auto;
 }
 
-.entry {
-    border-top: 3px solid #333;
-    border-bottom: 3px solid #333;
-}
-
 .description {
     max-width: 600px;
 }
@@ -159,6 +158,7 @@ p {
 h2.title {
     font-size: 30px;
     font-weight: bold;
+    color: #9A9685;
 }
 
 #footer, .pagination, h2.title, .posted_date, .comment {
@@ -169,7 +169,7 @@ h2.title {
 
 #footer_links a {
     font-size: 12px;
-    color: #73B8C4;
+    color: #7F8DDD
 }
 
 .song {
@@ -204,18 +204,6 @@ h2.title {
     max-width: 600px;
 }
 
-.entry h3 a {
-    color: #BB225A;
-}
-
-.song h3 a, #songs_nav a {
-    color: #8ABD50;
-}
-
-.show h3 a, #shows_nav a {
-    color: #90DEEC;
-}
-
 #next_show {
     margin-top: 4px;
 }
@@ -224,14 +212,6 @@ h2.title {
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 16px;
-}
-
-.release h3 a, #releases_nav a, .release h4 {
-    color: #CF4039;
-}
-
-.gallery h3 a, #images_nav a, #recent_flickr_header, .gallery h3 {
-    color: #5A308D;
 }
 
 .entry ul {
