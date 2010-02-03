@@ -159,6 +159,7 @@ h2.title {
     font-size: 30px;
     font-weight: bold;
     color: #9A9685;
+    line-height: 35px;
 }
 
 #footer, .pagination, h2.title, .posted_date, .comment {
@@ -173,7 +174,8 @@ h2.title {
 }
 
 .official {
-    font-size: 30px;
+    font-size: 25px;
+    line-height: 30px;
 }
 
 .artwork {
