@@ -172,22 +172,6 @@ h2.title {
     color: #7F8DDD
 }
 
-.song {
-    background-image: url(../images/song_bg.gif);
-}
-
-.release {
-    background-image: url(../images/release_bg.gif);
-}
-
-.show {
-    background-image: url(../images/show_bg.gif);
-}
-
-.gallery {
-    background-image: url(../images/gallery_bg.gif);
-}
-
 .official {
     font-size: 30px;
 }
