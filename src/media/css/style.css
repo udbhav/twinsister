@@ -33,8 +33,8 @@ body {
 body {
     line-height: 1.2em;
     font-size: 0.85em;
-    color: #333333;
-    background: #f9f9f9;
+    color: #666666;
+    background: url(../images/body_bg.png);
 }
 
 strong {
@@ -43,8 +43,7 @@ strong {
 
 a {
     text-decoration:none;
-    font-weight: bold;
-    color: #BB225A;
+    color: #E92C27;
 }
 
 a:hover {
@@ -53,6 +52,7 @@ a:hover {
 
 h1 {
     font-size: 30px;
+    line-height: 35px;
     font-weight: bold;
     letter-spacing: -1px;
     margin-bottom: 10px;
@@ -80,15 +80,6 @@ p {
     text-align: right;
 }
 
-#email {
-    margin: 0 0 20px;
-}
-
-#email a {
-    font-weight: normal;
-    color: #666;
-}
-
 #tracklist {
     font-size:2em;
     line-height: 1.2em;
@@ -97,6 +88,34 @@ p {
 
 #tracklist #zip {
     font-size: 0.5em;
+}
+
+#top_right {
+    background: #7F8DDD;
+    padding: 15px;
+    margin-bottom: 15px;
+    -moz-border-radius: 120px 10px 10px 0;
+    -webkit-border-radius: 120px 10px 10px 0;
+}
+
+#navigation_search {
+    background: #7F8DDD;
+    padding: 15px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#top_right a {
+    color: #606AA6;
+}
+
+#email {
+    margin: 0 0 20px;
+}
+
+#email a {
+    font-weight: normal;
+    color: #e5e5e5;
 }
 
 .navigation {
@@ -113,11 +132,7 @@ p {
 }
 .navigation a:hover {
     text-decoration: none;
-    color: #7F8DDD;
-}
-
-#content {
-    background: url(../images/wrapper_bg.gif) repeat-y;
+    color: #e5e5e5;
 }
 
 #search {
@@ -133,44 +148,50 @@ p {
 }
 
 .entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination {
-    float: left;
+    margin: 20px 20px 0;
     width: 600px;
-    clear: left;
     display: block;
-    margin-top: 20px;
-    padding:15px 15px 15px 65px;
+    padding:15px;
     position: relative;
-    background: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-right: 1px solid rgba(0, 0, 0, 0.07);
-    background-image: url(../images/entry_bg.gif);
-    background-repeat: repeat-y;
+    background: #e5e5e5;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
 
-.posted_date, h2.title, #footer, .data_list li {
-    width: auto;
+.posted_date {
+    margin-left: 50px;
+    background: transparent;
+    padding: 20px 0 0 22px;
+    color: #f6ffa8;
 }
 
 .description {
     max-width: 600px;
 }
 
-h2.title {
+h2.title, #footer {
     font-size: 30px;
-    font-weight: bold;
-    color: #9A9685;
+    background: #7F8DDD;
+    color: #606AA6;
     line-height: 35px;
+    text-align: right;
+    -moz-border-radius: 120px 10px 10px 0;
+    -webkit-border-radius: 120px 10px 10px 0;
+}
+
+#footer {
+    font-size: 12px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
 }
 
 #footer, .pagination, h2.title, .posted_date, .comment {
-    background-image: none;
     padding-left: 15px;
-    margin-left: 50px;
 }
 
-#footer_links a {
+#footer a {
+    color: #606AA6;
     font-size: 12px;
-    color: #7F8DDD
 }
 
 .official {
@@ -185,7 +206,6 @@ h2.title {
 .entry h3 {
     font-size: 30px;
     line-height: 30px;
-    font-weight: bold;
     margin-bottom: 10px;
     max-width: 600px;
 }
@@ -253,7 +273,6 @@ h2.title {
 
 .comment_count {
     text-align:right;
-    font-weight:bold;
 }
 
 .comment h3 {
@@ -280,7 +299,7 @@ h2.title {
 }
 
 .posted_by, .primary_image {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
 }
 
 .primary_image {
@@ -379,4 +398,10 @@ h2.title {
 
 #new_ep {
     margin: 5px 0 10px;
+}
+
+.description {
+    font-family: Georgia;
+    font-size: 16px;
+    line-height: 20px;
 }

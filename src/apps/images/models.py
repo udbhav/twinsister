@@ -5,6 +5,7 @@ from django.db.models.signals import pre_save
 from django.core import urlresolvers
 from django.conf import settings
 import flickrapi
+from imagekit.models import ImageModel
 
 from apps.people.models import Person
 from apps.data.models import Data
@@ -34,7 +35,7 @@ class ImageBase(Data):
         else:
             return None
     
-class Image(models.Model):
+class Image(ImageModel):
     title = models.CharField(max_length=50)
     photo = models.ImageField(upload_to='uploads/images')
     caption = models.TextField(null=True, blank=True)

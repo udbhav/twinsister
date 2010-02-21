@@ -29,7 +29,7 @@ urlpatterns = patterns(
     (r'^mailing-list/', include('apps.mailing_list.urls')),
     (r'^comments/', include('django.contrib.comments.urls')),
     (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
-    (r'^search/', include('haystack.urls')),
+    # (r'^search/', include('haystack.urls')),
     (r'^faq/$', 'django.views.generic.simple.direct_to_template', {'template':'faq.html'}),
     (r'^admin/filebrowser/', include('filebrowser.urls')),
     (r'^admin/(.*)', admin.site.root),

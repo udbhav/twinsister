@@ -24,14 +24,14 @@ deactivate () {
     unset VIRTUAL_ENV
     if [ ! "$1" = "nondestructive" ] ; then
     # Self destruct!
-        unset deactivate
+        unset -f deactivate
     fi
 }
 
 # unset irrelavent variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/udbhav/workspace/twinsister/env"
+VIRTUAL_ENV="/Users/udbhav/Sites/twinsister/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -44,7 +44,7 @@ if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
     # see http://www.zetadev.com/software/aspen/
     PS1="[`basename \`dirname \"$VIRTUAL_ENV\"\``] $PS1"
 else
-    PS1="(`basename twinsister`)$PS1"
+    PS1="(`basename \"$VIRTUAL_ENV\"`)$PS1"
 fi
 export PS1
 

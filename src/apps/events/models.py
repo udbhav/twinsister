@@ -31,3 +31,13 @@ class Show(Data):
 
     class Meta:
         ordering = ('show_date',)
+
+class Tour(Data):
+    shows = models.ManyToManyField(Show)
+
+    def get_absolute_url(self):
+        url = urlresolvers.reverse('tour', kwargs={'slug':self.slug})
+        return url
+
+    def get_template(self):
+        return 'events/tour.html'

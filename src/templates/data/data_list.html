@@ -1,22 +1,17 @@
 {% extends "base.html" %}
-{% load thumbnail %}
 
 {% block section_title %}<h2 class="title">Ideas and Etc.</h2>{% endblock %}
 
 {% block content %}
-{% regroup object_list by pub_date.day as data_list %}
-{% for day in data_list %}
-{% for data in day.list %}
-{% if forloop.first %}<div class="posted_date">{{ data.pub_date|date }}</div>{% endif %}
+{% for data in object_list %}
+  <div class="entry {{ data.get_human_class_type|lower }}">
+    {% include "data/data_body.html" %}
+    <div class="comment_count">
+	   <a href="{{ data.get_absolute_url }}#disqus_thread">Comments</a>
+	 </div>
+  </div>
+{% endfor %}
 
-<div class="entry {{ data.get_human_class_type|lower }}">
-   {% include "data/data_body.html" %}
-   <div class="comment_count">
-	<a href="{{ data.get_absolute_url }}#disqus_thread">Comments</a>
-	</div>
-</div>
-{% endfor %}
-{% endfor %}
 
 {% block pagination %}
 {% if page_obj.has_other_pages %}

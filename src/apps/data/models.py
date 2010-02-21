@@ -3,7 +3,7 @@ from datetime import datetime
 from django.db import models
 from django.core import urlresolvers
 from django.db.models.signals import post_delete
-
+from imagekit.models import ImageModel
 from apps.data.listeners import delete_subclasses
 from apps.people.models import Person
 
@@ -71,5 +71,9 @@ class Data(models.Model):
         verbose_name = 'Entry'
         ordering = ('-pub_date',)
 
+    class IKOptions:
+        spec_module = 'apps.data.specs'
+        cache_dir = 'uploads/images'
+        image_field = 'header_image'
 
 post_delete.connect(delete_subclasses)

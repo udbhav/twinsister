@@ -78,12 +78,13 @@ INSTALLED_APPS = (
     'django.contrib.databrowse',
 
     # Dependencies
-    'sorl.thumbnail',
-    'haystack',
+    # 'sorl.thumbnail',
+    #'haystack',
     'django_extensions',
     'filebrowser',
     'oembed',
     'debug_toolbar',
+    'imagekit',
 
     # Apps Yo!
     'apps.data',

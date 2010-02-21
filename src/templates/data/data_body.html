@@ -1,10 +1,9 @@
-{% load thumbnail %}
 {% load oembed_tags %}
 <h3><a href="{{ data.get_absolute_url }}">{{ data.name }}</a></h3>
-<div class="posted_by">posted by <a href="{{ data.posted_by.get_absolute_url }}">{{ data.posted_by }}</a></div>
+<div class="posted_by">posted by <a href="{{ data.posted_by.get_absolute_url }}">{{ data.posted_by }}</a> on {{ data.pub_date|date }}</div>
 
 {% if data.header_image %}
-<img class="primary_image" src="http://twinsistermusic.com{% thumbnail data.header_image 626x620 %}" alt="Header Image" />
+<img class="primary_image" src="http://twinsistermusic.com{# thumbnail data.header_image 626x620 #}" alt="Header Image" />
 {% endif %}
 
 {% if data.description %}

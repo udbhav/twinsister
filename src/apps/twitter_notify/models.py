@@ -9,7 +9,7 @@ from apps.images.models import Gallery
 def tweet_on_create(sender, instance, created, **kwargs):
     senders = (Data, Song, Release, Show, Gallery)
     if sender in senders and not settings.DEBUG:
-        if created:
+        if created and getattr(instance, "published", False):
             from views import post_to_twitter
             post_to_twitter(instance)
 
