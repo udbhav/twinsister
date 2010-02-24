@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load thumbnail %}
 {% load images %}
 {% load oembed_tags %}
 
@@ -21,7 +20,7 @@
 {% for image in gallery|sort_images %}
 <div class="entry gallery">
 <h3>{{ image }}</h3>
-<a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{% thumbnail image.photo 626x900 %}" alt="{{ image }}" /></a>
+<a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{{ image.display.url }}" alt="{{ image }}" /></a>
 {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
 {% if image.credit.all %}<p>Credit(s): {{ image.credit.all|join:", " }}</p>{% endif %}
 </div>

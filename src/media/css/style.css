@@ -175,11 +175,12 @@ h2.title, #footer {
     color: #606AA6;
     line-height: 35px;
     text-align: right;
-    -moz-border-radius: 120px 10px 10px 0;
-    -webkit-border-radius: 120px 10px 10px 0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
 
 #footer {
+    clear: both;
     font-size: 12px;
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
@@ -192,6 +193,10 @@ h2.title, #footer {
 #footer a {
     color: #606AA6;
     font-size: 12px;
+}
+
+#footer a:hover {
+    color: #ffffff;
 }
 
 .official {
@@ -286,12 +291,20 @@ h2.title, #footer {
 }
 
 .pagination {
+    background: rgba(229, 229, 229, 0.8);
     font-size: 18px;
     color: #aaa;
+    float: left;
+    margin-bottom: 20px;
+    width: auto;
 }
 
 .pagination a span {
     color: #aaa;
+}
+
+.pagination a:hover {
+    text-decoration: none;
 }
 
 .pagination a:hover span {
@@ -302,8 +315,10 @@ h2.title, #footer {
     margin-bottom: 1.5em;
 }
 
-.primary_image {
-    margin-top: 1em;
+.caption {
+    font-family: Georgia, Times New Roman, serif;
+    text-align: right;
+    color: #333333;
 }
 
 .thumbnails {
@@ -404,4 +419,14 @@ h2.title, #footer {
     font-family: Georgia;
     font-size: 16px;
     line-height: 20px;
+}
+
+table {
+    border-top: 1px dotted #666666;
+}
+
+td {
+    padding: 2px 15px 2px 0;
+    border-bottom: 1px dotted #666666;
+    font-size: 14px;
 }

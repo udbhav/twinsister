@@ -8,7 +8,7 @@
 {% endif %}
 <ul class="playlist">
   {% for song in release|get_tracklist %}
-  <li><a href="http://twinsistermusic.com{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
+  <li><a href="http://{{ current_site.domain }}{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
   {% endfor %}
 </ul>
 

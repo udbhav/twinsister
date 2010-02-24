@@ -19,6 +19,10 @@ class Show(Data):
     cost = models.CharField(max_length=10, null=True, blank=True)
     bands = models.ManyToManyField(Band, null=True, blank=True)
 
+    def __init__(self, *args, **kwargs):
+        super(Show, self).__init__(*args, **kwargs)
+        self.sort_date = self.show_date
+
     def __unicode__(self):
         return self.name
 
@@ -34,10 +38,15 @@ class Show(Data):
 
 class Tour(Data):
     shows = models.ManyToManyField(Show)
-
     def get_absolute_url(self):
         url = urlresolvers.reverse('tour', kwargs={'slug':self.slug})
         return url
 
     def get_template(self):
         return 'events/tour.html'
+
+    def save(self):
+        super(Tour, self).save()
+        for show in self.shows.all():
+            show.published = False
+            show.save()

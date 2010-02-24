@@ -66,6 +66,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'context_processors.current_site',
     )
 
 INSTALLED_APPS = (
@@ -78,13 +79,13 @@ INSTALLED_APPS = (
     'django.contrib.databrowse',
 
     # Dependencies
-    # 'sorl.thumbnail',
-    #'haystack',
+    'haystack',
     'django_extensions',
     'filebrowser',
     'oembed',
     'debug_toolbar',
     'imagekit',
+    'south',
 
     # Apps Yo!
     'apps.data',
@@ -144,9 +145,9 @@ SESSION_COOKIE_AGE = 2592000
 
 # Storage backend for S3
 #DEFAULT_FILE_STORAGE = 'backends.s3boto.S3BotoStorage'
-#AWS_ACCESS_KEY_ID = ''
-#AWS_SECRET_ACCESS_KEY = ''
-#AWS_STORAGE_BUCKET_NAME = ''
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = ''
 
 try:
     from local_settings import *

@@ -1,6 +1,6 @@
 {% with data.musicdata.song as song %}
 <ul class="playlist">
-  <li><a href="http://twinsistermusic.com{{ MEDIA_URL }}{{ song.file }}">{{ song.band }} - {{ song }}</a></li>
+  <li><a href="http://{{ current_site.domain }}{{ MEDIA_URL }}{{ song.file }}">{{ song.band }} - {{ song }}</a></li>
 </ul>
 
 {% if song.release_set.all %}

@@ -7,6 +7,18 @@ from imagekit.models import ImageModel
 from apps.data.listeners import delete_subclasses
 from apps.people.models import Person
 
+class HeaderImage(ImageModel):
+    image = models.ImageField(upload_to='uploads/images', blank=True, null=True)
+    caption = models.TextField(blank=True)
+
+    def __unicode__(self):
+        return self.image.name
+
+    class IKOptions:
+        spec_module = 'apps.data.specs'
+        cache_dir = 'uploads/images'
+        image_field = 'image'
+
 class Data(models.Model):
     """
     An all-purpose container for all content on the site
@@ -25,7 +37,7 @@ class Data(models.Model):
     posted_by = models.ForeignKey(Person)
     pub_date = models.DateTimeField('date published', default=datetime.now())
     description = models.TextField(blank=True)
-    header_image = models.ImageField(upload_to='uploads/images', blank=True, null=True)
+    header_image = models.ForeignKey(HeaderImage, blank=True, null=True)
     published = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -70,10 +82,5 @@ class Data(models.Model):
         verbose_name_plural = 'Entries'
         verbose_name = 'Entry'
         ordering = ('-pub_date',)
-
-    class IKOptions:
-        spec_module = 'apps.data.specs'
-        cache_dir = 'uploads/images'
-        image_field = 'header_image'
 
 post_delete.connect(delete_subclasses)

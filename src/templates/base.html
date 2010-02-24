@@ -38,7 +38,7 @@
       </ul>
       {% endblock %}
 
-      <form method="get" action="{# url haystack_search #}" id="search">
+      <form method="get" action="{% url haystack_search %}" id="search">
         <fieldset>
           <input type="search" name="q" placeholder="Type and press enter to search." id="searchfield"/>
         </fieldset>

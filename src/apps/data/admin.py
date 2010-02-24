@@ -19,3 +19,4 @@ class PrepopulatedAdmin(WYMEditorAdmin):
         search_fields = ('name',)
 
 admin.site.register(Data, PrepopulatedAdmin)
+admin.site.register(HeaderImage)

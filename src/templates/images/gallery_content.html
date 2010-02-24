@@ -1,10 +1,11 @@
-{% load thumbnail %}
 {% load images %}
 
 {% with data.imagebase.gallery as gallery %}
 <ul class="thumbnails clearfix_left">
   {% for image in gallery|grab_six %}
-  <li><a href="{% url image image_id=image.id, gallery_id=gallery.id %}"><img src="{% thumbnail image.photo 100x100 crop %}" alt="{{ image.title }}" /></a></li>
+  <li><a href="{% url image image_id=image.id, gallery_id=gallery.id %}">
+      <img src="http://{{ current_site.domain }}{{ image.thumbnail.url }}" alt="{{ image.title }}" />
+  </a></li>
   {% endfor %}
 </ul>
 

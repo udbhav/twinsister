@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.events.models import Show, Venue
+from apps.events.models import Show, Venue, Tour
 from apps.music.admin import PrepopulatedAdmin
 
 class ShowAdmin(PrepopulatedAdmin):
@@ -9,3 +9,4 @@ class ShowAdmin(PrepopulatedAdmin):
 
 admin.site.register(Show, ShowAdmin)
 admin.site.register(Venue)
+admin.site.register(Tour, PrepopulatedAdmin)

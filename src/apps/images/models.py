@@ -46,6 +46,11 @@ class Image(ImageModel):
     def __unicode__(self):
         return self.title
 
+    class IKOptions:
+        spec_module = 'apps.images.specs'
+        cache_dir = 'uploads/images'
+        image_field = 'photo'
+
 class Gallery(ImageBase):
     images = models.ManyToManyField(Image)
 
