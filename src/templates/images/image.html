@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% load thumbnail %}
 {% load images %}
 
 {% block title %}{{ image.title }}{% endblock %}
 {% block nav-images %} class="active"{% endblock %}
-{% block section_title %}{{ image.title }}{% endblock %}
 
 {% block content %}
 <div class="entry">
-  <p><a href="{{ gallery.get_absolute_url }}">Back to {{ gallery }}</a></p>
-  <a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{% thumbnail image.photo 600x800 %}" alt="{{ image.title }}" /></a>
-  {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
+  <h3>{{ image }}</h3>
+  <p><a href="{{ gallery.get_absolute_url }}">See all {{ gallery }}</a></p>
+  <a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{{ image.display.url }}" alt="{{ image.title }}" /></a>
+  {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
+  <p>Click for full size</p>
   {% if image.credit.all %}<p>Credit(s): {{ image.credit.all|join:", " }}</p>{% endif %}
   <div class="previous_next">
     {% if image|previous_image:gallery %}

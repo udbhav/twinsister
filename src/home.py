@@ -4,7 +4,7 @@ from django.conf import settings
 from apps.music.models import Release
 
 def home(request):
-    if request.session.get('repeat_visitor', False) and not settings.DEBUG:
+    if request.session.get('repeat_visitor', False):
         return redirect('entries_by_page', page=1)
     else:
         request.session['repeat_visitor'] = True

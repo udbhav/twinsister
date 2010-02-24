@@ -11,7 +11,7 @@
 	 </div>
   </div>
 {% endfor %}
-
+{% endblock %}
 
 {% block pagination %}
 {% if page_obj.has_other_pages %}
@@ -27,8 +27,6 @@
     </span>
 </div>
 {% endif %}
-{% endblock %}
-
 {% endblock %}
 
 {% block javascript %}

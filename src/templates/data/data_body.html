@@ -20,12 +20,3 @@
 {% endif %}
 
 {% include data.get_template %}
-
-{% if data.artwork.all %}
-<div class="artwork">
-<h4>Artwork</h4>
-{% for gallery in data.artwork.all %}
-{% include "images/gallery_content.html" %}
-{% endfor %}
-</div>
-{% endif %}

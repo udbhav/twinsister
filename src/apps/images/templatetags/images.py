@@ -48,7 +48,7 @@ def recent_flickr():
 @register.filter
 def get_primary_image(musicdata):
     try:
-        return musicdata.artwork.images.order_by('order')[0].photo
+        return musicdata.artwork.images.order_by('order')[0].display.url
     except IndexError:
         return None
     except AttributeError:

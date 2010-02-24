@@ -44,7 +44,7 @@ class Data(models.Model):
         return self.name
 
     def get_class_type(self):
-        subclasses = ('musicdata', 'gallery', 'show', 'imagebase')
+        subclasses = ('musicdata', 'gallery', 'show', 'imagebase', 'tour')
         for subclass in subclasses:
             if hasattr(self, subclass):
                 return subclass
@@ -62,6 +62,7 @@ class Data(models.Model):
             'gallery': 'Gallery',
             'show': 'Show',
             'flickrphoto': 'Gallery',
+            'tour': 'Tour',
         }
 
         subclass = self.get_class_type()

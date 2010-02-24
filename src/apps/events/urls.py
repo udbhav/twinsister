@@ -35,7 +35,9 @@ urlpatterns = patterns(
     '',
     (r'^$', 'apps.events.views.shows', {}, 'shows'),
     (r'^tour/(?P<slug>[-\w]+)/$', list_detail.object_detail, tour_info, 'tour'),
-    (r'^(?P<page>[0-9]+)/$', list_detail.object_list, shows_info),
+    (r'^(?P<page>[0-9]+)/$', 'apps.events.views.shows'),
+    (r'^previous-shows/$', 'apps.events.views.shows', {'current_shows': False}, 'old_shows'),
+    (r'^previous-shows/(?P<page>[0-9]+)/$', 'apps.events.views.shows', {'current_shows': False}),
     (r'^(?P<slug>[-\w]+)/$', list_detail.object_detail, show_info, 'show'),
 
     # This is for legacy show urls, added on 1/5/10, remove in a few months

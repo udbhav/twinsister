@@ -9,15 +9,29 @@ from django.template import RequestContext
 
 from apps.events.models import Show, Tour
 
-def shows(request, page=1):
+def shows(request, page=1, current_shows=True):
     now = datetime.datetime.now()
     difference = datetime.timedelta(hours=7)
     date_result = now - difference
-    shows = Show.objects.filter(show_date__gte=date_result).filter(published=True)
-    tours = Tour.objects.annotate(
-        sort_date = Min('shows__show_date'), 
-        end_date = Max('shows__show_date')
-        ).filter(end_date__gte=date_result)
+
+    if current_shows:
+        shows = Show.objects.filter(show_date__gte=date_result).filter(published=True)
+        tours = Tour.objects.annotate(
+            sort_date = Min('shows__show_date'), 
+            end_date = Max('shows__show_date')
+            ).filter(end_date__gte=date_result)
+
+        title = 'Shows'
+
+    else:
+        shows = Show.objects.filter(show_date__lte=date_result).filter(published=True)
+        tours = Tour.objects.annotate(
+            sort_date = Min('shows__show_date'), 
+            end_date = Max('shows__show_date')
+            ).filter(end_date__lte=date_result)
+
+        title = 'Past Shows'
+
     result_list = sorted(
         chain(shows, tours),
         key=attrgetter('sort_date'))
@@ -29,8 +43,10 @@ def shows(request, page=1):
     except (EmptyPage, InvalidPage):
         results = paginator.page(paginator.num_pages)
 
-    return render_to_response('data/data_list.html', {
+    return render_to_response('events/shows.html', {
             'object_list': results.object_list,
-            'page_obj': paginator.page,
+            'page_obj': results,
+            'current_shows': current_shows,
+            'title': title,
             }, context_instance=RequestContext(request))
             

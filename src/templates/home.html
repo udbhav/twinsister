@@ -22,15 +22,18 @@
       {% for featured_release in object_list %}
       <div class="featured_release entry{% if forloop.last %} last_release{% endif %}">
         {% if featured_release|get_primary_image %}
-        <a href="{{ featured_release.get_absolute_url }}"><img src="{# thumbnail featured_release|get_primary_image 400x400 upscale #}" alt="{{ featured_release }}" /></a>
+        <a href="{{ featured_release.get_absolute_url }}"><img src="{{ featured_release|get_primary_image }}" alt="{{ featured_release }}" /></a>
         {% endif %}
-        <h3><a href="{{ featured_release.get_absolute_url }}">{{ featured_release }}</a></h3>
         <div class="release_info">
           <ul class="playlist">
             {% for song in featured_release|get_tracklist %}
             <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
             {% endfor %}
           </ul>
+
+          {% if featured_release.buy_link %}
+          <h4 class="buy_link"><a href="{{ featured_release.buy_link }}">Buy</a></h4>
+          {% endif %}
 
           {% if featured_release.archive_set.all %}
           <h4>Download</h4>
@@ -41,14 +44,6 @@
           </ul>
           {% endif %}
 
-          {% if featured_release.buylink_set.all %}
-          <h4>Buy</h4>
-          <ul class="buy_links">
-            {% for link in featured_release.buylink_set.all %}
-            <li><a href="{{ link.link }}" title="{{ featured_release }}">{{ link.service }}</a></li>
-            {% endfor %}
-          </ul>
-          {% endif %}
         </div>
       </div>
       {% endfor %}

@@ -110,7 +110,7 @@ p {
 }
 
 #email {
-    margin: 0 0 20px;
+    margin: 0;
 }
 
 #email a {
@@ -147,7 +147,7 @@ p {
     font-size: 12px;
 }
 
-.entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination {
+.entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination, .featured_release .release_info {
     margin: 20px 20px 0;
     width: 600px;
     display: block;
@@ -216,7 +216,12 @@ h2.title, #footer {
 }
 
 #next_show {
-    margin-top: 4px;
+    color: #606AA6;
+    margin: 10px 0;
+}
+
+#next_show a {
+    color: #ffffff;
 }
 
 #recent_flickr_header {
@@ -322,13 +327,12 @@ h2.title, #footer {
 }
 
 .thumbnails {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .thumbnails li {
     float: left;
-    margin-right: 4px;
-    margin-bottom: 4px;
+    margin-right: 10px;
 }
 
 #recent_flickr li {
@@ -339,7 +343,7 @@ h2.title, #footer {
 /* Home Splash Page */
 
 #featured_release_content {
-    width: 400px;
+    width: 600px;
     margin: 0 auto;
     text-align: center;
 }
@@ -348,9 +352,9 @@ h2.title, #footer {
     float: left;
     background: transparent;
     border: none;
-    margin: 0 50px 50px 0;
+    margin: 0 50px 10px 0;
     padding: 0;
-    width: 400px;
+    width: 600px;
     clear: none;
     text-align: left;
 }
@@ -360,8 +364,26 @@ h2.title, #footer {
     display: block;
 }
 
+.featured_release .release_info {
+    margin: 20px 0 0;
+    width: 570px;
+}
+
+.featured_release .buy_link {
+    float: right;
+}
+
+.featured_release .buy_link a {
+    color: #666666;
+}
+
 .featured_release h3, .featured_release .release_info, #more_link {
     opacity: 0;
+}
+
+#more_link {
+    color: #ffffff;
+    font-size: 18px;
 }
 
 .last_release {
