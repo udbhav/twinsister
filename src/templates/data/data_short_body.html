@@ -9,6 +9,16 @@
 </div>
 {% endif %}
 
+{% if data.intro %}
+<div class="description">
+{% oembed %}
+{% autoescape off %}
+{{ data.intro }}
+{% endautoescape %}
+{% endoembed %}
+<p><a href="{{ data.get_absolute_url }}">Continue Reading</a></p>
+</div>
+{% else %}
 {% if data.description %}
 <div class="description">
 {% oembed %}
@@ -19,5 +29,5 @@
 {% endoembed %}
 </div>
 {% endif %}
-
 {% include data.get_template %}
+{% endif %}

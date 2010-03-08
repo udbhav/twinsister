@@ -95,6 +95,7 @@ class Archive(models.Model):
     release = models.ForeignKey(Release)
     archive = models.FileField(upload_to='uploads/music')
     file_type = models.CharField(max_length=20)
+    order = models.IntegerField(default=1)
 
     def __unicode__(self):
         return '%s - %s' % (self.release.name, self.file_type)
@@ -114,3 +115,9 @@ class Credit(models.Model):
 
     def __unicode__(self):
         return '%s: %s - %s' % (self.song, self.name, self.instruments)
+
+
+def build_discography():
+    releases = Release.objects.filter(official=True).filter(archive_set=True)
+    for release in Releases:
+        pass

@@ -36,6 +36,7 @@ class Data(models.Model):
     slug = models.SlugField(unique=True)
     posted_by = models.ForeignKey(Person)
     pub_date = models.DateTimeField('date published', default=datetime.now())
+    intro = models.TextField(blank=True)
     description = models.TextField(blank=True)
     header_image = models.ForeignKey(HeaderImage, blank=True, null=True)
     published = models.BooleanField(default=True)
