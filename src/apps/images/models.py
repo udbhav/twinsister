@@ -10,31 +10,6 @@ from imagekit.models import ImageModel
 from apps.people.models import Person
 from apps.data.models import Data
 
-class ImageBase(Data):
-    def get_class_type(self):
-        subclasses = ('gallery', 'flickrphoto')
-        for subclass in subclasses:
-            if hasattr(self, subclass):
-                return subclass
-        return None
-
-    def get_absolute_url(self):
-        subclass = self.get_class_type()
-        if subclass:
-            return getattr(self, subclass).get_absolute_url()
-        else:
-            return None
-
-    def get_human_class_type(self):
-        return 'Gallery'
-
-    def get_template(self):
-        subclass = self.get_class_type()
-        if subclass:
-            return getattr(self, subclass).get_template()
-        else:
-            return None
-    
 class Image(ImageModel):
     title = models.CharField(max_length=50)
     photo = models.ImageField(upload_to='uploads/images')
@@ -48,10 +23,9 @@ class Image(ImageModel):
 
     class IKOptions:
         spec_module = 'apps.images.specs'
-        cache_dir = 'uploads/images'
         image_field = 'photo'
 
-class Gallery(ImageBase):
+class Gallery(Data):
     images = models.ManyToManyField(Image)
 
     def get_absolute_url(self):
@@ -82,34 +56,25 @@ class FlickrTag(models.Model):
     def flickr_format(self):
         return self.tag.replace(' ', '').lower()
 
-class FlickrPhoto(ImageBase):
+class FlickrPhoto(models.Model):
     user = models.ForeignKey(FlickrUser)
+    title = models.CharField(max_length=100, blank=True)
     farm = models.IntegerField()
     server = models.IntegerField()
+    photo_id = models.CharField(max_length=50)
     secret = models.CharField(max_length=50)
+    upload_date = models.DateField()
 
     def __unicode__(self):
-        return '%s: %s' % (self.slug, self.name)
-
+        return '%s: %s' % (self.photo_id, self.title)
     def get_large_photo(self):
-        return 'http://farm%i.static.flickr.com/%i/%s_%s.jpg' % (self.farm, self.server, self.slug, self.secret)
-
+        return 'http://farm%i.static.flickr.com/%i/%s_%s.jpg' % (self.farm, self.server, self.photo_id, self.secret)
     def get_small_square(self):
-        return 'http://farm%i.static.flickr.com/%i/%s_%s_s.jpg' % (self.farm, self.server, self.slug, self.secret)
-
+        return 'http://farm%i.static.flickr.com/%i/%s_%s_s.jpg' % (self.farm, self.server, self.photo_id, self.secret)
     def get_flickr_page(self):
-        return 'http://flickr.com/photos/%s/%s/' % (self.user.flickr_id, self.slug)
-
-    def get_template(self):
-        return 'images/flickr_photo.html'
-
-    def get_absolute_url(self):
-        url = urlresolvers.reverse('flickr_photo', kwargs={'slug':self.slug})
-        return url
-
+        return 'http://flickr.com/photos/%s/%s/' % (self.user.flickr_id, self.photo_id)
     class Meta:
-        ordering = ('-pub_date',)
-
+        ordering = ('-upload_date',)
 
 flickr = flickrapi.FlickrAPI(settings.FLICKR_API_KEY)
 

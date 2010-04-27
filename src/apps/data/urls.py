@@ -5,7 +5,7 @@ from apps.data.models import Data
 from apps.music.models import Release
 
 data_list_info = {
-    'queryset': Data.objects.filter(published=True).filter(show=None).filter(imagebase=None).order_by('-pub_date'),
+    'queryset': Data.objects.filter(published=True).filter(show=None).filter(gallery=None).order_by('-pub_date'),
     'paginate_by' : 15,
     'template_name' : 'data/data_list.html',
 }
@@ -17,15 +17,14 @@ data_info = {
     'slug_field': 'slug',
 }
 
-home_info = {
-    'queryset': Release.objects.filter(official=True).order_by('-pub_date'),
-    'template_name': 'home.html',
-}
+home_info = dict(
+    data_list_info,
+    page = 1,
+    )
 
 urlpatterns = patterns(
     '',
-    (r'^$', 'home.home'),
-    (r'^splash/$', 'home.splash', {}, 'splash'),
+    (r'^$', list_detail.object_list, home_info, 'home'),
     (r'^entry/(?P<slug>[-\w]+)/$', list_detail.object_detail, data_info, 'entry'),
     (r'entries-by-person/(?P<person_id>\d+)/$', 'apps.data.views.entries_by_person', {}, 'entries_by_person'),
     (r'entries-by-person/(?P<person_id>\d+)/(?P<page>[0-9]+)/$', 'apps.data.views.entries_by_person', {}, 'entries_by_person_paginated'),

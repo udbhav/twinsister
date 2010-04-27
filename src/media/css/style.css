@@ -445,6 +445,7 @@ h2.title, #footer {
 
 table {
     border-top: 1px dotted #666666;
+    margin-bottom: 1em;
 }
 
 td {

@@ -35,8 +35,8 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 # Media stuff, see http://docs.djangoproject.com/en/dev/ref/settings/ for more information
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
-MEDIA_URL = '/media/'
-ADMIN_MEDIA_PREFIX = '%sadmin/' % MEDIA_URL
+MEDIA_URL = 'http://twinsisterroot.s3.amazonaws.com/'
+ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 SECRET_KEY = '$^$_xfbwyl7lma@f!w5x&90ryo890qrqcowsk*c&rg!wtdq#db'
 
@@ -75,7 +75,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'django.contrib.comments',
     'django.contrib.databrowse',
 
     # Dependencies
@@ -85,7 +84,8 @@ INSTALLED_APPS = (
     'oembed',
     'debug_toolbar',
     'imagekit',
-    'south',
+    #FIXME
+    #'south',
 
     # Apps Yo!
     'apps.data',
@@ -93,7 +93,6 @@ INSTALLED_APPS = (
     'apps.events',
     'apps.music',
     'apps.images',
-    'apps.mailing_list',
     'apps.twitter_notify',
     )
 

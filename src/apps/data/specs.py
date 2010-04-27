@@ -19,10 +19,11 @@ class EnchanceThumb(processors.Adjustment):
 # now we can define our thumbnail spec 
 class Thumbnail(ImageSpec): 
     access_as = 'thumbnail_image' 
-    pre_cache = True 
+    pre_cache = True
     processors = [ResizeThumb, EnchanceThumb] 
 
 # and our display spec
 class Display(ImageSpec):
     increment_count = True
+    pre_cache = True
     processors = [ResizeDisplay]

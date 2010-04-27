@@ -34,7 +34,7 @@ class Show(Data):
         return 'events/show.html'
 
     class Meta:
-        ordering = ('show_date',)
+        ordering = ('-show_date',)
 
 class Tour(Data):
     shows = models.ManyToManyField(Show)

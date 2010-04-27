@@ -16,7 +16,6 @@ class HeaderImage(ImageModel):
 
     class IKOptions:
         spec_module = 'apps.data.specs'
-        cache_dir = 'uploads/images'
         image_field = 'image'
 
 class Data(models.Model):
@@ -45,7 +44,7 @@ class Data(models.Model):
         return self.name
 
     def get_class_type(self):
-        subclasses = ('musicdata', 'gallery', 'show', 'imagebase', 'tour')
+        subclasses = ('musicdata', 'gallery', 'show', 'tour')
         for subclass in subclasses:
             if hasattr(self, subclass):
                 return subclass
@@ -68,7 +67,7 @@ class Data(models.Model):
 
         subclass = self.get_class_type()
 
-        if subclass == 'musicdata' or subclass == 'imagebase':
+        if subclass == 'musicdata':
             return getattr(self, subclass).get_human_class_type()
         else:
             return classes.get(subclass, 'Entry')

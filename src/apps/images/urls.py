@@ -4,7 +4,7 @@ from django.views.generic import list_detail
 from apps.images.models import *
 
 galleries_info = {
-    'queryset': ImageBase.objects.all(),
+    'queryset': Gallery.objects.all(),
     'paginate_by' : 25,
     'template_name' : 'images/galleries.html',
 }

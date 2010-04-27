@@ -26,7 +26,7 @@ a.video {
 
 /* YOU CAN ADD NON-WYMEDITOR RELATED STYLES HERE */
 
-.description label {
+.description label, .intro label {
     float: none;
     margin-bottom: 10px;
 }

@@ -4,7 +4,7 @@
 
 {% if data.header_image %}
 <div class="primary_image">
-  <img src="http://{{ current_site.domain }}{{ data.header_image.display.url }}" alt="" />
+  <img src="{{ data.header_image.display.url }}" alt="" />
   {% if data.header_image.caption %}<p class="caption">{{ data.header_image.caption }}</p>{% endif %}
 </div>
 {% endif %}

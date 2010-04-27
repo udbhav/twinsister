@@ -10,9 +10,9 @@
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-	 <link rel="stylesheet" media="all" href="/media/css/reset.css" />
-	 <link rel="stylesheet" media="all" href="/media/css/style.css" />
-	 <link rel="stylesheet" media="all" href="/media/css/audio.css" />
+	 <link rel="stylesheet" media="all" href="{{ MEDIA_URL }}css/reset.css" />
+	 <link rel="stylesheet" media="all" href="{{ MEDIA_URL }}css/style.css" />
+	 <link rel="stylesheet" media="all" href="{{ MEDIA_URL }}css/audio.css" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/twinsister" />
     {% block css %}{% endblock css %}
     {% block meta_description %}{% endblock meta_description %}
@@ -21,7 +21,7 @@
   <body>
     <div id="right">
       <div id="top_right">
-      <h1 id="logo"><a href="{% url entries_by_page page=1 %}">Twin Sister</a></h1>
+      <h1 id="logo"><a href="{% url home %}">Twin Sister</a></h1>
       <p id="new_ep"><a href="{% url release slug='color-your-life' %}">Color Your Life</a><br/>
       <a href="{% url release slug='vampires-with-dreaming-kids' %}">Vampires with Dreaming Kids</a></p>
       {% next_show %}
@@ -97,10 +97,10 @@
       document.documentElement.firstChild.appendChild(ga);
       })();
     </script>
-    <script type="text/javascript" src="/media/js/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="/media/js/soundmanager2.js"></script>
-    <script type="text/javascript" src="/media/js/audio.js"></script>
-    <script type="text/javascript" src="/media/js/global.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/soundmanager2.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/audio.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/global.js"></script>
     {% block javascript %}
     {% endblock javascript %}
     <a href="http://www.adelton.com/medu_hrnec.html?isbn=13"><!-- diamond-rigid --></a>

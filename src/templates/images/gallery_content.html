@@ -1,16 +1,10 @@
 {% load images %}
-
-{% with data.imagebase.gallery as gallery %}
+{% with data.gallery as gallery %}
 <ul class="thumbnails clearfix_left">
-  {% for image in gallery|grab_six %}
+  {% for image in gallery.images.all %}
   <li><a href="{% url image image_id=image.id, gallery_id=gallery.id %}">
-      <img src="http://{{ current_site.domain }}{{ image.thumbnail.url }}" alt="{{ image.title }}" />
+      <img src="{{ image.thumbnail.url }}" alt="{{ image.title }}" />
   </a></li>
   {% endfor %}
 </ul>
-
-{% if gallery|more_than_six %}
-<a href="{{ gallery.get_absolute_url }}">See all images from {{ gallery }}</a>
-{% endif %}
-
 {% endwith %}
