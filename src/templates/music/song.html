@@ -11,24 +11,5 @@
   {% endfor %}
 </ul>
 {% endif %}
-
-{% if song.composers.all %}
-<h4>Composer(s)</h4>
-<ul>
-  {% for person in song.composers.all %}
-  <li>{{ person }}</li>
-  {% endfor %}
-</ul>
-{% endif %}
-
-{% if song.credit_set.all %}
-<h4>Credits:</h4>
-<ul>
-  {% for credit in song.credit_set.all %}
-  <li>{{ credit.name }} - {{ credit.instruments }}</li>
-  {% endfor %}
-</ul>
-{% endif %}
-
 {% endwith %}
 
