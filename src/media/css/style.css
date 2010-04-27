@@ -28,9 +28,6 @@
 
 body {
     font-family:Helvetica, Verdana, Arial, sans-serif;
-}
-
-body {
     line-height: 1.2em;
     font-size: 0.85em;
     color: #666666;
@@ -109,15 +106,6 @@ p {
     color: #606AA6;
 }
 
-#email {
-    margin: 0;
-}
-
-#email a {
-    font-weight: normal;
-    color: #e5e5e5;
-}
-
 .navigation {
     font-size: 16px;
 }
@@ -147,7 +135,7 @@ p {
     font-size: 12px;
 }
 
-.entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination, .featured_release .release_info {
+.entry, .comment, .comment_form, .data_list li, #footer, .posted_date, h2.title, .pagination, .featured_release .release_info, #footer_links {
     margin: 20px 20px 0;
     width: 600px;
     display: block;
@@ -181,22 +169,33 @@ h2.title, #footer {
 
 #footer {
     clear: both;
-    font-size: 12px;
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
+    text-align: right;
+    font-size: 14px;
+    line-height: 1.4em;
+    margin-top: 40px;
+}
+
+#footer a {
+    color: #ffffff;
+}
+
+#footer_links {
+    background: transparent;
+    padding: 0;
+    text-align: right;
+    color: #dddddd;
+    width: 615px;
+    margin-top: 10px;
+}
+
+#footer_links a {
+    color: #dddddd;
 }
 
 #footer, .pagination, h2.title, .posted_date, .comment {
     padding-left: 15px;
-}
-
-#footer a {
-    color: #606AA6;
-    font-size: 12px;
-}
-
-#footer a:hover {
-    color: #ffffff;
 }
 
 .official {
@@ -300,7 +299,7 @@ h2.title, #footer {
     font-size: 18px;
     color: #aaa;
     float: left;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     width: auto;
 }
 
@@ -434,7 +433,11 @@ h2.title, #footer {
 }
 
 #new_ep {
-    margin: 5px 0 10px;
+    margin-bottom: 10px;
+}
+
+#new_ep a {
+    color: #ffffff;
 }
 
 .description {
