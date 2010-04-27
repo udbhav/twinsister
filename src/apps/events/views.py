@@ -23,6 +23,10 @@ def shows(request, page=1, current_shows=True):
 
         title = 'Shows'
 
+        result_list = sorted(
+            chain(shows, tours),
+            key=attrgetter('sort_date'))
+
     else:
         shows = Show.objects.filter(show_date__lte=date_result).filter(published=True)
         tours = Tour.objects.annotate(
@@ -32,9 +36,9 @@ def shows(request, page=1, current_shows=True):
 
         title = 'Past Shows'
 
-    result_list = sorted(
-        chain(shows, tours),
-        key=attrgetter('sort_date'))
+        result_list = sorted(
+            chain(shows, tours),
+            key=attrgetter('sort_date'), reverse=True)
 
     paginator = Paginator(result_list, 25)
 
