@@ -5,7 +5,7 @@
 {% with data.musicdata.release as release %}
 <ul class="playlist">
   {% for song in release|get_tracklist %}
-  <li><a href="http://{{ current_site.domain }}{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
+  <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
   {% endfor %}
 </ul>
 {% if release.archive_set.all %}
@@ -22,7 +22,7 @@
 {% endif %}
 
 {% if release.artwork %}
-{% cache 5000 release_artwork %}
+{% cache 5000 release_artwork release.id %}
 {% with release.artwork as gallery %}
 <div class="artwork clearfix_left">
 <h4>Artwork</h4>
