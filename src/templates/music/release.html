@@ -1,4 +1,5 @@
 {% load music %}
+{% load cache %}
 {% load images %}
 
 {% with data.musicdata.release as release %}
@@ -21,22 +22,20 @@
 {% endif %}
 
 {% if release.artwork %}
+{% cache 5000 release_artwork %}
 {% with release.artwork as gallery %}
 <div class="artwork clearfix_left">
 <h4>Artwork</h4>
 <ul class="thumbnails clearfix_left">
-  {% for image in gallery|grab_six %}
+  {% for image in gallery.images.all %}
   <li><a href="{% url image image_id=image.id, gallery_id=gallery.id %}">
-      <img src="http://{{ current_site.domain }}{{ image.thumbnail.url }}" alt="{{ image.title }}" />
+      <img src="{{ image.thumbnail.url }}" alt="{{ image.title }}" />
   </a></li>
   {% endfor %}
 </ul>
-
-{% if gallery|more_than_six %}
-<a href="{{ gallery.get_absolute_url }}">See all images from {{ gallery }}</a>
-{% endif %}
 </div>
 {% endwith %}
+{% endcache %}
 {% endif %}
 
 {% endwith %}

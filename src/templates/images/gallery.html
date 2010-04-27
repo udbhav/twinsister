@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load images %}
 {% load oembed_tags %}
+{% load cache %}
 
 {% block title %}{{ gallery }}{% endblock %}
 {% block nav-images %} class="active"{% endblock %}
@@ -17,6 +18,7 @@
 </div>
 {% endif %}
 
+{% cache 5000 gallery_images gallery.id %}
 {% for image in gallery|sort_images %}
 <div class="entry gallery">
 <h3>{{ image }}</h3>
@@ -26,5 +28,6 @@
 {% if image.credit.all %}<p>Credit(s): {{ image.credit.all|join:", " }}</p>{% endif %}
 </div>
 {% endfor %}
+{% endcache %}
 {% endblock %}
 
