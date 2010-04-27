@@ -114,14 +114,6 @@ ul.playlist li.sm2_playing:hover a {
  color:#5E9F00;
 }
 
-.release ul.playlist li.sm2_playing:hover a {
- color:#CE4233;
-}
-
-#feature_content ul.playlist li.sm2_playing:hover a {
- color:#BB255A;
-}
-
 ul.playlist li.sm2_paused a {
  color:#fff;
 }
@@ -209,17 +201,6 @@ ul.playlist li .controls .statusbar .position {
  -moz-border-radius:3px;
  -webkit-border-radius:3px;
 }
-
-.release ul.playlist li .controls .statusbar .position {
- background-color:#CE4233;
- border-right:3px solid #CE4233;
-}
-
-#feature_content ul.playlist li .controls .statusbar .position {
- background-color:#BB255A;
- border-right:3px solid #BB255A;
-}
-
 ul.playlist li.sm2_paused .controls .statusbar .position {
  background-color:#666;
  border-color:#666;
