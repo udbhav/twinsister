@@ -25,3 +25,7 @@ def upcoming_show(show):
         return True
     else:
         return False
+
+@register.filter
+def tour_shows(tour):
+    return tour.shows.order_by('show_date')

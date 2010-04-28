@@ -1,7 +1,8 @@
+{% load shows %}
 {% with data.tour as tour %}
 <table>
   <tbody>
-    {% for show in tour.shows.all %}
+    {% for show in tour|tour_shows %}
     <tr>
       <td>{{ show.show_date|date:"m/d" }}</td>
       <td><a href="{{ show.get_absolute_url }}">{{ show }}</a></td>
