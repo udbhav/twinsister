@@ -13,7 +13,13 @@
   <a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{{ image.display.url }}" alt="{{ image.title }}" /></a>
   {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
   <p>Click for full size</p>
-  {% if image.credit.all %}<p>Credit(s): {{ image.credit.all|join:", " }}</p>{% endif %}
+  {% if image.credit.all %}<p>Credit(s): 
+    {% for person in image.credit.all %}
+    {% if person.url %}<a href="{{ person.url }}">{{ person }}</a>
+    {% else %}{{ person }}
+    {% endif %}
+    {% endfor %}
+    </p>{% endif %}
   <div class="previous_next">
     {% if image|previous_image:gallery %}
     <a href="{{ image|previous_image:gallery }}">Previous</a>
