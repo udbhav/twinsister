@@ -36,5 +36,5 @@ urlpatterns = patterns(
     (r'^gallery/(?P<object_id>\d+)/$', list_detail.object_detail, gallery_info, 'gallery'),
     (r'^gallery/(?P<gallery_id>\d+)/(?P<image_id>\d+)/$', 'apps.images.views.image', {}, 'image'),
 
-    (r'^flickr/photo/(?P<slug>\d+)/$', list_detail.object_detail, flickr_photo_info, 'flickr_photo'),
+    #(r'^flickr/photo/(?P<slug>\d+)/$', list_detail.object_detail, flickr_photo_info, 'flickr_photo'),
 )
