@@ -1,12 +1,15 @@
 {% load oembed_tags %}
+{% load cache %}
 <h3><a href="{{ data.get_absolute_url }}">{{ data.name }}</a></h3>
 <div class="posted_by">posted by <a href="{{ data.posted_by.get_absolute_url }}">{{ data.posted_by }}</a> on {{ data.pub_date|date }}</div>
 
 {% if data.header_image %}
+{% cache 5000 header_image data.id %}
 <div class="primary_image">
   <img src="{{ data.header_image.display.url }}" alt="" />
   {% if data.header_image.caption %}<p class="caption">{{ data.header_image.caption }}</p>{% endif %}
 </div>
+{% endcache %}
 {% endif %}
 
 {% if data.intro %}
