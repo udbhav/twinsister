@@ -1,3 +1,4 @@
+from urllib2 import HTTPError
 import twitter
 
 from django.conf import settings
@@ -15,4 +16,7 @@ def post_to_twitter(data):
         post = post[:127] + '...'
 
     post_string = '%s %s' % (post, url)
-    api.PostUpdate(post_string[:140])
+    try:
+        api.PostUpdate(post_string[:140])
+    except HTTPError:
+        pass
