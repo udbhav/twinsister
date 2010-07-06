@@ -15,41 +15,14 @@ def shows(request, page=1, current_shows=True):
     date_result = now - difference
 
     if current_shows:
-        shows = Show.objects.filter(show_date__gte=date_result).filter(published=True)
-        tours = Tour.objects.annotate(
-            sort_date = Min('shows__show_date'), 
-            end_date = Max('shows__show_date')
-            ).filter(end_date__gte=date_result)
-
+        shows = Show.objects.filter(show_date__gte=date_result).order_by('show_date')
         title = 'Shows'
-
-        result_list = sorted(
-            chain(shows, tours),
-            key=attrgetter('sort_date'))
-
     else:
-        shows = Show.objects.filter(show_date__lte=date_result).filter(published=True)
-        tours = Tour.objects.annotate(
-            sort_date = Min('shows__show_date'), 
-            end_date = Max('shows__show_date')
-            ).filter(end_date__lte=date_result)
-
+        shows = Show.objects.filter(show_date__lte=date_result).order_by('-show_date')
         title = 'Past Shows'
 
-        result_list = sorted(
-            chain(shows, tours),
-            key=attrgetter('sort_date'), reverse=True)
-
-    paginator = Paginator(result_list, 25)
-
-    try:
-        results = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        results = paginator.page(paginator.num_pages)
-
     return render_to_response('events/shows.html', {
-            'object_list': results.object_list,
-            'page_obj': results,
+            'shows': shows,
             'current_shows': current_shows,
             'title': title,
             }, context_instance=RequestContext(request))

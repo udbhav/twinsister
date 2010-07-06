@@ -6,11 +6,39 @@
 {% block section_title %}<h2 class="title">{{ title }}</h2>{% endblock %}
 
 {% block content %}
-{% for data in object_list %}
-<div class="entry {{ data.get_human_class_type|lower }}">
-   {% include "data/data_body.html" %}
+<div class="entry">
+  <table>
+    <tbody>
+      {% for show in shows %}
+      <tr>
+        <td>{{ show.show_date|date:"m/d" }}</td>
+        <td><a href="{{ show.get_absolute_url }}">{{ show }}</a></td>
+        <td><a href="http://maps.google.com/?q={{ show.venue.address|urlencode }}">{{ show.venue }}</a></td>
+        <td>
+          {% if show.bands.all %}
+          w/ 
+          {% for band in show.bands.all %}
+          {% if forloop.last %}
+          {% if band.url %}
+          <a href="{{ band.url }}">{{ band.name }}</a>
+          {% else %}
+          {{ band.name }}
+          {% endif %}
+          {% else %}
+          {% if band.url %}
+          <a href="{{ band.url }}">{{ band.name }}</a>, 
+          {% else %}
+          {{ band.name }},
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
-{% endfor %}
 {% endblock %}
 
 {% block pagination %}
@@ -21,26 +49,4 @@
   <a href="{% url shows %}">Shows we have yet to play</a>
   {% endif %}
 </div>
-
-{% if page_obj.has_other_pages %}
-<div class="pagination">
-    <span class="step-links">
-      {% if page_obj.has_previous %}
-      {% if current_shows %}
-      <a href="/shows/{{ page_obj.previous_page_number }}/"><span>&#171;</span> Previous</a>
-      {% else %}
-      <a href="/shows/previous-shows/{{ page_obj.previous_page_number }}/"><span>&#171;</span> Previous</a>
-      {% endif %}
-      {% endif %}
-      {% if page_obj.has_next and page_obj.has_previous %}&nbsp;/&nbsp;{% endif %}
-      {% if page_obj.has_next %}
-      {% if current_shows %}
-      <a href="/shows/{{ page_obj.next_page_number }}/" class="next_page">Next <span>&#187;</a>
-      {% else %}
-      <a href="/shows/previous-shows/{{ page_obj.next_page_number }}/" class="next_page">Next <span>&#187;</a>
-      {% endif %}
-      {% endif %}
-    </span>
-</div>
-{% endif %}
-{% endblock pagination %}
+{% endblock %}
