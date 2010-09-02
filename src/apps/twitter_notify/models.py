@@ -3,11 +3,11 @@ from django.conf import settings
 
 from apps.data.models import Data
 from apps.music.models import Song, Release
-from apps.events.models import Show
+from apps.events.models import Show, Tour
 from apps.images.models import Gallery
 
 def tweet_on_create(sender, instance, created, **kwargs):
-    senders = (Data, Song, Release, Show, Gallery)
+    senders = (Data, Song, Release, Show, Gallery, Tour)
     if sender in senders and not settings.DEBUG:
         if created and getattr(instance, "published", False):
             from views import post_to_twitter
