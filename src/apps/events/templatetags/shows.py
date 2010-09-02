@@ -1,4 +1,5 @@
 from datetime import datetime
+from datetime import timedelta
 
 from django import template
 
@@ -14,7 +15,10 @@ def shows():
 @register.inclusion_tag('events/next_show.html')
 def next_show():
     try:
-        show = Show.objects.filter(show_date__gte=datetime.now()).order_by('show_date')[0]
+        now = datetime.now()
+        difference = timedelta(hours=4)
+        date_result = now - difference
+        show = Show.objects.filter(show_date__gte=date_result).order_by('show_date')[0]
     except IndexError:
         show = None
     return {'show':show}
