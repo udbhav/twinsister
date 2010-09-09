@@ -13,6 +13,9 @@ class Venue(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        ordering = ('name',)
+
 class Show(Data):
     venue = models.ForeignKey(Venue)
     show_date = models.DateTimeField('Date & Time')
