@@ -84,7 +84,6 @@ INSTALLED_APPS = (
     'oembed',
     'debug_toolbar',
     'imagekit',
-    'paypal.standard.ipn',
     #FIXME
     #'south',
 
