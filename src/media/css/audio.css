@@ -66,7 +66,6 @@ ul.playlist li {
  font-size:1em;
  color:#666;
  padding:0.25em 0.5em 0.25em 0.5em;
- letter-spacing:-1px; /* ZOMG WEB X.0. ;) */
  background-color:#f9f9f9;
  margin: 6px 0;
  -webkit-transition-property: hover;
@@ -319,4 +318,37 @@ ul.playlist li .peak .r {
 
 #control-template {
  display:none;
+}
+
+.song_extras {
+    display: none;
+    float: right;
+    font-size: 10px;
+}
+
+ul.playlist li:hover .song_extras {
+    display: block;
+}
+
+ul.playlist li .song_extras a,
+ul.playlist li.sm2_playing:hover .song_extras a {
+    font-size: 10px;
+    display: inline;
+    position: relative;
+    z-index: 3;
+    color: #E92C27;
+}
+
+.sm2_playing .song_extras, .sm2_paused .song_extras {
+    margin-right: 60px;
+    margin-top: 2px;
+    display: block;
+}
+
+ul.playlist li.sm2_paused .song_extras a {
+    color: #ffffff;
+}
+
+ul.playlist li .song_extras a:hover {
+    text-decoration: underline;
 }

@@ -1,11 +1,17 @@
 {% load music %}
 {% load cache %}
 {% load images %}
+{% load store %}
 
 {% with data.musicdata.release as release %}
 <ul class="playlist">
   {% for song in release|get_tracklist %}
-  <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a></li>
+  <li>
+    <div class="song_extras">
+      <a href="#">Buy</a> | <a href="{{ song.get_absolute_url }}">Link</a>
+    </div>
+    <a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a>
+  </li>
   {% endfor %}
 </ul>
 {% if release.archive_set.all %}
@@ -17,22 +23,36 @@
 </ul>
 {% endif %}
 
-{% if release.buy_link %}
-<h4><a href="{{ release.buy_link }}">Buy</a></h4>
+{% if release.digitalrelease_set.all or release_physicalrelease_set.all %}
+<h4>Buy</h4>
+<div class="buy">
+  <ul>
+    {% for digitalrelease in release.digitalrelease_set.all %}
+    <li>
+      <a href="{{ digitalrelease|get_paypal_link }}">${{ digitalrelease.cost }} - {{ digitalrelease.format }}</a>
+    </li>
+    {% endfor %}
+    {% for physicalrelease in release.physicalrelease_set.all %}
+    <li>
+      <a href="{{ physicalrelease|get_paypal_link }}">${{physicalrelease.cost }} - {{ physicalrelease.format }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endif %}
 
 {% if release.artwork %}
 {% cache 5000 release_artwork release.id %}
 {% with release.artwork as gallery %}
 <div class="artwork clearfix_left">
-<h4>Artwork</h4>
-<ul class="thumbnails clearfix_left">
-  {% for image in gallery.images.all %}
-  <li><a href="{% url image image_id=image.id, gallery_id=gallery.id %}">
-      <img src="{{ image.thumbnail.url }}" alt="{{ image.title }}" />
-  </a></li>
-  {% endfor %}
-</ul>
+  <h4>Artwork</h4>
+  <ul class="thumbnails clearfix_left">
+    {% for image in gallery.images.all %}
+    <li><a href="{% url image image_id=image.id, gallery_id=gallery.id %}">
+        <img src="{{ image.thumbnail.url }}" alt="{{ image.title }}" />
+    </a></li>
+    {% endfor %}
+  </ul>
 </div>
 {% endwith %}
 {% endcache %}

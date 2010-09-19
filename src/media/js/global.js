@@ -9,11 +9,4 @@ $(document).ready(function() {
         var label = $(this).attr("title") + ' ' + $(this).html();
         _gaq.push(['_trackEvent', 'Releases', 'Download', label]);
     });
-
-    // Track Release purchases on Google Analytics
-    $(".buy_links a").click(function() {
-        var label = $(this).attr("title") + ' ' + $(this).html();
-        _gaq.push(['_trackEvent', 'Releases', 'Buy', label]);
-    });
-
 });

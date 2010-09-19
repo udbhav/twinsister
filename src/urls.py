@@ -22,12 +22,11 @@ urlpatterns = patterns(
     (r'^music/', include('apps.music.urls')),
     (r'^images/', include('apps.images.urls')),
     (r'^shows/', include('apps.events.urls')),
+    (r'^store/', include('apps.store.urls')),
 
     # This is for legacy links to shows and etc.  Added 1/5/10, remove after a 4-5 months
     (r'^events(?P<argument>.*)/$', 'django.views.generic.simple.redirect_to', {'url': '/shows%(argument)s/'}),
 
-    (r'^mailing-list/', include('apps.mailing_list.urls')),
-    (r'^comments/', include('django.contrib.comments.urls')),
     (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
     (r'^search/', include('haystack.urls')),
     (r'^faq/$', 'django.views.generic.simple.direct_to_template', {'template':'faq.html'}),

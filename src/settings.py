@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'oembed',
     'debug_toolbar',
     'imagekit',
+    'paypal.standard.ipn',
     #FIXME
     #'south',
 
@@ -93,7 +94,8 @@ INSTALLED_APPS = (
     'apps.events',
     'apps.music',
     'apps.images',
-    'apps.twitter_notify',
+    'apps.store',
+    #'apps.twitter_notify',
     )
 
 HAYSTACK_SITECONF = 'search_sites'
@@ -147,6 +149,13 @@ SESSION_COOKIE_AGE = 2592000
 AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 AWS_STORAGE_BUCKET_NAME = ''
+
+#PAYPAL
+PAYPAL_RECEIVER_EMAIL = 'band@twinsistermusic.com'
+PAYPAL_NOTIFY_URL = "http://www.example.com/your-ipn-location/"
+PAYPAL_RETURN_URL = "http://www.example.com/your-return-location/"
+PAYPAL_CANCEL_URL = "http://www.twinsistermusic.com"
+PAYPAL_SUBMIT_URL = 'https://www.paypal.com/cgi-bin/webscr'
 
 try:
     from local_settings import *

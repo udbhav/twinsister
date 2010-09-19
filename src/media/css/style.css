@@ -340,6 +340,12 @@ h2.title, #footer {
     margin-left: 4px;
 }
 
+/* Store */
+
+.buy ul {
+    margin: 1em 0 0;
+}
+
 /* Home Splash Page */
 
 #featured_release_content {
