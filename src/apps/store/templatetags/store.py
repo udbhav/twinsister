@@ -17,6 +17,7 @@ def get_paypal_link(product):
         "notify_url": settings.PAYPAL_NOTIFY_URL,
         "return_url": settings.PAYPAL_RETURN_URL,
         "cancel_return": settings.PAYPAL_CANCEL_URL,
+        "item_number": product.id,
         }
 
     if product.__class__ == PhysicalRelease:

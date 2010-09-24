@@ -149,7 +149,8 @@ AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 AWS_STORAGE_BUCKET_NAME = ''
 
-#PAYPAL
+#Store & Paypal
+STORE_ADMINS = ['gupta.udbhav@gmail.com',]
 PAYPAL_RECEIVER_EMAIL = 'band@twinsistermusic.com'
 PAYPAL_NOTIFY_URL = "http://www.example.com/your-ipn-location/"
 PAYPAL_RETURN_URL = "http://www.example.com/your-return-location/"
