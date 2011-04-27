@@ -31,7 +31,7 @@ urlpatterns = patterns(
     (r'^search/', include('haystack.urls')),
     (r'^faq/$', 'django.views.generic.simple.direct_to_template', {'template':'faq.html'}),
     (r'^admin/filebrowser/', include('filebrowser.urls')),
-    (r'^admin/(.*)', admin.site.root),
+    (r'^admin/', include(admin.site.urls)),
     (r'^', include('apps.data.urls')),
     )
 

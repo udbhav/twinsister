@@ -33,10 +33,12 @@ class DigitalSong(Product):
     def __unicode__(self):
         return self.song.name
 
+fs = FileSystemStorage()
+
 class DigitalRelease(Product):
     release = models.ForeignKey(Release)
     format = models.CharField(max_length=100)
-    file = models.FileField(upload_to='uploads/store', storage=FileSystemStorage)
+    file = models.FileField(upload_to='uploads/store', storage=fs)
 
     def __unicode__(self):
         return '%s - %s' % (self.release, self.format)

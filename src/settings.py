@@ -14,7 +14,7 @@ MANAGERS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'postgresql_psycopg2'
+#DATABASE_ENGINE = 'postgresql_psycopg2'
 DATABASE_NAME = 'twinsister_django'
 DATABASE_USER = ''
 DATABASE_PASSWORD = ''
