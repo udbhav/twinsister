@@ -4,6 +4,7 @@ from urlparse import parse_qs
 import urllib2
 import re
 import os
+import logging
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -42,15 +43,15 @@ def success(request):
 
 def ipn(request):
     url = settings.PAYPAL_SUBMIT_URL + '?cmd=_notify-validate&' + request.META['QUERY_STRING']
+    IpnMessage.objects.create(message=url)
     response = urllib2.urlopen(url)
-
     if response.read() == 'VERIFIED':
         message = parse_qs(request.META['QUERY_STRING'])
 
         # Log the entire message for records
         formatted_message = ''
         for k,v in message.items():
-            message += '%s: %s\n' % (k, v)
+            formatted_message += '%s: %s\n' % (k, v)
 
         IpnMessage.objects.create(message=formatted_message)
 
