@@ -42,11 +42,10 @@ def success(request):
             }, context_instance=RequestContext(request))
 
 def ipn(request):
-    url = settings.PAYPAL_SUBMIT_URL + '?cmd=_notify-validate&' + request.META['QUERY_STRING']
-    IpnMessage.objects.create(message=url)
+    message = request.POST
+    url = settings.PAYPAL_SUBMIT_URL + '?cmd=_notify-validate&' + urlencode(message)
     response = urllib2.urlopen(url)
     if response.read() == 'VERIFIED':
-        message = parse_qs(request.META['QUERY_STRING'])
 
         # Log the entire message for records
         formatted_message = ''
