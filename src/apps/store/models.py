@@ -1,6 +1,7 @@
 from datetime import datetime
 import random
 import json
+import logging
 
 from django.db import models
 from django.utils.hashcompat import sha_constructor
@@ -114,7 +115,7 @@ def ipn_listener(sender, instance, created, **kwargs):
             valid = False
         else:
             product_price = (float(message['mc_gross']) - float(message['shipping']) - float(message['tax'])) / float(message['quantity'])
-            if product_price != product.cost:
+            if product_price != float(product.cost):
                 valid = False
 
         # Make sure it's a buy now order
@@ -124,14 +125,17 @@ def ipn_listener(sender, instance, created, **kwargs):
         if valid:
 
             # Create the Order
-            shipping_address = '%s\n%s\n%s, %s %s\n%s' % (
-                message['address_name'],
-                message['address_street'],
-                message['address_city'],
-                message['address_state'],
-                message['address_zip'],
-                message['address_country'],
-                )
+            try:
+                shipping_address = '%s\n%s\n%s, %s %s\n%s' % (
+                    message['address_name'],
+                    message['address_street'],
+                    message['address_city'],
+                    message['address_state'],
+                    message['address_zip'],
+                    message['address_country'],
+                    )
+            except KeyError:
+                shipping_address = ''
 
             product = Product.objects.get(pk=int(message['item_number']))
 
