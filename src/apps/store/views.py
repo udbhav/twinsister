@@ -5,12 +5,14 @@ import urllib2
 import re
 import os
 import logging
+import json
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.core import urlresolvers
+from django.core.exceptions import ObjectDoesNotExist
 
 from apps.store.models import IpnMessage, Order, Product
 
@@ -45,48 +47,18 @@ def ipn(request):
     message = request.POST
     url = settings.PAYPAL_SUBMIT_URL + 'cmd=_notify-validate&' + urlencode(message)
     response = urllib2.urlopen(url)
+
     if response.read() == 'VERIFIED':
-
         # Log the entire message for records
-        formatted_message = ''
+        message_dict = {}
         for k,v in message.items():
-            formatted_message += '%s: %s\n' % (k, v)
+            message_dict[k] = v
 
-        IpnMessage.objects.create(message=formatted_message)
-
-        # If a customer placed an order
-        if message['txn_type'] == 'web_accept':
-
-            # Create the Order
-            shipping_address = '%s\n%s\n%s, %s %s\n%s' % (
-                message['address_name'],
-                message['address_street'],
-                message['address_city'],
-                message['address_state'],
-                message['address_zip'],
-                message['address_country'],
-                )
-
-            product = Product.objects.get(pk=int(message['item_number']))
-
-            Order.objects.create(
-                customer_name = message['first_name'] + ' ' + message['last_name'],
-                customer_email = message['payer_email'],
-                transaction_id = message['txn_id'],
-                timestamp = datetime.now(),
-                shipping_address = shipping_address,
-                quantity = message['quantity'],
-                order_total = message['mc_gross'],
-                product = product,
-                )
-
-            # Send emails to store admins
-            # Send email to customer
-
-            return HttpResponse("Everything is OK")
+        IpnMessage.objects.create(message=json.dumps(message_dict), transaction_id=message['txn_id'])
+        return HttpResponse("Everything is OK")
 
     else:
-        return HttpResponse("Invalid transaction")
+        return HttpResponseBadRequest("Invalid transaction")
 
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
 
