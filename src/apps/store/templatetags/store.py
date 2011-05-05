@@ -24,4 +24,4 @@ def get_paypal_link(product):
         paypal_dict['no_shipping'] = 0
         paypal_dict['undefined_quantity'] = 1
 
-    return settings.PAYPAL_SUBMIT_URL + '?' + urlencode(paypal_dict)
+    return settings.PAYPAL_SUBMIT_URL + urlencode(paypal_dict)

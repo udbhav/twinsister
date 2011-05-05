@@ -12,7 +12,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import urlresolvers
 
-from apps.store.models import IpnMessage, Order
+from apps.store.models import IpnMessage, Order, Product
 
 def success(request):
     post_data = {
@@ -43,7 +43,7 @@ def success(request):
 
 def ipn(request):
     message = request.POST
-    url = settings.PAYPAL_SUBMIT_URL + '?cmd=_notify-validate&' + urlencode(message)
+    url = settings.PAYPAL_SUBMIT_URL + 'cmd=_notify-validate&' + urlencode(message)
     response = urllib2.urlopen(url)
     if response.read() == 'VERIFIED':
 
@@ -77,6 +77,7 @@ def ipn(request):
                 shipping_address = shipping_address,
                 quantity = message['quantity'],
                 order_total = message['mc_gross'],
+                product = product,
                 )
 
             # Send emails to store admins
