@@ -10,7 +10,7 @@ songs_info = {
 }
 
 song_info = {
-    'queryset': Song.objects.all(),
+    'queryset': Song.objects.filter(published=True),
     'template_name': 'data/data.html',
     'template_object_name': 'data',
     'slug_field': 'slug',
