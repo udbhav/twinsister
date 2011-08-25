@@ -31,3 +31,13 @@
 </article>
 {% endif %}
 {% endblock feature %}
+
+{% block content %}
+{% for data in object_list %}
+{% ifnotequal data.musicdata.release featured_release %}
+  <article>
+    {% include "data/data_short_body.html" %}
+  </article>
+{% endifnotequal %}
+{% endfor %}
+{% endblock %}
