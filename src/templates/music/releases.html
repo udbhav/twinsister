@@ -1,10 +1,10 @@
-{% extends "data/data_short_list.html" %}
+{% extends "data/data_list.html" %}
 
 {% block title %}Releases{% endblock %}
 {% block nav-releases %} class="active"{% endblock %}
-{% block section_title %}<h2 class="title">Releases</h2>{% endblock %}
 
 {% block pagination %}
+<a href="{% url songs %}">View All Songs</a>
 {% if page_obj.has_other_pages %}
 <div class="pagination">
     <span class="step-links">

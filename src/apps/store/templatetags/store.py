@@ -1,7 +1,9 @@
 from urllib import urlencode
+import locale
 
 from django import template
 from django.conf import settings
+from django.core import urlresolvers
 
 from apps.store.models import PhysicalRelease
 
@@ -27,3 +29,17 @@ def get_paypal_link(product):
         paypal_dict['no_shipping'] = 1
 
     return settings.PAYPAL_SUBMIT_URL + urlencode(paypal_dict)
+
+@register.filter
+def currency(value):
+    locale.setlocale(locale.LC_ALL, '')
+    return locale.currency(float(value))
+
+
+@register.filter
+def get_buy_link(release):
+    if release.digitalrelease_set.all() or release.physicalrelease_set.all():
+        url = urlresolvers.reverse('store_buy', kwargs = {'slug': release.slug})
+        return url
+    else:
+        return None

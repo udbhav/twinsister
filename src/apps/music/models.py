@@ -7,6 +7,7 @@ from django.contrib import databrowse
 from apps.data.models import Data
 from apps.people.models import Person, Band
 from apps.images.models import Gallery, Image
+from apps.music.storage import SongStorage
 
 class MusicData(Data):
     artwork = models.ForeignKey(Gallery, null=True, blank=True)
@@ -45,11 +46,12 @@ class MusicData(Data):
 
 class Song(MusicData):
     band = models.ForeignKey(Band)
-    file = models.FileField(upload_to='uploads/music')
+    file = models.FileField(upload_to='uploads/music', storage=SongStorage())
     track_number = models.IntegerField(null=True, blank=True)
     composers = models.ManyToManyField(Person, null=True, blank=True)
     older_version = models.ForeignKey('self', null=True, blank=True, related_name='newer')
     newer_version = models.ForeignKey('self', null=True, blank=True, related_name='older')
+    soundcloud_id = models.CharField(max_length=100, editable=False)
 
     class Meta:
         ordering = ('name',)

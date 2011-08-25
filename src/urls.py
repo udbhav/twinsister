@@ -22,6 +22,7 @@ urlpatterns = patterns(
     (r'^music/', include('apps.music.urls')),
     (r'^images/', include('apps.images.urls')),
     (r'^shows/', include('apps.events.urls')),
+    (r'^soundcloud/', include('apps.soundcloud.urls')),
     (r'^store/', include('apps.store.urls')),
 
     # This is for legacy links to shows and etc.  Added 1/5/10, remove after a 4-5 months
@@ -29,6 +30,7 @@ urlpatterns = patterns(
 
     (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
     (r'^search/', include('haystack.urls')),
+    (r'^contact/$', 'django.views.generic.simple.direct_to_template', {'template':'contact.html'}),
     (r'^faq/$', 'django.views.generic.simple.direct_to_template', {'template':'faq.html'}),
     (r'^admin/filebrowser/', include('filebrowser.urls')),
     (r'^admin/', include(admin.site.urls)),

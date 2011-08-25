@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}Page {{ entries.number }}{% endblock %}
-{% block section_title %}Ideas and Etc.{% endblock %}
 
 {% block content %}
-{% for data in object_list %}
-<div class="entry {{ data.get_human_class_type|lower }}{% if data.official %} official{% endif %}">
-	<a href="{{ data.get_absolute_url }}">{{ data.name }}</a>
+<div class="short_list">
+  {% for data in object_list %}
+  <article><a href="{{ data.get_absolute_url }}">{{ data.name }}</a></article>
+  {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}

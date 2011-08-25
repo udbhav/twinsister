@@ -132,7 +132,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 # Oembed
-OEMBED_MAX_WIDTH = '600'
+OEMBED_MAX_WIDTH = '728'
 OEMBED_MAX_HEIGHT = '600'
 
 # Cache Settings
@@ -149,13 +149,13 @@ AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 AWS_STORAGE_BUCKET_NAME = ''
 
-#Store & Paypal
+# Store & Paypal
 STORE_ADMINS = ['gupta.udbhav@gmail.com',]
 PAYPAL_RECEIVER_EMAIL = 'band@twinsistermusic.com'
 PAYPAL_NOTIFY_URL = "http://www.example.com/your-ipn-location/"
 PAYPAL_RETURN_URL = "http://www.example.com/your-return-location/"
 PAYPAL_CANCEL_URL = "http://www.twinsistermusic.com"
-PAYPAL_SUBMIT_URL = 'https://www.paypal.com/cgi-bin/webscr'
+PAYPAL_SUBMIT_URL = 'https://www.paypal.com/cgi-bin/webscr?'
 
 try:
     from local_settings import *

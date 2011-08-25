@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib import urlencode, unquote_plus
 from urlparse import parse_qs
 import urllib2
@@ -7,14 +7,20 @@ import os
 import logging
 import json
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.core import urlresolvers
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic import DetailView
 
-from apps.store.models import IpnMessage, Order, Product
+from apps.store.models import IpnMessage, Order, Product, DigitalRelease, DownloadLink
+from apps.music.models import Release, Song
+
+class BuyReleaseView(DetailView):
+    template_name = 'store/buy.html'
+    model = Release
 
 def success(request):
     post_data = {
@@ -63,69 +69,81 @@ def ipn(request):
 SHA1_RE = re.compile('^[a-f0-9]{40}$')
 
 def _validate_key(download_key):
-    error_message = "The download key is invalid."
     download_key = download_key.lower()
 
     if not SHA1_RE.search(download_key):
-        return (False, error_message, None)
+        print "NO RE MATCH"
 
     try:
-        dl_product = DownloadLink.objects.get(key=download_key)
-    except:
-        error_message = "The download key is invalid."
-        return (False, error_message, None)
+        link = DownloadLink.objects.get(key=download_key)
+    except ObjectDoesNotExist:
+        return (False, None)
 
-    if not dl_product.active:
-        return (False, error_message, None)
+    if not link.active:
+        return (False, None)
+
+    if link.first_accessed:
+        if datetime.now() - link.first_accessed > timedelta(hours=6):
+            link.active = False
+            link.save()
+            return (False, None)
     else:
-        return (True, None, dl_product)
+        return (True, link)
 
-def process_download(request, download_key):
-    valid, msg, dl_product = _validate_key(download_key)
+def download(request, download_key):
+    valid, link = _validate_key(download_key)
+
     if not valid:
-        context = RequestContext(request, {'error_message': msg})
+        context = RequestContext(request, {'error': True})
         return render_to_response('store/download.html',context_instance=context)
     else:
         request.session['download_key'] = download_key
-        url = urlresolvers.reverse('digital_download_send', kwargs= {'download_key': download_key})
-        context = RequestContext(request, {'download_product': dl_product, 'dl_url' : url})
+
+        product = link.order.product
+
+        download_url = None
+        download_urls = []
+
+        if hasattr(product, 'physicalrelease'):
+            digital_releases = DigitalRelease.objects.filter(release=product.physicalrelease.release)
+
+            if len(digital_releases) == 1:
+                download_url = urlresolvers.reverse('store_process_download', kwargs={'download_key': download_key, 'product_id': product.pk})
+            else:
+                for digi_release in digital_releases:
+                    url = urlresolvers.reverse('store_process_download', kwargs={'download_key': download_key, 'product_id': digi_release.pk})
+                    download_urls.append({'name': digi_release.__unicode__(), 'url': url})
+        else:
+            download_url = urlresolvers.reverse('store_process_download', kwargs={'download_key': download_key, 'product_id': product.pk})
+
+        context = RequestContext(request, {'download_url': download_url, 'download_urls': download_urls})
         return render_to_response('store/download.html', context_instance=context)
 
-def send_file(request, download_key):
-    """
-    After the appropriate session variable has been set, we commence the download.
-    The key is maintained in the url but the session variable is used to control the
-    download in order to maintain security.
-    """
+def process_download(request, download_key, product_id):
     if not request.session.get('download_key', False):
-        url = urlresolvers.reverse('digital_download_process', kwargs = {'download_key': download_key})
+        url = urlresolvers.reverse('store_download', kwargs = {'download_key': download_key})
         return HttpResponseRedirect(url)
-    valid, msg, dl_product = _validate_key(request.session['download_key'])
+
+    valid, link = _validate_key(download_key)
+
+    link.first_accessed = datetime.now()
+    link.save()
+
     if not valid:
-        url = urlresolvers.reverse('digital_download_process', kwargs = {'download_key': request.session['download_key']})
-        return HttpResponseRedirect(url)
+        context = RequestContext(request, {'error': True})
+        return render_to_response('store/download.html',context_instance=context)
+    else:
+        product = link.order.product
 
-    # some temp vars
-    file = dl_product.get_file()
-    file_url = '/%s' % file.name # create an absolute/root url
-
-    # get file name from url
-    file_name = os.path.basename(file_url)
-
-    dl_product.active = False
-    dl_product.save()
-
-    del request.session['download_key']
-    response = HttpResponse()
-    # For Nginx
-    response['X-Accel-Redirect'] = file_url
-    # For Apache and Lighttpd v1.5
-    response['X-Sendfile'] = file_url
-    # For Lighttpd v1.4
-    response['X-LIGHTTPD-send-file'] = file_url
-    response['Content-Disposition'] = "attachment; filename=%s" % file_name
-    response['Content-length'] =  file.size
-    contenttype, encoding = mimetypes.guess_type(file_name)
-    if contenttype:
-        response['Content-type'] = contenttype
-    return response
+        if hasattr(product, 'digitalrelease'):
+            return HttpResponseRedirect(product.digitalrelease.file.url)
+        elif hasattr(product, 'digitalsong'):
+            return HttpResponseRedirect(product.digitalsong.song.file.url)
+        elif hasattr(product, 'physicalrelease'):
+            try:
+                digi_release = DigitalRelease.objects.filter(release=product.physicalrelease.release, pk=product_id)[0]
+            except IndexError:
+                context = RequestContext(request, {'error': True})
+                return render_to_response('store/download.html', context_instance=context)
+            else:
+                return HttpResponseRedirect(digi_release.file.url)

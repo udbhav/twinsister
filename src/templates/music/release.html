@@ -8,7 +8,8 @@
   {% for song in release|get_tracklist %}
   <li>
     <div class="song_extras">
-      <a href="#">Buy</a> | <a href="{{ song.get_absolute_url }}">Link</a>
+      {% if song.digitalsong %}<a href="{{ song.digitalsong|get_paypal_link }}">Buy</a> | {% endif %}
+      <a href="{{ song.get_absolute_url }}">Link</a>
     </div>
     <a href="{{ MEDIA_URL }}{{ song.file }}">{{ song }}</a>
   </li>
@@ -23,22 +24,8 @@
 </ul>
 {% endif %}
 
-{% if release.digitalrelease_set.all or release_physicalrelease_set.all %}
-<h4>Buy</h4>
-<div class="buy">
-  <ul>
-    {% for digitalrelease in release.digitalrelease_set.all %}
-    <li>
-      <a href="{{ digitalrelease|get_paypal_link }}">${{ digitalrelease.cost }} - {{ digitalrelease.format }}</a>
-    </li>
-    {% endfor %}
-    {% for physicalrelease in release.physicalrelease_set.all %}
-    <li>
-      <a href="{{ physicalrelease|get_paypal_link }}">${{physicalrelease.cost }} - {{ physicalrelease.format }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
+{% if release|get_buy_link %}
+<a href="{{ release|get_buy_link }}" class="buy_link">Buy</a>
 {% endif %}
 
 {% if release.artwork %}

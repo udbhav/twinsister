@@ -28,10 +28,14 @@
 
 body {
     font-family:Helvetica, Verdana, Arial, sans-serif;
-    line-height: 1.2em;
+    line-height: 1.4em;
     font-size: 0.85em;
     color: #666666;
     background: url(../images/body_bg.png);
+}
+
+.small {
+    font-size: 0.85em;
 }
 
 strong {
@@ -340,10 +344,8 @@ h2.title, #footer {
     margin-left: 4px;
 }
 
-/* Store */
-
-.buy ul {
-    margin: 1em 0 0;
+.song_from {
+    margin-top: 1em;
 }
 
 /* Home Splash Page */
@@ -462,4 +464,43 @@ td {
     padding: 2px 15px 2px 0;
     border-bottom: 1px dotted #666666;
     font-size: 14px;
+}
+
+/* Store */
+.entry .buy_links {
+    margin-bottom: 2em;
+}
+
+.buy_links > li {
+    text-indent: 15px;
+}
+
+.buy_links ul li {
+    text-indent: 0;
+}
+
+.buy_links ul li a {
+    display: block;
+    background-color: #eee;
+    padding:15px;
+    margin-top: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+.buy_links ul li a:hover {
+    text-decoration: none;
+    background: #ffffff;
+}
+
+.buy_links span {
+    float: right;
+    color: #5E9F00;
+    cursor: pointer;
+}
+
+/* Audio Player */
+
+.playlist li {
+    cursor: pointer;
 }

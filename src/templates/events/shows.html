@@ -3,7 +3,6 @@
 
 {% block title %}Shows{% endblock %}
 {% block nav-shows %} class="active"{% endblock %}
-{% block section_title %}<h2 class="title">{{ title }}</h2>{% endblock %}
 
 {% block content %}
 <div class="entry">
@@ -42,11 +41,9 @@
 {% endblock %}
 
 {% block pagination %}
-<div class="entry">
-  {% if current_shows %}
-  <a href="{% url old_shows %}">Shows we've already played</a>
-  {% else %}
-  <a href="{% url shows %}">Shows we have yet to play</a>
-  {% endif %}
-</div>
+{% if current_shows %}
+<a href="{% url old_shows %}">Shows we've already played</a>
+{% else %}
+<a href="{% url shows %}">Shows we have yet to play</a>
+{% endif %}
 {% endblock %}

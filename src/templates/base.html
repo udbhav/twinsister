@@ -11,8 +11,8 @@
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 	 <link rel="stylesheet" media="all" href="/media/css/reset.css" />
-	 <link rel="stylesheet" media="all" href="/media/css/style.css" />
-	 <link rel="stylesheet" media="all" href="/media/css/audio.css" />
+	 <link rel="stylesheet" media="all" href="/media/css/style_new.css" />
+	 <!--link rel="stylesheet" media="all" href="/media/css/audio.css" /-->
 	 <link rel="stylesheet" media="mobile, only screen and (max-device-width: 480px)" href="/media/css/mobile.css" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/entries/" />
     {% block css %}{% endblock css %}
@@ -20,76 +20,51 @@
   </head>
 
   <body>
-    <div id="right">
-      <div id="top_right">
-      <h1 id="logo"><a href="{% url home %}">Twin Sister</a></h1>
-      <p id="new_ep"><a href="{% url release slug='color-your-life' %}">Color Your Life</a><br/>
-      <a href="{% url release slug='vampires-dreaming-kids' %}">Vampires with Dreaming Kids</a></p>
-      {% next_show %}
-      </div>
-
-      <div id="navigation_search">
+    <header class="clearfix">
       {% block navigation %}
-      <ul class="navigation clearfix">
-        <li id="releases_nav" {% block nav-releases %}{% endblock %}><a href="{% url releases %}">Releases</a></li>
-        <li id="shows_nav" {% block nav-shows %}{% endblock %}><a href="{% url shows %}">Shows</a></li>
-        <li id="songs_nav" {% block nav-songs %}{% endblock %}><a href="{% url songs %}">Songs</a></li>
-        <li id="images_nav" {% block nav-images %}{% endblock %}><a href="{% url galleries %}">Images</a></li>        
-      </ul>
+      <nav>
+        <ul>
+          <li {% block nav-releases %}{% endblock %}><a href="{% url releases %}">Discography</a></li>
+          <li {% block nav-shows %}{% endblock %}><a href="{% url shows %}">Shows</a></li>
+          <li {% block nav-images %}{% endblock %}><a href="{% url galleries %}">Images</a></li>
+          <li {% block nav-store %}{% endblock %}><a href="#">Store</a></li>
+        </ul>
+      </nav>
       {% endblock %}
+      <h1><a href="/">Twin Sister</a></h1>
+    </header>
 
+    {% block feature %}{% endblock %}
+    {% block section_title %}{% endblock %}
+
+    <div id="sidebar">
+      <h2>Search</h2>
       <form method="get" action="{% url haystack_search %}" id="search">
         <fieldset>
-          <input type="search" name="q" placeholder="Type and press enter to search." id="searchfield"/>
+          <input type="search" name="q" placeholder="Search" id="searchfield"/>
         </fieldset>
       </form>
-      </div>
 
+      <h2>Shows</h2>
+      {% shows 10 %}
     </div>
 
-    <div id="content" class="clearfix">
-      {% block section_title %}{% endblock %}
+    <div id="content">
   	   {% block content %}{% endblock %}
       {% block pagination %}{% endblock %}
-      <div id="footer" class="clearfix">
-        <a href="mailto:band@twinsistermusic.com">band@twinsistermusic.com</a><br/>
-        Booking (US): <a href="mailto:averymctaggart@theagencygroup.com">averymctaggart@theagencygroup.com</a><br/>
-        Booking (Europe): <a href="mailto:rob@codaagency.com">rob@codaagency.com</a><br/>
-        Press/Label (US): <a href="mailto:hunter@infinitebestrecordings.com">hunter@infinitebestrecordings.com</a>
-      </div>
-      <div id="footer_links">
-        <a href="/feeds/entries/">RSS</a> | 
-        <a href="/faq/">Frequently Asked Questions</a> | 
-        <a href="http://twitter.com/twinsistermusic">Twitter</a> | 
-        <a href="http://www.facebook.com/twinsistermusic">Facebook</a>
-      </div>
+
+      <footer>
+        <ul>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/feeds/entries/">RSS</a></li>
+          <li><a href="http://twitter.com/twinsistermusic">Twitter</a></li>
+          <li><a href="http://facebook.com/twinsistermusic">Facebook</a></li>
+        </ul>
+      </footer>
+
     </div>
 
-    <div id="control-template">
-      <div class="controls">
-        <div class="statusbar">
-
-          <div class="loading"></div>
-          <div class="position"></div>
-        </div>
-      </div>
-      <div class="timing">
-        <div id="sm2_timing" class="timing-data">
-          <span class="sm2_position">%s1</span> / <span class="sm2_total">%s2</span></div>
-
-      </div>
-      <div class="peak">
-        <div class="peak-box"><span class="l"></span><span class="r"></span>
-        </div>
-      </div>
-    </div>
-
-    <div id="spectrum-container" class="spectrum-container">
-      <div class="spectrum-box">
-
-        <div class="spectrum"></div>
-      </div>
-    </div> 
+          
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-7119685-1']);
@@ -104,11 +79,11 @@
       })();
     </script>
     <script type="text/javascript" src="/media/js/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="/media/js/soundmanager2.js"></script>
-    <script type="text/javascript" src="/media/js/audio.js"></script>
-    <script type="text/javascript" src="/media/js/global.js"></script>
+    <script type="text/javascript" src="/media/js/soundmanager/script/soundmanager2-jsmin.js"></script>
+    <script tye="text/javascript" src="/media/js/audio_new.js"></script>
+    <script tye="text/javascript" src="/media/js/json.min.js"></script>
+    <!--script type="text/javascript" src="/media/js/audio.js"></script -->
     {% block javascript %}
     {% endblock javascript %}
-    <a href="http://www.adelton.com/medu_hrnec.html?isbn=13"><!-- diamond-rigid --></a>
   </body>
 </html>

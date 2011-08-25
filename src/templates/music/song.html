@@ -1,15 +1,23 @@
+{% load store %}
+
 {% with data.musicdata.song as song %}
 <ul class="playlist">
-  <li><a href="{{ MEDIA_URL }}{{ song.file }}">{{ song.band }} - {{ song }}</a></li>
+  <li data-song-id="{{ song.id }}">{{ song.band }} - {{ song }}</li>
 </ul>
 
+{% if song.digitalsong %}
+<a href="{{ song.digitalsong|get_paypal_link }}" class="buy_link">Buy</a>
+{% endif %}
+
 {% if song.release_set.all %}
+<div class="song_from">
 <h4>From:</h4>
 <ul>
   {% for release in song.release_set.all %}
   <li><a href="{{ release.get_absolute_url }}">{{ release }}</a></li>
   {% endfor %}
 </ul>
+</div>
 {% endif %}
 {% endwith %}
 

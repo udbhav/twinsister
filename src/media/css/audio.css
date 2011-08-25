@@ -255,7 +255,7 @@ ul.playlist li .timing div.sm2_timing {
 
 ul.playlist li.sm2_playing .timing,
 ul.playlist li.sm2_paused .timing {
- display:block;
+ display:none;
 }
 
 ul.playlist li.sm2_paused .timing .sm2_position {
@@ -340,8 +340,6 @@ ul.playlist li.sm2_playing:hover .song_extras a {
 }
 
 .sm2_playing .song_extras, .sm2_paused .song_extras {
-    margin-right: 60px;
-    margin-top: 2px;
     display: block;
 }
 
