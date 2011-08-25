@@ -22,7 +22,6 @@ urlpatterns = patterns(
     (r'^music/', include('apps.music.urls')),
     (r'^images/', include('apps.images.urls')),
     (r'^shows/', include('apps.events.urls')),
-    (r'^soundcloud/', include('apps.soundcloud.urls')),
     (r'^store/', include('apps.store.urls')),
 
     # This is for legacy links to shows and etc.  Added 1/5/10, remove after a 4-5 months
