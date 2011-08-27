@@ -231,12 +231,12 @@ td {
     display: block;
     float: left;
     width: 500px;
-    margin-right: 40px;
+    margin-right: 25px;
 }
 
 #feature_content {
     float: left;
-    width: 388px;
+    width: 403px;
 }
 
 /* Player */

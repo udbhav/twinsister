@@ -32,7 +32,7 @@ def get_paypal_link(product):
 
 @register.filter
 def currency(value):
-    locale.setlocale(locale.LC_ALL, '')
+    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
     return locale.currency(float(value))
 
 
