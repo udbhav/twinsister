@@ -13,7 +13,7 @@
 
     <ul class="playlist">
       {% for song in featured_release|get_tracklist %}
-      <li data-song-id="{{ song.id }}">
+      <li data-song-id="{{ song.id }}"{% if not song.streamable %}class="disabled"{% endif %}>
         <div class="song_extras">
           {% if song.digitalsong %}<a href="{{ song.digitalsong|get_paypal_link }}">Buy</a> | {% endif %}
           <a href="{{ song.get_absolute_url }}">Link</a>

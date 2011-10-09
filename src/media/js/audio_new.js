@@ -99,7 +99,7 @@ function TSPlayer() {
         sm._writeDebug('TSPlayer.init()');
 
         var songs = new Array();
-        $(".playlist li").each(function() {
+        $(".playlist li:not(.disabled)").each(function() {
             songs.push($(this).attr("data-song-id"));
         });
 
@@ -113,7 +113,7 @@ function TSPlayer() {
             }
 
             var i = 0;
-            $(".playlist li").each(function() {
+            $(".playlist li:not(.disabled)").each(function() {
                 var id = 'ts_sound_' + i;
                 var sound = sm.createSound({
                     id: id,
@@ -124,7 +124,7 @@ function TSPlayer() {
                 i++;
             });
 
-            $(".playlist li").bind("click", function() {
+            $(".playlist li:not(.disabled)").bind("click", function() {
                 self.handleClick(this);
             });
 

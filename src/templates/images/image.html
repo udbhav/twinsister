@@ -7,8 +7,8 @@
 
 {% block content %}
 {% cache 5000 image_content image.id %}
-<div class="entry">
-  <h3>{{ image }}</h3>
+<article>
+  <header class="clearfix"><h1>{{ image }}</h1></header>
   <p><a href="{{ gallery.get_absolute_url }}">See all {{ gallery }}</a></p>
   <a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{{ image.display.url }}" alt="{{ image.title }}" /></a>
   {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
@@ -28,6 +28,6 @@
     <a href="{{ image|next_image:gallery }}">Next</a>
     {% endif %}
   </div>
-</div>
+</article>
 {% endcache %}
 {% endblock %}

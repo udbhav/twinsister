@@ -119,7 +119,7 @@ footer {
 /* Content */
 
 article {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 article header, #sidebar h2 {
@@ -224,7 +224,7 @@ th {
 
 .caption {
     text-align: right;
-    color: #cccccc;
+    color: #999999;
 }
 
 .thumbnails li {
@@ -233,7 +233,7 @@ th {
 }
 
 .artwork {
-    color: #cccccc;
+    color: #999999;
 }
 
 /* Sidebar */
@@ -309,6 +309,12 @@ th {
     position: relative;
     background: url(../images/play.png) no-repeat 10px 11px;
     cursor: pointer;
+}
+
+.playlist li.disabled {
+    background: none;
+    cursor: auto;
+    color: #999999;
 }
 
 .playlist li:hover, .playlist li.playing, .playlist li.paused {
