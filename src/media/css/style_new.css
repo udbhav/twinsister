@@ -284,6 +284,17 @@ th {
     width: 375px;
 }
 
+/* Shows */
+
+#show_map {
+    height: 350px;
+    margin-bottom: 20px;
+}
+
+#show_map h3 {
+    font-weight: bold;
+}
+
 /* Player */
 
 .playlist {

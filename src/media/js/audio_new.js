@@ -5,7 +5,7 @@ function TSPlayer() {
     this.config = {
         flashVersion: 8,
         debugMode: false,
-        swfUrl: 'media/js/soundmanager/swf/'
+        swfUrl: '/media/js/soundmanager/swf/'
     }
 
     sm.flashVersion = this.config.flashVersion;
