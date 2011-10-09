@@ -1,5 +1,42 @@
-{% extends "base.html" %}
+{% extends "base_store_admin.html" %}
+{% load url from future %}
 
-{% block title %}Store Admin{% endblock %}
+{% block section_title %}<h2 class="title">Unshipped Orders</h2>{% endblock %}
 
 {% block content %}
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Quantity</th>
+      <th>Product</th>
+      <th>Customer</th>
+      <th>Shipping Address</th>
+      <th></th>
+      <th></th>
+    </tr>
+  <tbody>
+    {% for order in object_list %}
+    <tr>
+      <td>{{ order.timestamp|date:"m/d/y g:iA" }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>{{ order.product }}</td>
+      <td>
+        {{ order.customer_name }}<br/>
+        {{ order.customer_email }}
+      </td>
+      <td>
+        {{ order.shipping_address|linebreaks }}
+      </td>
+      <td><a href="#" data-order-id="{{ order.id }}" class="ship_order">Mark as Shipped</a></td>
+      <td><a href="{% url 'order_detail' pk=order.id %}">Details</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'completed_orders' %}">View Completed Orders</a>
+{% endblock content %}
+
+{% block javascript %}
+<script type="text/javascript" src="/media/js/storeadmin.js"></script>
+{% endblock %}

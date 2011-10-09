@@ -13,7 +13,8 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.core import urlresolvers
 from django.core.exceptions import ObjectDoesNotExist
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
+from django.contrib.auth.decorators import login_required
 
 from apps.store.models import IpnMessage, Order, Product, DigitalRelease, DownloadLink
 from apps.music.models import Release, Song
@@ -21,6 +22,29 @@ from apps.music.models import Release, Song
 class BuyReleaseView(DetailView):
     template_name = 'store/buy.html'
     model = Release
+
+class StoreAdminView(ListView):
+    template_name = 'store/admin.html'
+    queryset = Order.objects.filter(status='rs').order_by('-timestamp')
+
+class CompletedOrdersView(ListView):
+    template_name = 'store/completed_orders.html'
+    queryset = Order.objects.filter(status='c').order_by('-timestamp')
+
+class OrderDetailView(DetailView):
+    template_name = 'store/order.html'
+    model = Order
+
+@login_required
+def ship_order(request):
+    if request.method == 'POST':
+        order = get_object_or_404(Order, pk=request.POST['pk'])
+        order.status = 's'
+        order.save()
+        return HttpResponse('OK!')
+    else:
+        return HttpResponseBadRequest('Bad Request')
+        
 
 def success(request):
     post_data = {
@@ -138,7 +162,7 @@ def process_download(request, download_key, product_id):
         if hasattr(product, 'digitalrelease'):
             return HttpResponseRedirect(product.digitalrelease.file.url)
         elif hasattr(product, 'digitalsong'):
-            return HttpResponseRedirect(product.digitalsong.song.file.url)
+            return HttpResponseRedirect(product.digitalsong.song.download_url())
         elif hasattr(product, 'physicalrelease'):
             try:
                 digi_release = DigitalRelease.objects.filter(release=product.physicalrelease.release, pk=product_id)[0]

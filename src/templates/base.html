@@ -21,22 +21,23 @@
 
   <body>
     <header class="clearfix">
-      {% block navigation %}
       <nav>
         <ul>
+          {% block navigation %}
           <li {% block nav-releases %}{% endblock %}><a href="{% url releases %}">Discography</a></li>
           <li {% block nav-shows %}{% endblock %}><a href="{% url shows %}">Shows</a></li>
-          <li {% block nav-images %}{% endblock %}><a href="{% url galleries %}">Images</a></li>
-          <li {% block nav-store %}{% endblock %}><a href="#">Store</a></li>
+          <li {% block nav-images %}{% endblock %}><a href="{% url galleries %}">Media</a></li>
+          {% endblock %}
         </ul>
       </nav>
-      {% endblock %}
+
       <h1><a href="/">Twin Sister</a></h1>
     </header>
 
     {% block feature %}{% endblock %}
     {% block section_title %}{% endblock %}
 
+    {% block sidebar %}
     <div id="sidebar">
       <h2>Search</h2>
       <form method="get" action="{% url haystack_search %}" id="search">
@@ -48,11 +49,13 @@
       <h2>Shows</h2>
       {% shows 10 %}
     </div>
+    {% endblock %}
 
-    <div id="content">
+    <div class="content {% block content_class %}{% endblock %}">
   	   {% block content %}{% endblock %}
       {% block pagination %}{% endblock %}
 
+      {% block footer %}
       <footer>
         <ul>
           <li><a href="/contact/">Contact</a></li>
@@ -61,6 +64,7 @@
           <li><a href="http://facebook.com/twinsistermusic">Facebook</a></li>
         </ul>
       </footer>
+      {% endblock footer %}
 
     </div>
 
@@ -79,6 +83,7 @@
       })();
     </script>
     <script type="text/javascript" src="/media/js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="/media/js/jquery-ui-1.8.16.custom.min.js"></script>
     <script type="text/javascript" src="/media/js/soundmanager/script/soundmanager2-jsmin.js"></script>
     <script tye="text/javascript" src="/media/js/audio_new.js"></script>
     <script tye="text/javascript" src="/media/js/json.min.js"></script>

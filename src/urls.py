@@ -1,7 +1,8 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib import admin
-from django.views.generic import list_detail
+from django.contrib.auth import urls as auth_urls
+from django.views.generic import list_detail, RedirectView
 
 from feeds import Entries
 
@@ -33,6 +34,8 @@ urlpatterns = patterns(
     (r'^faq/$', 'django.views.generic.simple.direct_to_template', {'template':'faq.html'}),
     (r'^admin/filebrowser/', include('filebrowser.urls')),
     (r'^admin/', include(admin.site.urls)),
+    (r'^accounts/$', RedirectView.as_view(url='/accounts/login/'), {}),
+    (r'^accounts/', include(auth_urls)),
     (r'^', include('apps.data.urls')),
     )
 

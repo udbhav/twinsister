@@ -2,7 +2,6 @@
 {% load cache %}
 <header class="clearfix">
   <h1><a href="{{ data.get_absolute_url }}">{{ data.name }}</a></h1>
-  <div class="posted_by">posted by <a href="{{ data.posted_by.get_absolute_url }}">{{ data.posted_by }}</a> on <time datetime="{{ data.pub_date|date:'Y-m-d' }}" pubdate>{{ data.pub_date|date }}</time></div>
 </header>
 {% if data.header_image %}
 {% cache 5000 header_image data.id %}

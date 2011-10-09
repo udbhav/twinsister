@@ -51,7 +51,8 @@ class Song(MusicData):
     composers = models.ManyToManyField(Person, null=True, blank=True)
     older_version = models.ForeignKey('self', null=True, blank=True, related_name='newer')
     newer_version = models.ForeignKey('self', null=True, blank=True, related_name='older')
-    soundcloud_id = models.CharField(max_length=100, editable=False)
+    streamable = models.BooleanField()
+    downloadable = models.BooleanField()
 
     class Meta:
         ordering = ('name',)
@@ -65,6 +66,9 @@ class Song(MusicData):
 
     def get_template(self):
         return 'music/song.html'
+
+    def download_url(self):
+        return self.file.storage.download_url(self.file.name)
 
 class Release(MusicData):
     band = models.ForeignKey(Band)

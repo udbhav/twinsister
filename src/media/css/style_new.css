@@ -44,10 +44,14 @@ h1, h2 {
     visibility: hidden;
 }
 
+strong {
+    font-weight: bold;
+}
+
 /* Layout */
 
 body {
-    width: 928px;
+    width: 800px;
     margin: 10px auto;
 }
 
@@ -57,9 +61,14 @@ body {
     margin-left: 50px;
 }
 
-#content {
+.content {
     float: right;
-    width: 728px;
+    width: 600px;
+}
+
+.content_wide {
+    float: none;
+    width: 100%;
 }
 
 /* Header & Footer */
@@ -169,9 +178,23 @@ table {
     width: 100%;
 }
 
-td {
+td, th {
     padding: 10px 15px 10px 0;
     border-bottom: 1px solid #cccccc;
+}
+
+thead {
+    padding-bottom: 20px;
+}
+
+thead tr {
+    border-spacing: 20px;
+}
+
+th {
+    border-bottom: 2px solid #000000;
+    color: #000000;
+    font-weight: bold;
 }
 
 .short_list article {
@@ -189,6 +212,28 @@ td {
 .buy_link {
     font-family: 'AvantGardeBkBTDemi', Helvetica, Arial;
     font-size: 20px;
+}
+
+.song_from {
+    margin-top: 10px;
+}
+
+.primary_image {
+    margin-bottom: 10px;
+}
+
+.caption {
+    text-align: right;
+    color: #cccccc;
+}
+
+.thumbnails li {
+    float: left;
+    margin: 10px 10px 0 0;
+}
+
+.artwork {
+    color: #cccccc;
 }
 
 /* Sidebar */
@@ -230,13 +275,13 @@ td {
 #feature img {
     display: block;
     float: left;
-    width: 500px;
+    width: 400px;
     margin-right: 25px;
 }
 
 #feature_content {
     float: left;
-    width: 403px;
+    width: 375px;
 }
 
 /* Player */
@@ -277,7 +322,7 @@ td {
     display: none;
     font-size: 11px;
     position: absolute;
-    right: 5px;
+    right: 8px;
     top: 11px;
 }
 
@@ -290,4 +335,65 @@ td {
 
 .playlist li:hover .song_extras, .playlist li.playing .song_extras, .playlist li.paused .song_extras {
     display: block;
+}
+
+#song_controls {
+    margin-top: 8px;
+    cursor: default;
+}
+
+#song_position {
+    width: 15px;
+    height: 10px;
+    background: #D81921;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    cursor:ew-resize;
+    cursor:-moz-grab;
+    cursor:grab;
+}
+
+.playlist li.paused #song_position {
+    background: #cccccc;
+}
+
+#song_loading {
+    height: 10px;
+    background: #ffffff;
+    width: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+/* Store */
+
+.buy_links h4 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.buy_links > li {
+    margin-bottom: 10px;
+}
+
+.buy_links ul {
+    margin-top: 10px;
+}
+
+.buy_links ul li {
+    margin-bottom: 5px;
+}
+
+.buy_links a {
+    font-weight: bold;
+}
+
+.buy_links span {
+    margin-left: 5px;
+    display: none;
+    color: #cccccc;
+}
+
+.buy_links a:hover span {
+    display: inline;
 }

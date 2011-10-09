@@ -1,12 +1,19 @@
 {% load store %}
 
 {% with data.musicdata.song as song %}
+
+{% if song.streamable %}
 <ul class="playlist">
-  <li data-song-id="{{ song.id }}">{{ song.band }} - {{ song }}</li>
+  <li data-song-id="{{ song.id }}">{{ song.band }} - {{ song }}<div class="song_extras"></div></li>
 </ul>
+{% endif %}
 
 {% if song.digitalsong %}
 <a href="{{ song.digitalsong|get_paypal_link }}" class="buy_link">Buy</a>
+{% endif %}
+
+{% if song.downloadable %}
+<a href="{{ song.download_url }}" class="buy_link">Download</a>
 {% endif %}
 
 {% if song.release_set.all %}

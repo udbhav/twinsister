@@ -16,7 +16,7 @@ song_info = {
 }
 
 releases_info = {
-    'queryset': Release.objects.order_by('-official', '-pub_date'),
+    'queryset': Release.objects.filter(official=True).order_by('-pub_date'),
     'paginate_by' : 25,
     'template_name' : 'music/releases.html',
 }

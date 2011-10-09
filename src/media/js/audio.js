@@ -203,7 +203,7 @@ function PagePlayer(oConfigOverride) {
 
     // handlers for sound events as they're started/stopped/played
 
-    play: function() {
+    play: functibon() {
       pl.removeClass(this._data.oLI,this._data.className);
       this._data.className = pl.css.sPlaying;
       pl.addClass(this._data.oLI,this._data.className);

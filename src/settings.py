@@ -132,7 +132,7 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 # Oembed
-OEMBED_MAX_WIDTH = '728'
+OEMBED_MAX_WIDTH = '600'
 OEMBED_MAX_HEIGHT = '600'
 
 # Cache Settings
@@ -156,6 +156,9 @@ PAYPAL_NOTIFY_URL = "http://www.example.com/your-ipn-location/"
 PAYPAL_RETURN_URL = "http://www.example.com/your-return-location/"
 PAYPAL_CANCEL_URL = "http://www.twinsistermusic.com"
 PAYPAL_SUBMIT_URL = 'https://www.paypal.com/cgi-bin/webscr?'
+
+# Accounts
+LOGIN_REDIRECT_URL = '/store/admin/'
 
 try:
     from local_settings import *
