@@ -116,10 +116,12 @@ footer {
     font-size: 18px;
 }
 
-h1 {
-    font-family: Didot;
-    text-transform: uppercase;
-    font-size: 57px;
+h1#logo a {
+    display: block;
+    background: url(../images/logo.png);
+    width: 400px;
+    height: 43px;
+    text-indent: -9999px;
 }
 
 /* Content */
