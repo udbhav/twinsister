@@ -286,11 +286,17 @@ th {
     color: #000000;
 }
 
+#feature_image {
+    float: left;
+    margin-right: 25px;
+    text-align: right;
+}
+
 #feature img {
     display: block;
-    float: left;
     width: 400px;
-    margin-right: 25px;
+    margin-bottom: 10px;
+
 }
 
 #feature_content {
