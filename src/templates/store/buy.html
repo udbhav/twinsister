@@ -37,6 +37,7 @@
     {% if release.physicalrelease_set.all %}
     <li><h4>Physical</h4>
       <ul>
+        <li>All physical editions come with a free digital download</li>
         {% for physicalrelease in release.physicalrelease_set.all %}
         {% if physicalrelease.inventory %}
         <li>

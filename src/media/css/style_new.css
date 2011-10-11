@@ -405,7 +405,7 @@ th {
 /* Store */
 
 .buy_links h4 {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -423,6 +423,7 @@ th {
 
 .buy_links a {
     font-weight: bold;
+    font-size: 20px;
 }
 
 .buy_links span {
