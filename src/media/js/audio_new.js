@@ -98,6 +98,10 @@ function TSPlayer() {
     this.init = function() {
         sm._writeDebug('TSPlayer.init()');
 
+        $(".song_extras").click(function(event) {
+            event.stopPropagation();
+        });
+
         var songs = new Array();
         $(".playlist li:not(.disabled)").each(function() {
             songs.push($(this).attr("data-song-id"));
