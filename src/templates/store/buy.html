@@ -27,7 +27,7 @@
       <ul>
         {% for digitalrelease in release.digitalrelease_set.all %}
         <li>
-          <a href="{{ digitalrelease|get_paypal_link }}">{{ digitalrelease.format }} {{ digitalrelease.cost|currency }}<span>{% if digitalrelease.released %}Buy{% else %}Pre-Order{% endif %}</span></a>
+          <a href="{{ digitalrelease|get_paypal_link }}">{{ digitalrelease.cost|currency }} {{ digitalrelease.format }}<span>{% if digitalrelease.released %}Buy{% else %}Pre-Order{% endif %}</span></a>
         </li>
         {% endfor %}
       </ul>
@@ -36,8 +36,6 @@
 
     {% if release.physicalrelease_set.all %}
     <li><h4>Physical</h4>
-      All physical editions come with a free digital download.
-
       <ul>
         {% for physicalrelease in release.physicalrelease_set.all %}
         {% if physicalrelease.inventory %}
