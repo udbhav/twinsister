@@ -1,8 +1,6 @@
 {% load images %}
-{% load cache %}
 
 {% with data.gallery as gallery %}
-{% cache 5000 gallery_thumbnails gallery.id %}
 <ul class="thumbnails clearfix">
   {% for image in gallery.images.all %}
   <li><a href="{% url image image_id=image.id, gallery_id=gallery.id %}">
@@ -10,6 +8,5 @@
   </a></li>
   {% endfor %}
 </ul>
-{% endcache %}
 {% endwith %}
 

@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load images %}
 {% load oembed_tags %}
-{% load cache %}
 
 {% block title %}{{ gallery }}{% endblock %}
 {% block nav-images %} class="active"{% endblock %}
@@ -18,7 +17,6 @@
 </article>
 {% endif %}
 
-{% cache 5000 gallery_images gallery.id %}
 {% for image in gallery|sort_images %}
 <article>
 <header class="clearfix"><h1>{{ image }}</h1></header>
@@ -36,6 +34,5 @@
 
 </article>
 {% endfor %}
-{% endcache %}
 {% endblock %}
 
