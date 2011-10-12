@@ -4,7 +4,7 @@
 
 {% if song.streamable %}
 <ul class="playlist">
-  <li data-song-id="{{ song.id }}">{{ song.band }} - {{ song }}<div class="song_extras"></div></li>
+  <li data-song-id="{{ song.id }}">{{ song.band }} - <span class="title">{{ song }}</span><div class="song_extras"></div></li>
 </ul>
 {% endif %}
 

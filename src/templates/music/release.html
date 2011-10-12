@@ -12,7 +12,7 @@
       {% if song.downloadable %}<a href="{{ song.download_url }}">Download</a> | {% endif %}
       <a href="{{ song.get_absolute_url }}">Link</a>
     </div>
-    {{ song }}
+    <span class="title">{{ song }}</span>
   </li>
   {% endfor %}
 </ul>

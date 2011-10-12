@@ -24,7 +24,7 @@
           {% if song.digitalsong %}<a href="{{ song.digitalsong|get_paypal_link }}">Buy</a> | {% endif %}
           <a href="{{ song.get_absolute_url }}">Link</a>
         </div>
-        {{ song }}
+        <span class="title">{{ song }}</span>
       </li>
       {% endfor %}
     </ul>
