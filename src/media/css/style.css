@@ -31,9 +31,14 @@ body {
     color: #3F3F3F;
 }
 
-h2 {
+h2, h3 {
     font-family: 'AvantGardeBkBTDemi', Helvetica, Arial;
     font-size: 30px;
+}
+
+h3 {
+    font-size: 20px;
+    color: #999999;
 }
 
 .clearfix:after {
