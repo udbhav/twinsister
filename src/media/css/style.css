@@ -261,6 +261,16 @@ th {
     margin-top: 1em;
 }
 
+#release_thumbnails li {
+    float: left;
+    margin: 10px 10px 0 0;
+}
+
+#release_thumbnails img {
+    max-width: 90px;
+    max-height: 90px;
+}
+
 /* Sidebar */
 
 #sidebar h2 {

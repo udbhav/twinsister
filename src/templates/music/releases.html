@@ -3,6 +3,25 @@
 {% block title %}Releases{% endblock %}
 {% block nav-releases %} class="active"{% endblock %}
 
+{% block content %}
+<article>
+  <ul id="release_thumbnails" class="clearfix">
+    {% for release in object_list %}
+    <li>
+      <a href="#{{ release.slug }}"><img src="{{ release.header_image.display.url }}" alt="" /></a>
+    </li>
+    {% endfor %}
+  </ul>
+</article>
+
+{% for data in object_list %}
+  <article id="{{ data.slug }}">
+    {% include "data/data_short_body.html" %}
+  </article>
+{% endfor %}
+{% endblock %}
+
+
 {% block pagination %}
 <a href="{% url songs %}">View All Songs</a>
 {% if page_obj.has_other_pages %}
