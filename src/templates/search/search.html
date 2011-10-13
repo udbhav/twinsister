@@ -6,14 +6,12 @@
 {% if page.object_list %}
 {% for result in page.object_list %}
 {% with result.object as data %}
-<div class="entry {{ data.get_human_class_type|lower }}">
-{% include "data/data_body.html" %}
+<article>{% include "data/data_body.html" %}</article>
 {% endwith %}
-</div>
 {% endfor %}
 {% else %}
-<div class="entry">
+<article>
 <p>No results found.</p>
-</div>
+</article>
 {% endif %}
 {% endblock %}
