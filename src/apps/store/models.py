@@ -422,7 +422,7 @@ def ipn_listener(sender, instance, created, **kwargs):
             else:
                 physical = False
 
-            digital_releases = DigitalRelase.objects.filter(release=product.physicalrelease.release)
+            digital_releases = DigitalRelease.objects.filter(release=product.physicalrelease.release)
 
             if physical and not digital_releases:
                 order_type = 'p'

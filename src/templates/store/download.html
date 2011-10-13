@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_simple.html" %}
 
 {% block title %}Your Download{% endblock %}
 {% block section_title %}<h2 class="title">Store</h2>{% endblock %}
 
 {% block content %}
-<div class="entry">
+<article>
 {% if error %}
 <h3>Sorry, your download link is invalid.  If you continue to have problems, please email us at <a href="mailto:support@twinsistermusic.com">support@twinsistermusic.com</a>.</h3>
 {% else %}
@@ -21,5 +21,5 @@
 <p><a href="{{ download_url }}">Download Now</a></p>
 {% endif %}
 {% endif %}
-</div>
+</article>
 {% endblock %}
