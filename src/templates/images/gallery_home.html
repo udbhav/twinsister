@@ -33,13 +33,11 @@
 </article>
 {% endif %}
 
-{% for image in gallery|sort_images %}
 <article>
-<header class="clearfix"><h1>{{ image }}</h1></header>
+<header class="clearfix"><h1>Photos</h1></header>
+{% for image in gallery|sort_images %}
 <a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{{ image.display.url }}" alt="{{ image }}" /></a>
 {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
-<p>Click for full size</p>
-
 {% if image.credit.all %}<p>Credit(s): 
     {% for person in image.credit.all %}
     {% if person.url %}<a href="{{ person.url }}">{{ person }}</a>
@@ -48,7 +46,7 @@
     {% endfor %}
 </p>{% endif %}
 
-</article>
 {% endfor %}
+</article>
 {% endblock %}
 
