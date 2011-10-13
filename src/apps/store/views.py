@@ -53,7 +53,7 @@ def success(request):
         "at": settings.PAYPAL_PDT_TOKEN,
         }
 
-    respnse = urllib2.urlopen(settings.PAYPAL_SUBMIT_URL, urlencode(post_data)).read().split('\n')
+    response = urllib2.urlopen(settings.PAYPAL_SUBMIT_URL, urlencode(post_data)).read().split('\n')
     response_data = {}
 
     if response[0] == 'SUCCESS':
