@@ -6,7 +6,9 @@
 {% block content %}
 <div class="entry">
   {% if error %}
-  <p>Sorry, we had a problem processing your order.  We've been notified of the problem and will email you shortly.  If you'd like to get in touch sooner, email us at <a href="mailto:band@twinsistermusic.com">band@twinsistermusic.com</a>.</p>
+  <p>Sorry, we had a problem processing your order.  We've been notified of the problem and will email you shortly.  If you'd like to get in touch sooner, email us at <a href="mailto:support@twinsistermusic.com">support@twinsistermusic.com</a>.</p>
+  {% else %}
+  Thanks!  Your receipt and order information will be emailed to {{ response_data.payer_email }} shortly.  Should you have any problems, email us at <a href="mailto:support@twinsistermusic.com">support@twinsistermusic.com</a>.
   {% endif %}
 
   {% if response_data %}
