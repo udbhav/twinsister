@@ -17,7 +17,7 @@ def get_paypal_link(product):
         "amount": product.cost,
         "item_name": product.__unicode__(),
         "notify_url": settings.PAYPAL_NOTIFY_URL,
-        "return_url": settings.PAYPAL_RETURN_URL,
+        "return": settings.PAYPAL_RETURN_URL,
         "cancel_return": settings.PAYPAL_CANCEL_URL,
         "item_number": product.id,
         }
