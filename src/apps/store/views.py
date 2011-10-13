@@ -64,7 +64,6 @@ def success(request):
                 split_data = line.split("=")
                 response_data[split_data[0]] = unquote_plus(split_data[1])
 
-        print response_data
     else:
         error = True
 
