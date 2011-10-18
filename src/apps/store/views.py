@@ -131,7 +131,7 @@ def download(request, download_key):
             digital_releases = DigitalRelease.objects.filter(release=product.physicalrelease.release)
 
             if len(digital_releases) == 1:
-                download_url = urlresolvers.reverse('store_process_download', kwargs={'download_key': download_key, 'product_id': product.pk})
+                download_url = urlresolvers.reverse('store_process_download', kwargs={'download_key': download_key, 'product_id': digital_releases[0].pk})
             else:
                 for digi_release in digital_releases:
                     url = urlresolvers.reverse('store_process_download', kwargs={'download_key': download_key, 'product_id': digi_release.pk})
@@ -149,8 +149,9 @@ def process_download(request, download_key, product_id):
 
     valid, link = _validate_key(download_key)
 
-    link.first_accessed = datetime.now()
-    link.save()
+    if not link.first_accessed:
+        link.first_accessed = datetime.now()
+        link.save()
 
     if not valid:
         context = RequestContext(request, {'error': True})
