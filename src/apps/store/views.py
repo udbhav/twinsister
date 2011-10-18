@@ -16,7 +16,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.decorators import login_required
 
-from apps.store.models import IpnMessage, Order, Product, DigitalRelease, DownloadLink
+from apps.store.models import IpnMessage, Order, Product, DigitalRelease, DownloadLink, InventoryForm, PhysicalRelease
 from apps.music.models import Release, Song
 
 class BuyReleaseView(DetailView):
@@ -171,3 +171,17 @@ def process_download(request, download_key, product_id):
                 return render_to_response('store/download.html', context_instance=context)
             else:
                 return HttpResponseRedirect(digi_release.file.url)
+
+@login_required
+def manage_inventory(request):
+    if request.method == 'POST':
+        iforms = [InventoryForm(request.POST, prefix=x.pk, instance=PhysicalRelease.objects.get(pk=x.pk)) for x in PhysicalRelease.objects.all()]
+        if all([iform.is_valid() for iform in iforms]):
+            for iform in iforms:
+                iform.save()
+    else:
+        iforms = [InventoryForm(prefix=x.pk, instance=PhysicalRelease.objects.get(pk=x.pk)) for x in PhysicalRelease.objects.all()]
+    
+
+    context = RequestContext(request, {'inventory_forms': iforms})
+    return render_to_response('store/manage_inventory.html', context_instance=context)

@@ -16,6 +16,7 @@ from django.shortcuts import render_to_response
 from django.core.mail import EmailMultiAlternatives
 from django.core import urlresolvers
 from django.contrib.sites.models import Site
+from django import forms
 
 from apps.music.models import Release, Song
 from apps.store.storages import ProductStorage
@@ -446,3 +447,8 @@ def ipn_listener(sender, instance, created, **kwargs):
                 status = '',
                 order_type = order_type,
                 )
+
+class InventoryForm(forms.ModelForm):
+    class Meta:
+        model = PhysicalRelease
+        fields = ('inventory',)

@@ -3,6 +3,7 @@
 
 {% block title %}Store Admin{% endblock %}
 {% block navigation %}
-<li><a href="{% url 'store_admin' %}">Store Administration</a></li>
+<li><a href="{% url 'store_admin' %}">Orders</a></li>
+<li><a href="{% url 'store_inventory' %}">Inventory</a></li>
 {% if user.is_authenticated %}<li><a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a></li>{% endif %}
 {% endblock navigation %}

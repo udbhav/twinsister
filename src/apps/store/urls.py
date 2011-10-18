@@ -14,6 +14,7 @@ urlpatterns = patterns(
     (r'^success/$', 'apps.store.views.success', {}, 'store_success'),
     (r'^admin/$', login_required(StoreAdminView.as_view()), {}, 'store_admin'),
     (r'^admin/completed/$', login_required(CompletedOrdersView.as_view()), {}, 'completed_orders'),
+    (r'^admin/inventory/$', 'apps.store.views.manage_inventory', {}, 'store_inventory'),
     (r'^admin/order/(?P<pk>\d+)/$', login_required(OrderDetailView.as_view()), {}, 'order_detail'),
     (r'^admin/ship-order/$', 'apps.store.views.ship_order', {}, 'ship_order'),
 )
