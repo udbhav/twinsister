@@ -95,7 +95,7 @@ def _validate_key(download_key):
     download_key = download_key.lower()
 
     if not SHA1_RE.search(download_key):
-        print "NO RE MATCH"
+        return (False, None)
 
     try:
         link = DownloadLink.objects.get(key=download_key)
@@ -110,8 +110,8 @@ def _validate_key(download_key):
             link.active = False
             link.save()
             return (False, None)
-    else:
-        return (True, link)
+
+    return (True, link)
 
 def download(request, download_key):
     valid, link = _validate_key(download_key)
