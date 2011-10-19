@@ -1,8 +1,14 @@
 import json
 
 from django.http import HttpResponse
+from django.views.generic import DetailView, ListView
 
 from apps.music.models import Song
+
+class SongView(DetailView):
+    template_name = 'data/data.html'
+    model = Song
+    context_object_name = 'data'
 
 def play_song(request):
     error = False
