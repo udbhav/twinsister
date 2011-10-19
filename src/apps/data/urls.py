@@ -17,9 +17,16 @@ data_info = {
     'slug_field': 'slug',
 }
 
+try:
+    featured_release = Release.objects.filter(official=True).order_by('-pub_date')[0]
+except IndexError:
+    featured_release = None
+
 home_info = dict(
     data_list_info,
     page = 1,
+    template_name = 'home.html',
+    extra_context = {'featured_release': featured_release}
     )
 
 urlpatterns = patterns(

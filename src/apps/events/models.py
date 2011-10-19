@@ -1,3 +1,4 @@
+import urllib, urllib2, json
 from datetime import datetime
 
 from django.db import models
@@ -9,9 +10,29 @@ from apps.music.models import Data
 class Venue(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
+    latlng = models.CharField(max_length=100, editable=False, blank=True)
 
     def __unicode__(self):
         return self.name
+
+    def save(self):
+        if not self.latlng:
+            data = urllib.urlencode({'address': self.address.encode('utf-8'), 'sensor': 'false'})
+            url = 'http://maps.googleapis.com/maps/api/geocode/json?' + data
+            f = urllib2.urlopen(url)
+            data = json.loads(f.read())
+
+            try:
+                latitude = data['results'][0]['geometry']['location']['lat']
+                longitude = data['results'][0]['geometry']['location']['lng']
+
+                latlng = str(latitude) + ',' + str(longitude)
+            except:
+                latlng = 'None'
+
+            self.latlng = latlng
+
+        super(Venue, self).save()
 
     class Meta:
         ordering = ('name',)

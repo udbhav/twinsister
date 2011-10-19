@@ -1,9 +1,35 @@
 {% extends "data/data_list.html" %}
 {% load images %}
+{% load oembed_tags %}
 
 {% block title %}Images{% endblock %}
 {% block nav-images %} class="active"{% endblock %}
-{% block section_title %}<h2 class="title">Images</h2>{% endblock %}
+
+
+{% block content %}
+<article>
+  <header class="clearfix">
+    <h1>Videos</h1>
+  </header>
+  {% oembed %}
+  <p>
+    http://www.youtube.com/watch?v=emCw-rRU3Q4
+  </p>
+  <p>
+    http://www.youtube.com/watch?v=_eeZnLX_XBM&ob=av2e
+  </p>
+  <p>
+    http://www.youtube.com/watch?v=3yn0PISCGpg&ob=av2e
+  </p>
+  {% endoembed %}
+</article>
+
+{% for data in object_list %}
+<article>
+  {% include "data/data_short_body.html" %}
+</article>
+{% endfor %}
+{% endblock %}
 
 {% block pagination %}
 {% if page_obj.has_other_pages %}

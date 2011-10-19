@@ -1,15 +1,10 @@
 {% extends "base.html" %}
 
-{% block section_title %}<h2 class="title">Ideas and Etc.</h2>{% endblock %}
-
 {% block content %}
 {% for data in object_list %}
-  <div class="entry {{ data.get_human_class_type|lower }}">
+  <article>
     {% include "data/data_short_body.html" %}
-    <div class="comment_count">
-	   <a href="{{ data.get_absolute_url }}#disqus_thread">Comments</a>
-	 </div>
-  </div>
+  </article>
 {% endfor %}
 {% endblock %}
 
@@ -22,26 +17,9 @@
       {% endif %}
       {% if page_obj.has_next and page_obj.has_previous %}&nbsp;/&nbsp;{% endif %}
       {% if page_obj.has_next %}
-      <a href="/{{ page_obj.next_page_number }}/" class="next_page">Next <span>&#187;</a>
+      <a href="/{{ page_obj.next_page_number }}/" class="next_page">Next <span>&#187;</span></a>
       {% endif %}
     </span>
 </div>
 {% endif %}
 {% endblock %}
-
-{% block javascript %}
-<script type="text/javascript">
-//<![CDATA[
-(function() {
-	var links = document.getElementsByTagName('a');
-	var query = '?';
-	for(var i = 0; i < links.length; i++) {
-	if(links[i].href.indexOf('#disqus_thread') >= 0) {
-		query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-	}
-	}
-	document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/twinsister/get_num_replies.js' + query + '"></' + 'script>');
-})();
-//]]>
-</script>
-{% endblock javascript %}

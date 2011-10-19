@@ -1,0 +1,20 @@
+{% extends "base_store_admin.html" %}
+{% load url from future %}
+
+{% block section_title %}<h2 class="title">Manage Inventory</h2>{% endblock %}
+
+{% block content %}
+<form method="post" action="{% url 'store_inventory' %}">
+<table>
+  <tbody>
+    {% for form in inventory_forms %}
+    <tr>
+      <td>{{ form.instance }}</td>
+      <td>{{ form.inventory }}</td>
+    </tr>
+    {% endfor %}
+    <tr><td colspan="2"><input type="submit" value="Save" /></td></tr>
+  </tbody>
+</table>
+</form>
+{% endblock content %}

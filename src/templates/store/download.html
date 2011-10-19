@@ -1,0 +1,25 @@
+{% extends "base_simple.html" %}
+
+{% block title %}Your Download{% endblock %}
+{% block section_title %}<h2 class="title">Store</h2>{% endblock %}
+
+{% block content %}
+<article>
+{% if error %}
+<h3>Sorry, your download link is invalid.  If you continue to have problems, please email us at <a href="mailto:support@twinsistermusic.com">support@twinsistermusic.com</a>.</h3>
+{% else %}
+<h3>Your Download</h3>
+{% if download_urls %}
+<p>Please choose a format from the list below to start your download.  Once you make a selection, you will have 24 hours to complete your download.  If something goes wrong, just use the link in the email we sent you to try again.  If problems persist, or you are unable to complete your download in the next 24 hours, email us at <a href="mailto:support@twinsistermusic.com">support@twinsistermusic.com</a></p>
+<ul>
+{% for release in download_urls %}
+<li><a href="{{ release.url }}">{{ release.name }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>Click the link below to start your download.  Once you start, you will have 6 hours to complete your download.  If something goes wrong, just use the link in the email we sent you to try again.  If problems persist, or your are unable to complete your download in the next 24 hours, email us at <a href="mailto:support@twinsistermusic.com">support@twinsistermusic.com</a></p>
+<p><a href="{{ download_url }}">Download Now</a></p>
+{% endif %}
+{% endif %}
+</article>
+{% endblock %}
