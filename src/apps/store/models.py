@@ -63,6 +63,9 @@ class DigitalRelease(Product):
     def __unicode__(self):
         return '%s - %s' % (self.release, self.format)
 
+    def generate_link(self, time):
+        return self.file.storage.bucket.get_key(self.file.name).generate_url(time, method='GET', query_auth=True)
+
 class PhysicalRelease(Product):
     release = models.ForeignKey(Release)
     format = models.CharField(max_length=100)
