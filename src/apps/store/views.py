@@ -143,10 +143,6 @@ def download(request, download_key):
         return render_to_response('store/download.html', context_instance=context)
 
 def process_download(request, download_key, product_id):
-    if not request.session.get('download_key', False):
-        url = urlresolvers.reverse('store_download', kwargs = {'download_key': download_key})
-        return HttpResponseRedirect(url)
-
     valid, link = _validate_key(download_key)
 
     if not link.first_accessed:
