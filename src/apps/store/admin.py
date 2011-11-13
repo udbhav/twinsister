@@ -8,9 +8,13 @@ class IpnMessageAdmin(admin.ModelAdmin):
     date_hierarchy = 'timestamp'
     list_display = ('transaction_id', 'timestamp')
 
+class OrderAdmin(admin.ModelAdmin):
+    date_hierarchy = 'timestamp'
+    list_display = ('customer_name', 'product')
+
 admin.site.register(PhysicalRelease)
 admin.site.register(DigitalRelease)
 admin.site.register(DigitalSong)
 admin.site.register(IpnMessage, IpnMessageAdmin)
-admin.site.register(Order)
+admin.site.register(Order, OrderAdmin)
 admin.site.register(DownloadLink)
