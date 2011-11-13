@@ -80,6 +80,9 @@ class DownloadLink(models.Model):
     active = models.BooleanField(default=True)
     first_accessed = models.DateTimeField(blank=True, null=True)
 
+    def __unicode__(self):
+        return self.order.customer_name + ' - ' + self.order.product.__unicode__()
+
     def create_key(self):
         salt = sha_constructor(str(random.random())).hexdigest()[:5]
         download_key = sha_constructor(salt+smart_str(self.order.product.__unicode__())).hexdigest()
@@ -134,6 +137,9 @@ class Order(models.Model):
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, blank=True)
     payment_status = models.CharField(max_length=20)
     order_type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+
+    def __unicode__(self):
+        return self.customer_name
 
     def digital_media(self):
         if hasattr(self.product, 'digitalrelease'):
