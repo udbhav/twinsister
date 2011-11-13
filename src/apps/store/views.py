@@ -74,7 +74,12 @@ def success(request):
 
 def ipn(request):
     message = request.POST
-    url = settings.PAYPAL_SUBMIT_URL + 'cmd=_notify-validate&' + urlencode(message.encode('utf-8'))
+
+    utf8_message = {}
+    for k,v in message.items():
+        utf8_message[k] = v.encode('utf8')
+
+    url = settings.PAYPAL_SUBMIT_URL + 'cmd=_notify-validate&' + urlencode(utf8_message)
     response = urllib2.urlopen(url)
 
     if response.read() == 'VERIFIED':
