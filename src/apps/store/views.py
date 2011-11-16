@@ -15,6 +15,7 @@ from django.core import urlresolvers
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from apps.store.models import IpnMessage, Order, Product, DigitalRelease, DownloadLink, InventoryForm, PhysicalRelease
 from apps.music.models import Release, Song
@@ -25,7 +26,7 @@ class BuyReleaseView(DetailView):
 
 class StoreAdminView(ListView):
     template_name = 'store/admin.html'
-    queryset = Order.objects.filter(status='rs').order_by('-timestamp')
+    queryset = Order.objects.filter(Q(status='rs') | Q(status='ud')).order_by('-timestamp')
 
 class CompletedOrdersView(ListView):
     template_name = 'store/completed_orders.html'
