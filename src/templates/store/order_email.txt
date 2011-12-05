@@ -1,0 +1,22 @@
+{% load store %}
+{% if body %}{{ body }}{% endif %}
+
+{% if download_link %}DOWNLOAD LINK
+{{ download_link.get_full_url }}{% endif %}
+
+ORDER INFORMATION
+Order #: {{ order.id }}
+{{ order.product }}
+Quantity: {{ order.quantity }}
+Subtotal: {{ order.subtotal|currency }}
+{% if order.shipping %}Shipping: {{ order.shipping|currency }}{% endif %}
+{% if order.tax %}Tax: {{ order.tax|currency }}{% endif %}
+Order Total: {{ order.order_total|currency }}
+
+{% if order.shipping_address %}SHIPPING ADDRESS
+{{ order.shipping_address }}{% endif %}
+
+If you have any problems, please email support@twinsistermusic.com.
+
+Love,
+Twin Sister

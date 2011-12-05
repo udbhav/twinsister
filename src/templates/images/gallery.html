@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load images %}
 {% load oembed_tags %}
-{% load cache %}
 
 {% block title %}{{ gallery }}{% endblock %}
 {% block nav-images %} class="active"{% endblock %}
@@ -9,19 +8,18 @@
 
 {% block content %}
 {% if gallery.description %}
-<div class="entry gallery">
+<article>
 {% oembed %}
 {% autoescape off %}
 {{ gallery.description }}
 {% endautoescape %}
 {% endoembed %}
-</div>
+</article>
 {% endif %}
 
-{% cache 5000 gallery_images gallery.id %}
 {% for image in gallery|sort_images %}
-<div class="entry gallery">
-<h3>{{ image }}</h3>
+<article>
+<header class="clearfix"><h1>{{ image }}</h1></header>
 <a href="{{ MEDIA_URL }}{{ image.photo }}"><img class="primary_image" src="{{ image.display.url }}" alt="{{ image }}" /></a>
 {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
 <p>Click for full size</p>
@@ -34,8 +32,7 @@
     {% endfor %}
 </p>{% endif %}
 
-</div>
+</article>
 {% endfor %}
-{% endcache %}
 {% endblock %}
 

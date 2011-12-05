@@ -3,9 +3,9 @@
 {% block title %}{{ data.name }}{% endblock %}
 
 {% block content %}
-<div class="entry {{ data.get_human_class_type|lower }}">
+<article>
   {% include "data/data_body.html" %}
-</div>
+</article>
 
 <div class="comment">
   <div id="disqus_thread"></div>

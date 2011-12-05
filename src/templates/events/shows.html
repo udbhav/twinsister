@@ -3,18 +3,18 @@
 
 {% block title %}Shows{% endblock %}
 {% block nav-shows %} class="active"{% endblock %}
-{% block section_title %}<h2 class="title">{{ title }}</h2>{% endblock %}
 
 {% block content %}
-<div class="entry">
+<div id="show_map"></div>
+<article>
   <table>
     <tbody>
       {% for show in shows %}
-      <tr>
-        <td>{{ show.show_date|date:"m/d" }}</td>
-        <td><a href="{{ show.get_absolute_url }}">{{ show }}</a></td>
-        <td><a href="http://maps.google.com/?q={{ show.venue.address|urlencode }}">{{ show.venue }}</a></td>
-        <td>
+      <tr data-latlng="{{ show.venue.latlng }}">
+        <td class="date">{{ show.show_date|date:"m/d/y" }}</td>
+        <td class="title"><a href="{{ show.get_absolute_url }}">{{ show }}</a></td>
+        <td class="venue"><a href="http://maps.google.com/?q={{ show.venue.address|urlencode }}">{{ show.venue }}</a></td>
+        <td class="bands">
           {% if show.bands.all %}
           w/ 
           {% for band in show.bands.all %}
@@ -38,15 +38,19 @@
       {% endfor %}
     </tbody>
   </table>
-</div>
+</article>
 {% endblock %}
 
 {% block pagination %}
-<div class="entry">
-  {% if current_shows %}
-  <a href="{% url old_shows %}">Shows we've already played</a>
-  {% else %}
-  <a href="{% url shows %}">Shows we have yet to play</a>
-  {% endif %}
-</div>
+{% if current_shows %}
+<a href="{% url old_shows %}">Shows we've already played</a>
+{% else %}
+<a href="{% url shows %}">Shows we have yet to play</a>
+{% endif %}
+{% endblock %}
+
+
+{% block javascript %}
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="/media/js/shows.js"></script>
 {% endblock %}
