@@ -30,7 +30,7 @@ class StoreAdminView(ListView):
 
 class CompletedOrdersView(ListView):
     template_name = 'store/completed_orders.html'
-    queryset = Order.objects.filter(status='c').order_by('-timestamp')
+    queryset = Order.objects.filter(Q(status='c') | Q(status='s')).order_by('-timestamp')
 
 class OrderDetailView(DetailView):
     template_name = 'store/order.html'
