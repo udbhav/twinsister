@@ -1,7 +1,8 @@
 *.pyc
 *#*
 *~*
-src/local_settings.py
-src/media/uploads/
-src/whoosh/
+local_settings.py
+media/uploads/
+whoosh/
+env/
 *.sqlite

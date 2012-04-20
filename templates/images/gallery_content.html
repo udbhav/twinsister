@@ -1,0 +1,12 @@
+{% load images %}
+
+{% with data.gallery as gallery %}
+<ul class="thumbnails clearfix">
+  {% for image in gallery.images.all %}
+  <li><a href="{% url image image_id=image.id, gallery_id=gallery.id %}">
+      <img src="{{ image.thumbnail.url }}" alt="{{ image.title }}" />
+  </a></li>
+  {% endfor %}
+</ul>
+{% endwith %}
+

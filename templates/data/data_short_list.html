@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Page {{ entries.number }}{% endblock %}
+
+{% block content %}
+<div class="short_list">
+  {% for data in object_list %}
+  <article><a href="{{ data.get_absolute_url }}">{{ data.name }}</a></article>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Your Order{% endblock %}
+
+{% block section_title %}<h2 class="title">Your Order</h2>{% endblock %}
+{% block content %}
+<article>
+  {% if error %}
+  <p>Sorry, we had a problem processing your order.  We've been notified of the problem and will email you shortly.  If you'd like to get in touch sooner, email us at <a href="mailto:support@twinsistermusic.com">support@twinsistermusic.com</a>.</p>
+  {% else %}
+  Thanks!  Your receipt and order information will be emailed to {{ response_data.payer_email }} shortly.  Should you have any problems, email us at <a href="mailto:support@twinsistermusic.com">support@twinsistermusic.com</a>.
+  {% endif %}
+</article>
+{% endblock %}

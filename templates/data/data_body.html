@@ -1,0 +1,27 @@
+{% load oembed_tags %}
+{% load cache %}
+<header class="clearfix">
+  <h1><a href="{{ data.get_absolute_url }}">{{ data.name }}</a></h1>
+</header>
+
+{% if data.header_image %}
+{% cache 5000 header_image data.id %}
+<div class="primary_image">
+  <img src="{{ data.header_image.display.url }}" alt="" />
+  {% if data.header_image.caption %}<p class="caption">{{ data.header_image.caption }}</p>{% endif %}
+</div>
+{% endcache %}
+{% endif %}
+
+{% if data.description %}
+<div class="description">
+{% oembed %}
+{% autoescape off %}
+{{ data.intro }}
+{{ data.description }}
+{% endautoescape %}
+{% endoembed %}
+</div>
+{% endif %}
+
+{% include data.get_template %}

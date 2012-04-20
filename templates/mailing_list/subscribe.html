@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block section_title %}Subscribe to our Mailing List{% endblock %}
+
+{% block content %}
+<div class="entry">
+<form method="post" action=".">
+  <fieldset>
+    {{ form }}
+    <input type="submit" value="Subscribe" />
+  </fieldset>
+</form>
+</div>
+{% endblock content %}

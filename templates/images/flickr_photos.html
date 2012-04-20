@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load sort_images %}
+{% load thumbnail %}
+
+{% block title %}Photos from Flickr{% endblock %}
+
+{% block nav-images %} class="active"{% endblock %}
+{% block section_title %}<h2 class="title">Photos from Flickr</h2>{% endblock %}
+
+{% block content %}
+{% for data in object_list %}
+<div class="entry gallery">
+	<h3><a href="{{ data.get_flickr_page }}">{{ data.title }}</a></h3>
+   <div class="posted_by">from <a href="{{ data.user.get_absolute_url }}">{{ data.user }}</a> - {{ data.upload_date|date:"l, F j, Y" }}</div>
+   <a href="{{ data.get_flickr_page }}"><img src="{{ data.get_large_photo }}" alt="{{ data.title }}" /></a>
+</div>
+{% endfor %}
+
+{% if page_obj.has_other_pages %}
+<div class="pagination">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+      <a href="/images/flickr/{{ page_obj.previous_page_number }}/"><span>&#171;</span> Previous</a>
+      {% endif %}
+      {% if page_obj.has_next and page_obj.has_previous %}&nbsp;/&nbsp;{% endif %}
+      {% if page_obj.has_next %}
+      <a href="/images/flickr/{{ page_obj.next_page_number }}/" class="next_page">Next <span>&#187;</a>
+      {% endif %}
+    </span>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'data/data_list.html' %}
+{% load music %}
+{% load store %}
+
+{% block feature %}
+{% if featured_release %}
+<article id="feature" class="clearfix">
+
+  <div id="feature_image">
+    {% if featured_release.header_image %}<img src="{{ featured_release.header_image.display.url }}" alt="{{ featured_release }}" />{% endif %}
+
+    {% if featured_release|get_buy_link %}
+    <a href="{{ featured_release|get_buy_link }}" class="buy_link">Buy</a>
+    {% endif %}
+  </div>
+
+  <div id="feature_content">
+    <h1><a href="{{ featured_release.get_absolute_url }}">{{ featured_release }}</a></h1>
+
+    <ul class="playlist">
+      {% for song in featured_release|get_tracklist %}
+      <li data-song-id="{{ song.id }}"{% if not song.streamable %}class="disabled"{% endif %}>
+        <div class="song_extras">
+          {% if song.digitalsong %}<a href="{{ song.digitalsong|get_paypal_link }}">Buy</a> | {% endif %}
+          <a href="{{ song.get_absolute_url }}">Link</a>
+        </div>
+        <span class="title">{{ song }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+
+  </div>
+
+</article>
+{% endif %}
+{% endblock feature %}
+
+{% block content %}
+{% for data in object_list %}
+{% ifnotequal data.musicdata.release featured_release %}
+  <article>
+    {% include "data/data_short_body.html" %}
+  </article>
+{% endifnotequal %}
+{% endfor %}
+{% endblock %}

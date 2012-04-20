@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for data in object_list %}
+  <article>
+    {% include "data/data_short_body.html" %}
+  </article>
+{% endfor %}
+{% endblock %}
+
+{% block pagination %}
+{% if page_obj.has_other_pages %}
+<div class="pagination">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+      <a href="/{{ page_obj.previous_page_number }}/"><span>&#171;</span> Previous</a>
+      {% endif %}
+      {% if page_obj.has_next and page_obj.has_previous %}&nbsp;/&nbsp;{% endif %}
+      {% if page_obj.has_next %}
+      <a href="/{{ page_obj.next_page_number }}/" class="next_page">Next <span>&#187;</span></a>
+      {% endif %}
+    </span>
+</div>
+{% endif %}
+{% endblock %}

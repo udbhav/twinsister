@@ -1,0 +1,91 @@
+{% load shows %}
+{% load images %}
+{% load music %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Twin Sister {% block title %}{% endblock %}</title>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	 <link rel="stylesheet" media="all" href="/media/css/reset.css" />
+	 <link rel="stylesheet" media="all" href="/media/css/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/entries/" />
+    {% block css %}{% endblock css %}
+    {% block meta_description %}{% endblock meta_description %}
+  </head>
+
+  <body>
+    <header class="clearfix">
+      <nav>
+        <ul>
+          {% block navigation %}
+          <li {% block nav-releases %}{% endblock %}><a href="{% url releases %}">Discography</a></li>
+          <li {% block nav-shows %}{% endblock %}><a href="{% url shows %}">Shows</a></li>
+          <li {% block nav-images %}{% endblock %}><a href="{% url galleries %}">Media</a></li>
+          {% endblock %}
+        </ul>
+      </nav>
+
+      <h1 id="logo"><a href="/">Twin Sister</a></h1>
+    </header>
+
+    {% block feature %}{% endblock %}
+    {% block section_title %}{% endblock %}
+
+    {% block sidebar %}
+    <div id="sidebar">
+      <h2>Search</h2>
+      <form method="get" action="{% url haystack_search %}" id="search">
+        <fieldset>
+          <input type="search" name="q" placeholder="Search" id="searchfield"/>
+        </fieldset>
+      </form>
+
+      <h2>Shows</h2>
+      {% shows 10 %}
+    </div>
+    {% endblock %}
+
+    <div class="content {% block content_class %}{% endblock %}">
+  	   {% block content %}{% endblock %}
+      {% block pagination %}{% endblock %}
+
+      {% block footer %}
+      <footer>
+        <ul>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/feeds/entries/">RSS</a></li>
+          <li><a href="http://twitter.com/twinsistermusic">Twitter</a></li>
+          <li><a href="http://facebook.com/twinsistermusic">Facebook</a></li>
+        </ul>
+      </footer>
+      {% endblock footer %}
+
+    </div>
+
+          
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-7119685-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script');
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
+      'http://www') + '.google-analytics.com/ga.js';
+      ga.setAttribute('async', 'true');
+      document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    <script type="text/javascript" src="/media/js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="/media/js/jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript" src="/media/js/soundmanager/script/soundmanager2-jsmin.js"></script>
+    <script type="text/javascript" src="/media/js/audio.js"></script>
+    <script type="text/javascript" src="/media/js/json.min.js"></script>
+    {% block javascript %}
+    {% endblock javascript %}
+  </body>
+</html>

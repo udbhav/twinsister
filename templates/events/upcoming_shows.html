@@ -1,0 +1,10 @@
+<ul id="shows_list">
+  {% for show in shows %}
+  <li>
+    <a href="{{ show.get_absolute_url }}">{{ show }}</a>
+  </li>
+  {% empty %}
+  {% endfor %}
+  {% if more %}<li class="all_shows"><a href="{% url shows %}">See All Shows</a></li>{% endif %}
+</ul>
+
