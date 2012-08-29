@@ -27,7 +27,7 @@ def get_paypal_link(product):
         paypal_dict['undefined_quantity'] = 1
     else:
         paypal_dict['no_shipping'] = 1
-
+        paypal_dict['shipping'] = 0
     return settings.PAYPAL_SUBMIT_URL + urlencode(paypal_dict)
 
 @register.filter
