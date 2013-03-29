@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Twin Sister {% block title %}{% endblock %}</title>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/entries/" />
+    {% block css %}{% endblock css %}
+    {% block meta_description %}{% endblock meta_description %}
+    {% block kishore_static %}{% endblock %}
+  </head>
+
+  <body>
+    <header>
+      <h1 id="logo"><a href="/">Twin Sister</a></h1>
+    </header>
+
+    <div class="content {% block content_class %}{% endblock %}">
+  	   {% block content %}{% endblock %}
+      {% block pagination %}{% endblock %}
+
+      {% block footer %}
+      <footer>
+        <ul>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/feeds/entries/">RSS</a></li>
+          <li><a href="http://twitter.com/twinsistermusic">Twitter</a></li>
+          <li><a href="http://facebook.com/twinsistermusic">Facebook</a></li>
+        </ul>
+      </footer>
+      {% endblock footer %}
+
+    </div>
+
+
+    {% block javascript %}
+    {% endblock javascript %}
+  </body>
+</html>

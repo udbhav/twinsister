@@ -1,4 +1,4 @@
-#!/Users/udbhav/Sites/twinsister/env/bin/python
+#!/Users/foucault/Sites/twinsister/env/bin/python
 #
 # The Python Imaging Library.
 # $Id$

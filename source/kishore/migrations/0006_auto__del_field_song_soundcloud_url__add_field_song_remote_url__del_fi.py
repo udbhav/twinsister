@@ -1,0 +1,144 @@
+# -*- coding: utf-8 -*-
+import datetime
+from south.db import db
+from south.v2 import SchemaMigration
+from django.db import models
+
+
+class Migration(SchemaMigration):
+
+    def forwards(self, orm):
+        # Deleting field 'Song.soundcloud_url'
+        db.delete_column('kishore_songs', 'soundcloud_url')
+
+        # Adding field 'Song.remote_url'
+        db.add_column('kishore_songs', 'remote_url',
+                      self.gf('django.db.models.fields.CharField')(default='', max_length=100, blank=True),
+                      keep_default=False)
+
+        # Deleting field 'Release.soundcloud_url'
+        db.delete_column('kishore_releases', 'soundcloud_url')
+
+        # Adding field 'Release.remote_url'
+        db.add_column('kishore_releases', 'remote_url',
+                      self.gf('django.db.models.fields.CharField')(default='', max_length=100, blank=True),
+                      keep_default=False)
+
+
+    def backwards(self, orm):
+        # Adding field 'Song.soundcloud_url'
+        db.add_column('kishore_songs', 'soundcloud_url',
+                      self.gf('django.db.models.fields.CharField')(default='', max_length=100, blank=True),
+                      keep_default=False)
+
+        # Deleting field 'Song.remote_url'
+        db.delete_column('kishore_songs', 'remote_url')
+
+        # Adding field 'Release.soundcloud_url'
+        db.add_column('kishore_releases', 'soundcloud_url',
+                      self.gf('django.db.models.fields.CharField')(default='', max_length=100, blank=True),
+                      keep_default=False)
+
+        # Deleting field 'Release.remote_url'
+        db.delete_column('kishore_releases', 'remote_url')
+
+
+    models = {
+        'kishore.artist': {
+            'Meta': {'object_name': 'Artist', 'db_table': "'kishore_artists'"},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '120'}),
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'})
+        },
+        'kishore.cart': {
+            'Meta': {'object_name': 'Cart', 'db_table': "'kishore_carts'"},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2013, 3, 22, 0, 0)'})
+        },
+        'kishore.cartitem': {
+            'Meta': {'object_name': 'CartItem', 'db_table': "'kishore_cartitems'"},
+            'cart': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['kishore.Cart']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'product': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['kishore.Product']"}),
+            'quantity': ('django.db.models.fields.IntegerField', [], {'default': '1'}),
+            'unit_price': ('django.db.models.fields.DecimalField', [], {'max_digits': '6', 'decimal_places': '2'})
+        },
+        'kishore.digitalrelease': {
+            'Meta': {'object_name': 'DigitalRelease', 'db_table': "'kishore_digitalreleases'", '_ormbases': ['kishore.Product']},
+            u'product_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['kishore.Product']", 'unique': 'True', 'primary_key': 'True'}),
+            'release': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['kishore.Release']"}),
+            'zipfile': ('django.db.models.fields.files.FileField', [], {'max_length': '100'})
+        },
+        'kishore.digitalsong': {
+            'Meta': {'object_name': 'DigitalSong', 'db_table': "'kishore_digitalsongs'", '_ormbases': ['kishore.Product']},
+            u'product_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['kishore.Product']", 'unique': 'True', 'primary_key': 'True'}),
+            'song': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['kishore.Song']", 'unique': 'True'})
+        },
+        'kishore.image': {
+            'Meta': {'object_name': 'Image', 'db_table': "'kishore_images'"},
+            'credit': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
+            'position': ('django.db.models.fields.IntegerField', [], {'default': '1'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        },
+        'kishore.merch': {
+            'Meta': {'object_name': 'Merch', '_ormbases': ['kishore.Product']},
+            u'product_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['kishore.Product']", 'unique': 'True', 'primary_key': 'True'}),
+            'variants': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['kishore.MerchVariant']", 'symmetrical': 'False'})
+        },
+        'kishore.merchvariant': {
+            'Meta': {'object_name': 'MerchVariant', 'db_table': "'kishore_merchvariants'"},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'images': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['kishore.Image']", 'symmetrical': 'False'}),
+            'inventory': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'price_difference': ('django.db.models.fields.DecimalField', [], {'max_digits': '6', 'decimal_places': '2'})
+        },
+        'kishore.physicalrelease': {
+            'Meta': {'object_name': 'PhysicalRelease', 'db_table': "'kishore_physicalreleases'", '_ormbases': ['kishore.Product']},
+            u'product_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['kishore.Product']", 'unique': 'True', 'primary_key': 'True'}),
+            'release': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['kishore.Release']"})
+        },
+        'kishore.product': {
+            'Meta': {'object_name': 'Product', 'db_table': "'kishore_products'"},
+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'images': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['kishore.Image']", 'null': 'True', 'blank': 'True'}),
+            'inventory': ('django.db.models.fields.IntegerField', [], {'default': '-1'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'price': ('django.db.models.fields.DecimalField', [], {'max_digits': '6', 'decimal_places': '2'})
+        },
+        'kishore.release': {
+            'Meta': {'object_name': 'Release', 'db_table': "'kishore_releases'"},
+            'artist': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['kishore.Artist']"}),
+            'artwork': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['kishore.Image']", 'null': 'True', 'blank': 'True'}),
+            'date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2013, 3, 22, 0, 0)'}),
+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'downloadable': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'remote_url': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
+            'songs': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['kishore.Song']", 'null': 'True', 'blank': 'True'}),
+            'streamable': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        },
+        'kishore.song': {
+            'Meta': {'object_name': 'Song', 'db_table': "'kishore_songs'"},
+            'artist': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['kishore.Artist']"}),
+            'artwork': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['kishore.Image']", 'null': 'True', 'blank': 'True'}),
+            'audio_file': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2013, 3, 22, 0, 0)'}),
+            'description': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
+            'downloadable': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'remote_url': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
+            'streamable': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'track_number': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'})
+        }
+    }
+
+    complete_apps = ['kishore']

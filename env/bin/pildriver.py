@@ -1,4 +1,4 @@
-#!/Users/udbhav/Sites/twinsister/env/bin/python
+#!/Users/foucault/Sites/twinsister/env/bin/python
 """PILdriver, an image-processing calculator using PIL.
 
 An instance of class PILDriver is essentially a software stack machine
