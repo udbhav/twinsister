@@ -1,3 +1,4 @@
+{% load kishore_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,9 +10,8 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/entries/" />
     {% block css %}{% endblock css %}
     {% block meta_description %}{% endblock meta_description %}
-    {% block kishore_static %}{% endblock %}
+    {% kishore_css %}{% kishore_js %}
   </head>
-
   <body>
     <header>
       <h1 id="logo"><a href="/">Twin Sister</a></h1>

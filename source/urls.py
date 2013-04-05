@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import urls as auth_urls
@@ -6,11 +6,13 @@ from django.views.generic import RedirectView
 
 from kishore.urls import music as music_urls
 from kishore.urls import store as store_urls
+from kishore.views import ReleaseIndex
 
 admin.autodiscover()
 
 urlpatterns = patterns(
     '',
+    (r'^$', ReleaseIndex.as_view()),
     (r'^music/', include(music_urls)),
     (r'^store/', include(store_urls)),
 
