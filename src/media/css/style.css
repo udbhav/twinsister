@@ -2,11 +2,11 @@
 
 @font-face {
     font-family: 'AvantGardeBkBTDemi';
-    src: url('avgardd-webfont.eot');
-    src: url('avgardd-webfont.eot?#iefix') format('embedded-opentype'),
-         url('avgardd-webfont.woff') format('woff'),
-         url('avgardd-webfont.ttf') format('truetype'),
-         url('avgardd-webfont.svg#AvantGardeBkBTDemi') format('svg');
+    src: url('http://twinsisterroot.s3.amazonaws.com/fonts/avgardd-webfont.eot');
+    src: url('http://twinsisterroot.s3.amazonaws.com/fonts/avgardd-webfont.eot?#iefix') format('embedded-opentype'),
+         url('http://twinsisterroot.s3.amazonaws.com/fonts/avgardd-webfont.woff') format('woff'),
+         url('http://twinsisterroot.s3.amazonaws.com/fonts/avgardd-webfont.ttf') format('truetype'),
+         url('http://twinsisterroot.s3.amazonaws.com/fonts/avgardd-webfont.svg#AvantGardeBkBTDemi') format('svg');
     font-weight: normal;
     font-style: normal;
 
