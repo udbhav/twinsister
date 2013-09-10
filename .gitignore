@@ -7,4 +7,6 @@ source/whoosh/
 source/settings/local.py
 env/
 media/
+statique/
+.sass-cache/
 *.sqlite

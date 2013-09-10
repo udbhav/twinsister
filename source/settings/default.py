@@ -43,6 +43,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'less.finders.LessFinder',
 )
 
 ADMIN_MEDIA_PREFIX = '%sadmin/' % STATIC_URL
@@ -61,6 +62,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.request',
+    'kishore.context_processors.store',
+    'kishore.context_processors.layout',
 )
 
 
@@ -74,6 +77,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     # Cache fetch is always last!
     'django.middleware.cache.FetchFromCacheMiddleware',
@@ -100,6 +105,8 @@ INSTALLED_APPS = (
     'south',
     'imagekit',
     'kishore',
+    'debug_toolbar',
+    'less',
 )
 
 LOGGING = {
@@ -133,3 +140,5 @@ CACHES = {
 
 # Email Stuff
 DEFAULT_FROM_EMAIL = "noreply@twinsistermusic.com"
+
+LOGIN_URL = '/manage/accounts/login'
