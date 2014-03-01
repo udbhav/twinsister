@@ -1,4 +1,0 @@
-{{ object.name }}
-{{ object.posted_by }}
-
-{{ object.description }}

@@ -1,0 +1,43 @@
+{
+  "sources": {
+    "apt": {
+      "locked_version": "2.3.8"
+    },
+    "nginx": {
+      "locked_version": "2.4.2"
+    },
+    "postgresql": {
+      "locked_version": "3.3.4"
+    },
+    "python": {
+      "locked_version": "1.4.6"
+    },
+    "twinsister": {
+      "path": "./cookbooks/twinsister"
+    },
+    "bluepill": {
+      "locked_version": "2.3.1"
+    },
+    "rsyslog": {
+      "locked_version": "1.12.2"
+    },
+    "build-essential": {
+      "locked_version": "1.4.4"
+    },
+    "ohai": {
+      "locked_version": "1.1.12"
+    },
+    "runit": {
+      "locked_version": "1.5.8"
+    },
+    "yum": {
+      "locked_version": "3.1.2"
+    },
+    "yum-epel": {
+      "locked_version": "0.3.4"
+    },
+    "openssl": {
+      "locked_version": "1.1.0"
+    }
+  }
+}

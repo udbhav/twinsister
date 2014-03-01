@@ -1,5 +1,0 @@
-{% with data.imagebase.flickrphoto as photo %}
-   <a href="{{ photo.get_flickr_page }}"><img src="{{ photo.get_large_photo }}" alt="{{ photo.title }}" /></a>
-   <p>from Flickr user: <a href="{{ photo.user.get_absolute_url }}">{{ photo.user }}</a></p>
-{% endwith %}
-

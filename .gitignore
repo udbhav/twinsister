@@ -1,12 +1,2 @@
-*.pyc
-*#*
-*~*
-source/local_settings.py
-source/media/uploads/
-source/whoosh/
-source/settings/local.py
-env/
-media/
-statique/
-.sass-cache/
-*.sqlite
+src/twinsister/settings/local.py
+.vagrant/
