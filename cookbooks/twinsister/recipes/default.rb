@@ -52,3 +52,7 @@ end
 execute "collectstatic" do
   command "/home/vagrant/env/bin/python /vagrant/src/manage.py collectstatic --noinput -l"
 end
+
+
+execute "/home/vagrant/env/bin/pip install ipython"
+execute "npm install -g less"

@@ -1,17 +1,18 @@
 from django.conf.urls import patterns, include, url
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from kishore.urls import music as music_urls
+from kishore.urls import store as store_urls
+from kishore.urls import admin as admin_urls
+from kishore.urls import search as search_urls
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'twinsister.views.home', name='home'),
-    # url(r'^twinsister/', include('twinsister.foo.urls')),
+from kishore.views import ReleaseList
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+urlpatterns = patterns(
+    '',
+    (r'^$', ReleaseList.as_view()),
 
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    (r'^music/', include(music_urls)),
+    (r'^store/', include(store_urls)),
+    (r'^manage/', include(admin_urls)),
+    (r'^search/', include(search_urls)),
 )

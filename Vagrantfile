@@ -18,6 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "nginx"
     chef.add_recipe "python"
     chef.add_recipe "postgresql::server"
+    chef.add_recipe "nodejs::install_from_package"
+
     chef.add_recipe "twinsister"
 
     chef.json = {
