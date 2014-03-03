@@ -32,14 +32,6 @@ execute "create_db" do
   user "postgres"
 end
 
-execute "syncdb" do
-  command <<-EOS.gsub(/^[\s\t]*/, '').gsub(/[\s\t]*\n/, ' ').strip
-    /home/vagrant/env/bin/python /vagrant/src/manage.py syncdb --noinput;
-    /home/vagrant/env/bin/python /vagrant/src/manage.py migrate
-  EOS
-  user "vagrant"
-end
-
 # nginx
 execute "nginx_conf" do
   command <<-EOS.gsub(/^[\s\t]*/, '').gsub(/[\s\t]*\n/, ' ').strip
@@ -48,11 +40,15 @@ execute "nginx_conf" do
   EOS
 end
 
-# collectstatic
-execute "collectstatic" do
-  command "/home/vagrant/env/bin/python /vagrant/src/manage.py collectstatic --noinput -l"
-end
-
-
 execute "/home/vagrant/env/bin/pip install ipython"
 execute "npm install -g less"
+
+# django init stuff
+execute "django_init" do
+  command <<-EOS.gsub(/^[\s\t]*/, '').gsub(/[\s\t]*\n/, ' ').strip
+    /home/vagrant/env/bin/python /vagrant/src/manage.py syncdb --noinput;
+    /home/vagrant/env/bin/python /vagrant/src/manage.py migrate;
+    /home/vagrant/env/bin/python /vagrant/src/manage.py collectstatic -l --noinput
+  EOS
+  user "vagrant"
+end
