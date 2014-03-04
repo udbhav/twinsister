@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.markup',
 
     # 3rd Party
     'south',
@@ -145,7 +146,6 @@ HAYSTACK_CONNECTIONS = {
 }
 
 LOGIN_URL = "/manage/accounts/login/"
-
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -175,3 +175,6 @@ LOGGING = {
         },
     }
 }
+
+KISHORE_SITE_NAME = "Twin Sister"
+KISHORE_USE_SOUNDCLOUD_EMBED = False
