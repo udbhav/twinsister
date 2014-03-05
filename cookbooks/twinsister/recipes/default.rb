@@ -43,6 +43,22 @@ end
 execute "/home/vagrant/env/bin/pip install ipython"
 execute "npm install -g less"
 
+# supervisor
+gem_package "watchr" do
+  action :install
+end
+
+execute "supervisor" do
+  command <<-EOS.gsub(/^[\s\t]*/, '').gsub(/[\s\t]*\n/, ' ').strip
+    ln -sf /vagrant/cookbooks/twinsister/files/default/supervisor.conf
+    /etc/supervisor.d/twinsister.conf
+  EOS
+end
+
+service "supervisor" do
+  action :restart
+end
+
 # django init stuff
 execute "django_init" do
   command <<-EOS.gsub(/^[\s\t]*/, '').gsub(/[\s\t]*\n/, ' ').strip

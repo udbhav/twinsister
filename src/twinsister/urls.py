@@ -9,10 +9,11 @@ from kishore.views import ReleaseList
 
 urlpatterns = patterns(
     '',
-    (r'^$', ReleaseList.as_view()),
+    (r'^$', 'twinsister.views.home'),
 
     (r'^music/', include(music_urls)),
     (r'^store/', include(store_urls)),
     (r'^manage/', include(admin_urls)),
     (r'^search/', include(search_urls)),
+    ('^accounts/', include('django.contrib.auth.urls')),
 )

@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
   config.vm.network :forwarded_port, host: 8001, guest: 80
 
-  kishore_location = ENV['KISHORE_LOCATION'] ||= "/Users/foucault/Site/kishore/django-kishore/kishore"
+  kishore_location = ENV['KISHORE_LOCATION'] ||= "/Users/foucault/Sites/kishore/django-kishore/kishore"
   config.vm.synced_folder kishore_location, "/home/vagrant/kishore"
 
   config.omnibus.chef_version = :latest
@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "python"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "nodejs::install_from_package"
+    chef.add_recipe "supervisor"
 
     chef.add_recipe "twinsister"
 
