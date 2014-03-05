@@ -1,7 +1,32 @@
 {% extends "kishore/base.html" %}
+{% load staticfiles %}
 
 {% block body_class %}home{% endblock %}
 
 {% block kishore_content %}
-YO!
+{% if song %}
+<div class="feature">
+  <div class="text-center">
+    <img src="{% static 'images/out_of_the_dark.gif' %}" alt="{{ song }}">
+  </div>
+
+  <div class="player">
+    {% autoescape off %}{{ song.get_player_html }}{% endautoescape %}
+  </div>
+
+  <div class="actions monospaced text-center">
+    <a href="#" class="play">Play</a> | <a href="#">Buy</a> |
+    <a href="#">Download</a> | <a href="#" class="toggle-hide">Hide</a><br><br>
+    <a href="{{ song.remote_url }}" class="soundcloud">
+      <img src="{% static 'images/soundcloud_white.png' %}" alt="Soundcloud">
+    </a>
+
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+
+
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 {% endblock %}
