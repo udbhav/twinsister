@@ -1,0 +1,7 @@
+{% extends "kishore/base_default.html" %}
+{% load staticfiles %}
+
+{% block kishore_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" />
+{% endblock %}
