@@ -2,3 +2,4 @@ src/twinsister/settings/local.py
 .vagrant/
 src/public/
 .chef/
+src/media/

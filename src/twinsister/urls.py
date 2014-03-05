@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
+from django.conf.urls.static import static
 
 from kishore.urls import music as music_urls
 from kishore.urls import store as store_urls
@@ -17,3 +19,6 @@ urlpatterns = patterns(
     (r'^search/', include(search_urls)),
     ('^accounts/', include('django.contrib.auth.urls')),
 )
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

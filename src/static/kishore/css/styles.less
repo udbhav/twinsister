@@ -1,8 +1,24 @@
+@import "bootstrap/twinsis_bootstrap.less";
+@import "common.less";
+@import "font-awesome.less";
+@import "default.less";
+
+h1 { font-size: 30px; }
+h2 { font-size: 25px; }
+
+.navbar-inverse {
+  background: black;
+  border-color: black;
+}
+
 .search-form {
   display: none;
 }
 
-.navbar-inverse { background: black; border-color: black; }
+article.song .buy-product, article.song .download-product {
+  float: left;
+  margin-right: 20px;
+}
 
 body.home {
   .navbar { display: none; }
@@ -60,4 +76,7 @@ body.home {
   }
 }
 
-.
+body.song-detail {
+  .page-header { display: none; }
+  .description { clear: left; }
+}

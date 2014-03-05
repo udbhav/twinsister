@@ -2,7 +2,22 @@
 {% load staticfiles %}
 {% load less %}
 
-{% block kishore_css %}
+{% block javascript %}
 {{ block.super }}
-<link rel="stylesheet" href="{{ STATIC_URL }}{% less 'css/styles.less' %}" type="text/css" />
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+<script type="text/javascript">
+WebFontConfig = { fontdeck: { id: '43335' } };
+
+(function() {
+  var wf = document.createElement('script');
+  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+  '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  wf.type = 'text/javascript';
+  wf.async = 'true';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(wf, s);
+})();
+</script>
 {% endblock %}
+
+{% block navbar_class %}navbar-inverse{% endblock %}
