@@ -8,10 +8,8 @@ For development, use [Vagrant](http://vagrantup.com) with the Chef Omnibus and B
 
     vagrant plugin install vagrant-omnibus
     vagrant plugin install vagrant-berkshelf
+    vagrant plugin install vagrant-vbguest
     vagrant up
-    vagrant ssh
-    source env/bin/activate && cd /vagrant/src
-    gunicorn -b unix:/tmp/gunicorn.sock twinsister.wsgi:application
 
 To setup a production server on Rackspace (make sure you've setup the .chef directory):
 

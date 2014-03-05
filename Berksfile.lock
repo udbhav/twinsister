@@ -18,6 +18,11 @@
     "supervisor": {
       "locked_version": "0.4.10"
     },
+    "rvm": {
+      "locked_version": "0.9.1",
+      "git": "git://github.com/fnichol/chef-rvm.git",
+      "ref": "87f58d428c160337c1581ed1130a1a53d94e5126"
+    },
     "twinsister": {
       "path": "./cookbooks/twinsister"
     },
@@ -44,6 +49,12 @@
     },
     "openssl": {
       "locked_version": "1.1.0"
+    },
+    "java": {
+      "locked_version": "1.20.0"
+    },
+    "chef_gem": {
+      "locked_version": "0.1.0"
     }
   }
 }

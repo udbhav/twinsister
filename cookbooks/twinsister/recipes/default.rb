@@ -1,6 +1,7 @@
 # virtualenv
 python_virtualenv "/home/vagrant/env" do
   action :create
+  owner "vagrant"
 end
 
 # pillow requirements
@@ -43,11 +44,14 @@ end
 execute "/home/vagrant/env/bin/pip install ipython"
 execute "npm install -g less"
 
-# supervisor
-gem_package "watchr" do
-  action :install
+# ruby
+rvm_shell "bundle_install" do
+  user "vagrant"
+  code "bundle install"
+  cwd "/vagrant/"
 end
 
+# supervisor
 execute "supervisor" do
   command <<-EOS.gsub(/^[\s\t]*/, '').gsub(/[\s\t]*\n/, ' ').strip
     ln -sf /vagrant/cookbooks/twinsister/files/default/supervisor.conf

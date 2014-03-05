@@ -23,13 +23,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "postgresql::server"
     chef.add_recipe "nodejs::install_from_package"
     chef.add_recipe "supervisor"
-
+    chef.add_recipe "rvm::user"
     chef.add_recipe "twinsister"
 
     chef.json = {
       "postgresql" => {
         "password" => { "postgres" => "postgres" }
-      }
+      },
+      "rvm" => {
+        "user_installs" => [{"user" => "vagrant"}],
+        "vagrant" => {
+          "system_chef_client" => "/opt/chef/bin/chef-client",
+          "system_solo_client" => "/opt/chef/bin/chef-solo"
+        },
+      },
     }
   end
 end
