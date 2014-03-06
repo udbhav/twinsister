@@ -15,9 +15,42 @@ h2 { font-size: 25px; }
   display: none;
 }
 
-article.song .buy-product, article.song .download-product {
-  float: left;
-  margin-right: 20px;
+.form-control {
+  background: #ddd;
+}
+
+.product-title {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.product-detail #song-link { display: none; }
+
+.kishore-audio-player {
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.kishore-audio-player li:hover {
+  background-color: #ccc;
+  color: #333;
+}
+
+.kishore-audio-player li.playing {
+  color: #333;
+}
+
+.kishore-audio-player li.playing:hover {
+  background: lighten(@brand-primary, 20%);
+}
+
+.kishore-audio-player li.paused:hover {
+  background: #fff;
+}
+
+.kishore-audio-player #song-time, .kishore-audio-player #song-link {
+  color: #333;
 }
 
 body.home {
@@ -79,4 +112,18 @@ body.home {
 body.song-detail {
   .page-header { display: none; }
   .description { clear: left; }
+
+  .buy-product, article.song .download-product {
+    float: left;
+    margin-right: 20px;
+  }
+}
+
+.payment-method li > label[for=id_processor_0] {
+  background-image: url(https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif);
+  background-repeat: no-repeat;
+  background-position: 20px 0;
+  color: transparent;
+  width: 165px;
+  height: 30px;
 }
