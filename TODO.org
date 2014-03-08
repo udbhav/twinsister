@@ -1,0 +1,9 @@
+* TODO Weird caching behavior in the admin
+* TODO S3 Bucket on server
+* TODO switch search to ElasticSearch from Whoosh
+* TODO Markdown keeps escaping links and all other formatting.
+* TODO S3 direct upload
+* TODO Test email stuff
+* TODO set up dns
+* TODO figure out backups
+* TODO download stats
