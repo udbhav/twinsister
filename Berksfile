@@ -6,6 +6,7 @@ cookbook 'postgresql'
 cookbook 'python'
 cookbook 'nodejs'
 cookbook 'supervisor'
-cookbook 'rvm', github: 'fnichol/chef-rvm'
+cookbook 'rbenv', github: 'fnichol/chef-rbenv'
+cookbook 'ruby_build'
 
 cookbook 'twinsister', path: 'cookbooks/twinsister'

@@ -17,25 +17,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.berkshelf.enabled = true
 
   config.vm.provision "chef_solo" do |chef|
-    chef.add_recipe "apt"
-    chef.add_recipe "nginx"
-    chef.add_recipe "python"
-    chef.add_recipe "postgresql::server"
-    chef.add_recipe "nodejs::install_from_package"
-    chef.add_recipe "supervisor"
-    chef.add_recipe "rvm::user"
     chef.add_recipe "twinsister"
 
     chef.json = {
+      "twinsister" => {
+        "user" => "vagrant",
+        "app_root" => "/vagrant"
+      },
+      "rbenv" => {
+        "user_installs" => [{"user" => "vagrant",
+                              "rubies" => ["2.1.1"],
+                              'global'  => '2.1.1',
+                            }]
+      },
       "postgresql" => {
         "password" => { "postgres" => "postgres" }
-      },
-      "rvm" => {
-        "user_installs" => [{"user" => "vagrant"}],
-        "vagrant" => {
-          "system_chef_client" => "/opt/chef/bin/chef-client",
-          "system_solo_client" => "/opt/chef/bin/chef-solo"
-        },
       },
     }
   end

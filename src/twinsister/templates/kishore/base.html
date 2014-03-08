@@ -1,8 +1,10 @@
 {% extends "kishore/base_default.html" %}
 {% load staticfiles %}
 {% load less %}
+{% load compress %}
 
 {% block javascript %}
+{% compress js %}
 {{ block.super }}
 <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 <script type="text/javascript">
@@ -18,6 +20,7 @@ WebFontConfig = { fontdeck: { id: '43335' } };
   s.parentNode.insertBefore(wf, s);
 })();
 </script>
+{% endcompress %}
 {% endblock %}
 
 {% block navbar_class %}navbar-inverse{% endblock %}

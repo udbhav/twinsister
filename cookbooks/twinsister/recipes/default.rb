@@ -1,26 +1,8 @@
-# virtualenv
-python_virtualenv "/home/vagrant/env" do
-  action :create
-  owner "vagrant"
-end
-
-# pillow requirements
-%w(libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev).each do |pkg|
-  package pkg do
-    action :install
-  end
-end
-
-execute "python_requirements" do
-  command <<-EOS.gsub(/^[\s\t]*/, '').gsub(/[\s\t]*\n/, ' ').strip
-    /home/vagrant/env/bin/pip install Pillow;
-    /home/vagrant/env/bin/pip install -r /vagrant/requirements.txt
-  EOS
-end
+include_recipe "twinsister::base"
 
 # temporary kishore dev stuff
 execute "kishore_symlink" do
-  command "ln -sf /home/vagrant/kishore /home/vagrant/env/lib/python2.7/site-packages/kishore"
+  command "ln -sf /home/vagrant/kishore /vagrant/env/lib/python2.7/site-packages/kishore"
 end
 
 # db
@@ -41,15 +23,14 @@ execute "nginx_conf" do
   EOS
 end
 
-execute "/home/vagrant/env/bin/pip install ipython"
-execute "npm install -g less"
+execute "/vagrant/env/bin/pip install ipython"
 
 # ruby
-rvm_shell "bundle_install" do
-  user "vagrant"
-  code "bundle install"
-  cwd "/vagrant/"
-end
+# rvm_shell "bundle_install" do
+#   user "vagrant"
+#   code "bundle install"
+#   cwd "/vagrant/"
+# end
 
 # supervisor
 execute "supervisor" do
@@ -64,11 +45,11 @@ service "supervisor" do
 end
 
 # django init stuff
-execute "django_init" do
-  command <<-EOS.gsub(/^[\s\t]*/, '').gsub(/[\s\t]*\n/, ' ').strip
-    /home/vagrant/env/bin/python /vagrant/src/manage.py syncdb --noinput;
-    /home/vagrant/env/bin/python /vagrant/src/manage.py migrate;
-    /home/vagrant/env/bin/python /vagrant/src/manage.py collectstatic -l --noinput
-  EOS
-  user "vagrant"
-end
+# execute "django_init" do
+#   command <<-EOS.gsub(/^[\s\t]*/, '').gsub(/[\s\t]*\n/, ' ').strip
+#     /vagrant/env/bin/python /vagrant/src/manage.py syncdb --noinput;
+#     /vagrant/env/bin/python /vagrant/src/manage.py migrate;
+#     /vagrant/env/bin/python /vagrant/src/manage.py collectstatic -l --noinput
+#   EOS
+#   user "vagrant"
+# end

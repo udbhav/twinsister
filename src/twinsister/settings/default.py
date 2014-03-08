@@ -70,6 +70,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'less.finders.LessFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 ADMIN_MEDIA_PREFIX = '%sadmin/' % STATIC_URL
@@ -135,6 +136,7 @@ INSTALLED_APPS = (
     'taggit',
     'kishore',
     'debug_toolbar',
+    'compressor',
     'less',
 )
 

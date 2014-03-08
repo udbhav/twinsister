@@ -3,3 +3,4 @@ src/twinsister/settings/local.py
 src/public/
 .chef/
 src/media/
+env/

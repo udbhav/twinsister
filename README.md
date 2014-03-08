@@ -12,15 +12,13 @@ Berkshelf plugins.
     vagrant plugin install vagrant-vbguest
     vagrant up
 
-To setup a production server on Rackspace:
+To setup a production server on Digital Ocean, upload cookbooks to chef
 
-    gem install chef
-    gem intall knife-rackspace
+    berks upload
 
-Set up a .chef directory with a knife.rb file that has the following:
+Bootstrap the server once you've set up remote access
 
-    knife[:rackspace_api_username] = "Your Rackspace API username"
-    knife[:rackspace_api_key] = "Your Rackspace API Key"
+    knife bootstrap -x username --sudo ipaddress
 
 Run:
 

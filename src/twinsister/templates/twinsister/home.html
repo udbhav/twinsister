@@ -1,10 +1,12 @@
 {% extends "kishore/base.html" %}
 {% load staticfiles %}
+{% load cache %}
 
 {% block body_class %}home{% endblock %}
 
 {% block kishore_content %}
 {% if song %}
+{% cache 9999999 song song.cache_key %}
 <div class="feature">
   <div class="text-center">
     <img src="{% static 'images/out_of_the_dark.gif' %}" alt="{{ song }}">
@@ -25,5 +27,6 @@
 
   </div>
 </div>
+{% endcache %}
 {% endif %}
 {% endblock %}
