@@ -27,3 +27,4 @@ six==1.2.0
 soundcloud==0.4.1
 stripe==1.9.4
 wsgiref==0.1.2
+-e git://github.com/udbhav/kishore.git@development#egg=kishore
