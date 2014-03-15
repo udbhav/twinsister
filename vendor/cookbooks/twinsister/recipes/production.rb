@@ -13,4 +13,11 @@ end
 node.default['openssh']['server']['password_authentication'] = 'no'
 include_recipe "openssh"
 
+# copy root key to user if no ssh directory
+unless File.directory?("/home/#{node['twinsister']['user']}/.ssh")
+    execute "mkdir /home/#{node['twinsister']['user']}/.ssh"
+    execute "cp /root/.ssh/authorized_keys /home/#{node['twinsister']['user']}/.ssh/"
+    execute "chown #{node['twinsister']['user']} /home/#{node['twinsister']['user']}/.ssh/authorized_keys"
+end
+
 include_recipe "twinsister::base"

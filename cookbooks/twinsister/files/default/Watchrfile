@@ -1,2 +1,0 @@
-watch( '.*\.py' )  {|md| system("supervisorctl restart gunicorn") }
-watch( 'static/.*\..*' )  {|md| system("/home/vagrant/env/bin/python /vagrant/src/manage.py collectstatic --noinput") }
