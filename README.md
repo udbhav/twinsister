@@ -4,24 +4,27 @@ Twin Sister
 Installation
 ------------
 
-For development, use [Vagrant](http://vagrantup.com) with the Chef Omnibus and
-Berkshelf plugins.
+For development, use [Vagrant](http://vagrantup.com) with the Chef Omnibus
 
     vagrant plugin install vagrant-omnibus
-    vagrant plugin install vagrant-berkshelf
     vagrant plugin install vagrant-vbguest
+    gem install librarian-chef
+    librarian-chef install
     vagrant up
 
-To setup a production server on Digital Ocean, upload cookbooks to chef
+Setting Up a Production Server
+------------------------------
 
-    berks upload
+SSH into the server and create the user you'll be using
 
-Bootstrap the server once you've set up remote access
+    adduser udbhav
+    adduser udbhav sudo
 
-    knife bootstrap -x username --sudo ipaddress
+Upload cookbooks to chef
 
-Run:
+    knife cookbook upload --all
 
-    knife rackspace server create -r 'role[webserver]' --server-name SERVER_NAME \
-    --node-name NODE_NAME --image 80fbcb55-b206-41f9-9bc2-2dd7aac6c061 --flavor 2 \
-    --rackspace-region iad
+Bootstrap the server
+
+    knife bootstrap -x root -N nodename -r 'recipe[twinsister::production]' \
+    -i ~/.ssh/id_rsa ipaddress

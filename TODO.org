@@ -7,3 +7,4 @@
 * TODO set up dns
 * TODO figure out backups
 * TODO download stats
+* TODO 404 and 500 pages

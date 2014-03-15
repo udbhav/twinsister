@@ -12,12 +12,14 @@ from kishore.views import ReleaseList
 urlpatterns = patterns(
     '',
     (r'^$', 'twinsister.views.home'),
-
+    (r'^test/$', 'twinsister.views.test'),
     (r'^music/', include(music_urls)),
+
     (r'^store/', include(store_urls)),
     (r'^manage/', include(admin_urls)),
     (r'^search/', include(search_urls)),
     ('^accounts/', include('django.contrib.auth.urls')),
+
 )
 
 if settings.DEBUG:

@@ -4,3 +4,4 @@ src/public/
 .chef/
 src/media/
 env/
+/cookbooks

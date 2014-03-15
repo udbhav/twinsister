@@ -1,0 +1,12 @@
+site "http://community.opscode.com/api/v1"
+
+cookbook 'apt'
+cookbook 'nginx'
+cookbook 'postgresql'
+cookbook 'python'
+cookbook 'nodejs'
+cookbook 'supervisor'
+cookbook 'rbenv', git: 'https://github.com/fnichol/chef-rbenv'
+cookbook 'ruby_build'
+
+cookbook 'twinsister', path: 'vendor/cookbooks/twinsister'

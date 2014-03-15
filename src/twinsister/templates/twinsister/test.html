@@ -1,0 +1,28 @@
+{% load staticfiles %}
+{% load kishore_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% kishore_css %}
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    <script type="text/javascript">
+      var kishore_static_root = "{% static 'kishore' %}";
+    </script>
+    <style>
+      .kishore-audio-player .song-controls { display: none; }
+      .kishore-audio-player .playing .song-controls { display: block; }
+      .kishore-audio-player .paused .song-controls { display: block; }
+    </style>
+
+    {{ song }}
+    {% autoescape off %}{{ song.get_player_html }}{% endautoescape %}
+
+    <script type="text/javascript" src="{% static 'kishore/js/jquery-1.9.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'kishore/js/soundmanager2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/player.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+
+  </body>
+</html>

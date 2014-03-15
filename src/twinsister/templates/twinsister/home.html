@@ -17,14 +17,9 @@
   </div>
 
   <div class="actions monospaced text-center">
-    <a href="#" class="play">Play</a> |
     {% if song.get_buy_now_link %} <a href="{{ song.get_buy_now_link }}">Buy</a> |{% endif %}
     {% if song.downloadable %}<a href="{% url 'kishore_song_download' pk=song.pk %}">Download</a> |{% endif %}
     <a href="#" class="toggle-hide">Hide</a><br><br>
-    <a href="{{ song.remote_url }}" class="soundcloud">
-      <img src="{% static 'images/soundcloud_white.png' %}" alt="Soundcloud">
-    </a>
-
   </div>
 </div>
 {% endcache %}

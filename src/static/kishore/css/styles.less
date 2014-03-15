@@ -3,6 +3,9 @@
 @import "font-awesome.less";
 @import "default.less";
 
+html { height: 100%; }
+body { min-height: 100%; }
+
 h1 { font-size: 30px; }
 h2 { font-size: 25px; }
 
@@ -30,6 +33,11 @@ h2 { font-size: 25px; }
   -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
+}
+
+.kishore-audio-player .progress-bar {
+  transition: width 0.3s ease;
+  -webkit-transition: width 0.3s ease;
 }
 
 .kishore-audio-player li:hover {
@@ -61,9 +69,7 @@ body.home {
     margin: 20px auto 0;
 
     .player {
-      margin-top: -80px;
-      position: relative;
-      height: 56px;
+      margin-top: 20px;
     }
 
     .player li {
@@ -103,7 +109,7 @@ body.home {
   }
 
   .feature.minimal {
-    .actions, #song-position {
+    .actions, .player {
       display: none;
     }
   }

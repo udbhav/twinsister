@@ -22,4 +22,8 @@
   $("body.home").on("click", function(e) {
     $(".feature").removeClass("minimal");
   });
+
+  // test audio player
+  $(".kishore-audio-player").kishoreAudioPlayer();
+
 })(jQuery);
