@@ -5,6 +5,7 @@ SITE
     bluepill (2.3.1)
       rsyslog (>= 0.0.0)
     build-essential (2.0.0)
+    firewall (0.11.6)
     iptables (0.12.0)
     locale (0.0.2)
     nginx (2.4.4)
@@ -64,6 +65,7 @@ PATH
 
 DEPENDENCIES
   apt (>= 0)
+  firewall (>= 0)
   nginx (>= 0)
   nodejs (>= 0)
   openssh (>= 0)

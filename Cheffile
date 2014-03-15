@@ -9,5 +9,6 @@ cookbook 'supervisor'
 cookbook 'rbenv', git: 'https://github.com/fnichol/chef-rbenv'
 cookbook 'ruby_build'
 cookbook 'openssh'
+cookbook 'firewall'
 
 cookbook 'twinsister', path: 'vendor/cookbooks/twinsister'
