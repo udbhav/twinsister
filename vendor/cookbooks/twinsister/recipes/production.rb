@@ -9,4 +9,8 @@ unless File.directory?(node['twinsister']['app_root'])
   end
 end
 
+# disable password ssh
+node.default['openssh']['server']['password_authentication'] = 'no'
+include_recipe "openssh"
+
 include_recipe "twinsister::base"

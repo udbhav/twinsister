@@ -8,5 +8,6 @@ cookbook 'nodejs'
 cookbook 'supervisor'
 cookbook 'rbenv', git: 'https://github.com/fnichol/chef-rbenv'
 cookbook 'ruby_build'
+cookbook 'openssh'
 
 cookbook 'twinsister', path: 'vendor/cookbooks/twinsister'
