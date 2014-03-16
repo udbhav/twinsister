@@ -9,10 +9,15 @@ include_recipe "postgresql::server"
 include_recipe "nodejs::install_from_package"
 include_recipe "supervisor"
 
-# venv_root = "#{node['twinsister']['app_root']}/env"
-# venv_pip = "#{venv_root}/bin/pip"
-# home =
-# home = "/home/#{node['twinsister']['user']}"
+# create directory and clone repo if it doesn't exist
+apt_package "git"
+unless File.directory?(node['twinsister']['app_root'])
+  execute "git clone" do
+    command "git clone -b #{node['twinsister']['git_branch']} #{node['twinsister']['git_repo']}"
+    cwd "/home/#{node['twinsister']['user']}"
+    user node['twinsister']['user']
+  end
+end
 
 # virtualenv
 python_virtualenv "#{node['twinsister']['app_root']}/env" do
@@ -20,20 +25,23 @@ python_virtualenv "#{node['twinsister']['app_root']}/env" do
   owner node['twinsister']['user']
 end
 
-# pillow requirements
-%w(libjpeg-dev libfreetype6 libfreetype6-dev zlib1g-dev).each do |pkg|
+# required packages
+packages = ['libjpeg-dev', 'libfreetype6', 'libfreetype6-dev',
+  'zlib1g-dev', 'libxml2-dev' ,'libxslt-dev']
+
+packages.each do |pkg|
   package pkg do
     action :install
   end
 end
-
-apt_package "memcached"
 
 # python requirements
 execute "python_requirements" do
   command "env/bin/pip install -r requirements.txt"
   cwd node['twinsister']['app_root']
 end
+
+apt_package "memcached"
 
 # less
 execute "npm install -g less"

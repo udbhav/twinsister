@@ -1,13 +1,5 @@
-apt_package "git"
-
-# create directory and clone repo if it doesn't exist
-unless File.directory?(node['twinsister']['app_root'])
-  execute "git clone" do
-    command "git clone -b #{node['twinsister']['git_branch']} #{node['twinsister']['git_repo']}"
-    cwd "/home/#{node['twinsister']['user']}"
-    user node['twinsister']['user']
-  end
-end
+# normal provisioning
+include_recipe "twinsister::base"
 
 # disable password ssh
 node.default['openssh']['server']['password_authentication'] = 'no'
@@ -22,7 +14,6 @@ end
 
 # firewall
 include_recipe "firewall"
-
 rules = [['ssh',22],['http',80],['ssl',443]]
 rules.each do |r|
   firewall_rule r[0] do
@@ -30,7 +21,12 @@ rules.each do |r|
     action :allow
   end
 end
-
 firewall 'ufw'
 
-include_recipe "twinsister::base"
+# db user password
+execute "change db user pw" do
+  command "psql -c \"ALTER USER #{node['twinsister']['db']['user']} WITH PASSWORD '#{node['twinsister']['db']['password']}'\""
+  user 'postgres'
+end
+
+include_recipe "twinsister::deploy"

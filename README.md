@@ -28,3 +28,10 @@ Bootstrap the server
 
     knife bootstrap -x root -N nodename -r 'recipe[twinsister::production]' \
     -i ~/.ssh/id_rsa ipaddress
+
+Deploying
+---------
+
+Change the run list of the node to twinsister::deploy, and then
+
+    knife ssh 'name:nodename' 'sudo chef-client'
