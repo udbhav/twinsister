@@ -65,7 +65,14 @@ template "/etc/nginx/sites-available/twinsister" do
   source "nginx.erb"
   owner node['nginx']['user']
   group node['nginx']['user']
-  variables({app_root: node['twinsister']['app_root']})
+  variables({app_root: node['twinsister']['app_root'],
+    hostname: node['twinsister']['hostname'],
+    protect: node['twinsister']['password_protect']})
+
+end
+
+service "nginx" do
+  action :restart
 end
 
 # supervisor

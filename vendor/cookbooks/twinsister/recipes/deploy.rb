@@ -24,6 +24,7 @@ end
 execute "collectstatic" do
   command "env/bin/python src/manage.py collectstatic --noinput"
   cwd node['twinsister']['app_root']
+  user node['twinsister']['user']
 end
 
 # restart gunicorn
