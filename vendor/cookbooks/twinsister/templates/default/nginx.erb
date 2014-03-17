@@ -4,43 +4,7 @@ upstream app_server {
 
 server {
   listen 80 default;
-  client_max_body_size 4G;
-  server_name <%= @hostname %>;
 
-  keepalive_timeout 5;
-
-  access_log /var/log/nginx/twinsister.access.log combined;
-  error_log /var/log/nginx/twinsister.error.log;
-
-  location /static {
-    root <%= @app_root %>/src/public;
-  }
-
-  location / {
-
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
-    proxy_redirect off;
-
-    <%= "auth_basic \"Restricted\";" if @protect %>
-    auth_basic_user_file <%= @app_root %>/htpasswd;
-
-    proxy_pass   http://app_server;
-  }
-
-  location @proxy_to_app {
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
-    proxy_redirect off;
-
-    proxy_pass   http://app_server;
-  }
-
-  error_page 500 502 503 504 /static/500.html;
-  error_page 404 /static/404.html;
-}
-
-server {
   listen 443 default_server ssl;
   ssl_certificate /home/<%= @user %>/certificates/mrtwinsister.crt;
   ssl_certificate_key /home/<%= @user %>/certificates/mrtwinsister.key;
@@ -48,37 +12,34 @@ server {
   client_max_body_size 4G;
   server_name <%= @hostname %>;
 
+  root <%= @app_root %>/src/public;
+
   keepalive_timeout 5;
 
   access_log /var/log/nginx/twinsister.access.log combined;
   error_log /var/log/nginx/twinsister.error.log;
 
-  location /static {
-    root <%= @app_root %>/src/public;
-  }
-
-  location / {
-
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
-    proxy_redirect off;
-
-    <%= "auth_basic \"Restricted\";" if @protect %>
-    auth_basic_user_file <%= @app_root %>/htpasswd;
-
-    proxy_pass   http://app_server;
-  }
-
   location @proxy_to_app {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_redirect off;
-
     proxy_pass   http://app_server;
+  }
+
+  # redirect to ssl on checkout
+  location /store/checkout {
+    if ($server_port = 80) {
+      rewrite ^ https://$host$request_uri permanent;
+    }
+
+    try_files $uri @proxy_to_app;
+  }
+
+  location / {
+    # checks for static file, if not found proxy to app
+    try_files $uri @proxy_to_app;
   }
 
   error_page 500 502 503 504 /static/500.html;
   error_page 404 /static/404.html;
-
-
 }

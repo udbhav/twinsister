@@ -1,11 +1,15 @@
-* TODO Weird caching behavior in the admin
-* TODO S3 Bucket on server
-* TODO switch search to ElasticSearch from Whoosh
-* TODO Markdown keeps escaping links and all other formatting.
-* TODO S3 direct upload
 * TODO Test email stuff
-* TODO Ownership issue, no root for app?
+* TODO S3 Bucket on server
+* TODO JS compression errors
+* TODO switch search to ElasticSearch from Whoosh
+* TODO S3 direct upload
+* TODO Weird caching behavior in the admin
 * TODO set up dns
+
+* TODO Ownership issue, no root for app?
+* TODO Markdown keeps escaping links and all other formatting.
 * TODO figure out backups
 * TODO download stats
 * TODO 404 and 500 pages
+* TODO favicon
+* TODO CSS/JS on S3 (make sure works with SSL)
