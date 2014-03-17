@@ -67,6 +67,7 @@ template "/etc/nginx/sites-available/twinsister" do
   group node['nginx']['user']
   variables({app_root: node['twinsister']['app_root'],
     hostname: node['twinsister']['hostname'],
+    user: node['twinsister']['user'],
     protect: node['twinsister']['password_protect']})
 
 end
