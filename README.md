@@ -34,4 +34,6 @@ Deploying
 
 Change the run list of the node to twinsister::deploy, and then
 
-    knife ssh 'name:nodename' 'sudo chef-client'
+app_root: node['twinsister']['app_root'],
+
+    knife ssh 'name:nodename' 'sudo chef-client' -i ~/.ssh/id_rsa -a 'ip_address' -x root

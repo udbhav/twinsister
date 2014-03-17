@@ -4,6 +4,7 @@
 * TODO Markdown keeps escaping links and all other formatting.
 * TODO S3 direct upload
 * TODO Test email stuff
+* TODO Ownership issue, no root for app?
 * TODO set up dns
 * TODO figure out backups
 * TODO download stats
