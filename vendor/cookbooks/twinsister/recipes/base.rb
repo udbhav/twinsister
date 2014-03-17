@@ -75,6 +75,17 @@ service "nginx" do
   action :restart
 end
 
+# gunicorn logrotate
+directory "/var/log/gunicorn" do
+  owner node['twinsister']['user']
+  group "root"
+end
+
+template "/etc/logrotate.d/gunicorn" do
+  source "gunicorn_logrotate.erb"
+  variables({user: node['twinsister']['user']})
+end
+
 # supervisor
 template "/etc/supervisor.d/twinsister.conf" do
   source "supervisor.erb"
@@ -84,10 +95,4 @@ end
 
 service "supervisor" do
   action :restart
-end
-
-# gunicorn logrotate
-template "/etc/logrotate.d/gunicorn" do
-  source "gunicorn_logrotate.erb"
-  variables({user: node['twinsister']['user']})
 end
