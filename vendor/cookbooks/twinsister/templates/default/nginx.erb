@@ -9,6 +9,9 @@ server {
 
   keepalive_timeout 5;
 
+  access_log /var/log/nginx/twinsister.access.log combined;
+  error_log /var/log/nginx/twinsister.error.log;
+
   location /static {
     root <%= @app_root %>/src/public;
   }
