@@ -85,3 +85,9 @@ end
 service "supervisor" do
   action :restart
 end
+
+# gunicorn logrotate
+template "/etc/logrotate.d/gunicorn" do
+  source "gunicorn_logrotate.erb"
+  variables({user: node['twinsister']['user']})
+end
