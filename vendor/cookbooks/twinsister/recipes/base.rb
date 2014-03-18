@@ -68,7 +68,8 @@ template "/etc/nginx/sites-available/twinsister" do
   variables({app_root: node['twinsister']['app_root'],
     hostname: node['twinsister']['hostname'],
     user: node['twinsister']['user'],
-    protect: node['twinsister']['password_protect']})
+    protect: node['twinsister']['password_protect'],
+    ssl_enabled: node['twinsister']['ssl_enabled']})
 end
 
 # nginx default site

@@ -12,3 +12,5 @@ default['twinsister']['db'] = {
 default['twinsister']['hostname'] = 'mrtwinsister.com'
 
 default['twinsister']['password_protect'] = false
+
+default['twinsister']['ssl_enabled'] = true

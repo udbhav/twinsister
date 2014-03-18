@@ -21,6 +21,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       "twinsister" => {
         "user" => "vagrant",
         "app_root" => "/vagrant",
+        "ssl_enabled" => false,
+        "db" => {user: "vagrant"}
       },
       "postgresql" => {
         "password" => { "postgres" => "postgres" }
