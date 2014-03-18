@@ -1,6 +1,5 @@
 * TODO Test email stuff
 * TODO S3 Bucket on server
-* TODO JS compression errors
 * TODO switch search to ElasticSearch from Whoosh
 * TODO S3 direct upload
 * TODO Weird caching behavior in the admin
@@ -13,3 +12,4 @@
 * TODO 404 and 500 pages
 * TODO favicon
 * TODO CSS/JS on S3 (make sure works with SSL)
+* TODO Switch Soundmanager2 to no debug
