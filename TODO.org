@@ -13,4 +13,3 @@
 * TODO 404 and 500 pages
 * TODO favicon
 * TODO CSS/JS on S3 (make sure works with SSL)
-* TODO Analytics
