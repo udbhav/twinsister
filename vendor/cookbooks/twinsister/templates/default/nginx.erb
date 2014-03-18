@@ -3,9 +3,9 @@ upstream app_server {
 }
 
 server {
-  listen 80 default;
+  listen 80;
+  listen 443 ssl;
 
-  listen 443 default_server ssl;
   ssl_certificate /home/<%= @user %>/certificates/mrtwinsister.crt;
   ssl_certificate_key /home/<%= @user %>/certificates/mrtwinsister.key;
 
@@ -35,11 +35,11 @@ server {
     try_files $uri @proxy_to_app;
   }
 
+  error_page 500 502 503 504 /static/500.html;
+  error_page 404 /static/404.html;
+
   location / {
     # checks for static file, if not found proxy to app
     try_files $uri @proxy_to_app;
   }
-
-  error_page 500 502 503 504 /static/500.html;
-  error_page 404 /static/404.html;
 }

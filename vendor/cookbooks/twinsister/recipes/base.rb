@@ -69,7 +69,27 @@ template "/etc/nginx/sites-available/twinsister" do
     hostname: node['twinsister']['hostname'],
     user: node['twinsister']['user'],
     protect: node['twinsister']['password_protect']})
+end
 
+# nginx default site
+begin
+  r = resources(:template => "#{node['nginx']['dir']}/sites-available/default")
+  r.cookbook "twinsister"
+rescue Chef::Exceptions::ResourceNotFound
+  Chef::Log.warn "could not find template to override!"
+end
+
+%w[ /var /var/www /var/www/nginx-default ].each do |path|
+  directory path do
+    owner node['nginx']['user']
+    group node['nginx']['user']
+  end
+end
+
+template "#{node['nginx']['default_root']}/index.html" do
+  source "nginx-default.html.erb"
+  owner node['nginx']['user']
+  group node['nginx']['user']
 end
 
 service "nginx" do
