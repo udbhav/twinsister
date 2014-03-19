@@ -5,6 +5,9 @@ upstream app_server {
 server {
   listen 80;
 
+  <%= "auth_basic \"Restricted\";" if @protect %>
+  auth_basic_user_file <%= @app_root %>/htpasswd;
+
   <% if @ssl_enabled %>
   <%= "listen 443 ssl;" %>
   <%= "ssl_certificate /home/#{@user}/certificates/mrtwinsister.crt;" %>
