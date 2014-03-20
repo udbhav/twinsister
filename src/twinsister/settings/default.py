@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'south',
     'imagekit',
     'taggit',
+    'dbbackup',
     'kishore',
     'debug_toolbar',
     'compressor',
@@ -181,3 +182,5 @@ LOGGING = {
 KISHORE_SITE_NAME = "Mr Twin Sister"
 KISHORE_USE_SOUNDCLOUD_EMBED = False
 KISHORE_SUPPORT_EMAIL = "support@mrtwinsister.com"
+
+DBBACKUP_STORAGE = 'dbbackup.storage.s3_storage'

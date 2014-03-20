@@ -9,11 +9,7 @@
 {% cache 9999999 song song.cache_key %}
 <div class="feature">
   <div class="text-center">
-    <img src="{% static 'images/out_of_the_dark.gif' %}" alt="{{ song }}">
-  </div>
-
-  <div class="player">
-    {% autoescape off %}{{ song.get_player_html }}{% endautoescape %}
+    <iframe width="420" height="315" src="//www.youtube.com/embed/dOVUJ4lfmeQ" frameborder="0" allowfullscreen></iframe>
   </div>
 
   <div class="actions monospaced text-center">
