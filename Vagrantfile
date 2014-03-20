@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "user" => "vagrant",
         "app_root" => "/vagrant",
         "ssl_enabled" => false,
+        "hostname" => "dev.mrtwinsister.com",
         "db" => {user: "vagrant"}
       },
       "postgresql" => {
