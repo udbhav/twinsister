@@ -1,0 +1,4 @@
+#!/bin/bash
+
+<%= @app_root %>/env/bin/python <%= @app_root %>/src/manage.py collectstatic --noinput
+sudo supervisorctl restart gunicorn

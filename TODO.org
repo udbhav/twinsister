@@ -1,8 +1,10 @@
+* TODO Weird cart behavior
 * TODO Test email stuff
 * TODO S3 Bucket on server
 * TODO switch search to ElasticSearch from Whoosh
 * TODO S3 direct upload
 * TODO Weird caching behavior in the admin
+reproduce by creating a new product, product list is not updated in admin
 * TODO set up dns
 
 * TODO Ownership issue, no root for app?

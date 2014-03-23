@@ -23,10 +23,15 @@ rules.each do |r|
 end
 firewall 'ufw'
 
-# db user password
-execute "change db user pw" do
-  command "psql -c \"ALTER USER #{node['twinsister']['db']['user']} WITH PASSWORD '#{node['twinsister']['db']['password']}'\""
-  user 'postgres'
+# backups!
+cron "backups" do
+  minute "0"
+  hour "0"
+  weekday "1"
+  command %Q{#{node['twinsister']['app_root']}/env/bin/python \
+    #{node['twinsister']['app_root']}/src/manage.py dbbackup
+  }
+  user node['twinsister']['user']
 end
 
 include_recipe "twinsister::deploy"

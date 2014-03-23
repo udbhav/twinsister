@@ -47,7 +47,7 @@ apt_package "memcached"
 execute "npm install -g less"
 
 # create db role and db if they don't exist
-db_user = node['twinsister']['db']['user']
+db_user = node['twinsister']['user']
 db_name = node['twinsister']['db']['name']
 
 execute "create_db_role" do

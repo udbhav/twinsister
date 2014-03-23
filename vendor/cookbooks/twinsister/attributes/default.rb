@@ -6,8 +6,7 @@ default['twinsister']['git_branch'] = "kishore"
 
 default['twinsister']['db'] = {
   user: 'twinsister',
-  name: 'twinsister',
-  password: 'changethisdummy'}
+  name: 'twinsister'}
 
 default['twinsister']['hostname'] = 'mrtwinsister.com'
 

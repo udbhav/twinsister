@@ -92,9 +92,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    # Cache is always first!
-    'django.middleware.cache.UpdateCacheMiddleware',
-
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -103,11 +100,6 @@ MIDDLEWARE_CLASSES = (
 
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-
-    # Cache fetch is always last!
-    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'twinsister.urls'
@@ -136,7 +128,6 @@ INSTALLED_APPS = (
     'taggit',
     'dbbackup',
     'kishore',
-    'debug_toolbar',
     'compressor',
     'less',
 )
