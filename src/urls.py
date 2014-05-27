@@ -20,6 +20,7 @@ feeds = {
 
 urlpatterns = patterns(
     '',
+    (r'^$', RedirectView.as_view(url='http://mrtwinsister.com'), {}, 'home'),
     (r'^music/', include('apps.music.urls')),
     (r'^images/', include('apps.images.urls')),
     (r'^shows/', include('apps.events.urls')),
