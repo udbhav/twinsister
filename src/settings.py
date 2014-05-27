@@ -80,7 +80,7 @@ INSTALLED_APPS = (
     # Dependencies
     'haystack',
     'django_extensions',
-    'filebrowser',
+    #'filebrowser',
     'oembed',
     'debug_toolbar',
     'imagekit',

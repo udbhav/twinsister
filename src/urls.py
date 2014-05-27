@@ -32,7 +32,7 @@ urlpatterns = patterns(
     (r'^search/', include('haystack.urls')),
     (r'^contact/$', 'django.views.generic.simple.direct_to_template', {'template':'contact.html'}),
     (r'^faq/$', 'django.views.generic.simple.direct_to_template', {'template':'faq.html'}),
-    (r'^admin/filebrowser/', include('filebrowser.urls')),
+    #(r'^admin/filebrowser/', include('filebrowser.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^accounts/$', RedirectView.as_view(url='/accounts/login/'), {}),
     (r'^accounts/', include(auth_urls)),
